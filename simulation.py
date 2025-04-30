@@ -4,7 +4,7 @@ import csv
 import uuid
 import difflib
 from datetime import datetime
-from typing import Dict, List, Tuple
+from typing import Dict,Tuple
 from openai import OpenAI
 from dotenv import load_dotenv
 
@@ -15,7 +15,6 @@ load_dotenv()
 print(f"Current working directory: {os.getcwd()}")
 print(f".env file exists: {os.path.exists('.env')}")
 
-# Get API key and validate
 api_key = os.getenv("OPENAI_API_KEY")
 if not api_key:
     raise ValueError(
@@ -206,7 +205,7 @@ class Simulation:
             # User agent reads and reacts to article
             user_prompt = self.user_agent.get_prompt(self.current_article)
             user_response = client.chat.completions.create(
-                model="gpt-4",
+                model="o4-mini",
                 messages=[{"role": "user", "content": user_prompt}]
             ).choices[0].message.content
             
@@ -235,7 +234,7 @@ class Simulation:
             # Editor agent edits the article
             editor_prompt = self.editor_agent.get_prompt(self.current_article)
             editor_response = client.chat.completions.create(
-                model="gpt-4",
+                model="o4-mini",
                 messages=[{"role": "user", "content": editor_prompt}]
             ).choices[0].message.content
             
