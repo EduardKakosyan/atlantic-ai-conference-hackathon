@@ -9,7 +9,10 @@ create table if not exists public.persona_responses (
   answer_time timestamp with time zone default now(),
   response text not null,
   is_real boolean not null,
-  is_fact boolean not null
+  is_fact boolean not null,
+  took_covid_vaccine boolean,
+  vaccine_recommendation_rating smallint check (vaccine_recommendation_rating between 1 and 5),
+  vaccine_attitude_score numeric(5,2)
 );
 
 -- enable row level security
@@ -23,6 +26,9 @@ comment on column public.persona_responses.answer_time is 'Timestamp when the an
 comment on column public.persona_responses.response is 'The text response content';
 comment on column public.persona_responses.is_real is 'Flag indicating if the response is real';
 comment on column public.persona_responses.is_fact is 'Flag indicating if the response contains factual information';
+comment on column public.persona_responses.took_covid_vaccine is 'Binary decision (Yes/No) on whether the persona took the COVID-19 vaccine';
+comment on column public.persona_responses.vaccine_recommendation_rating is 'Likert scale rating (1-5) on how likely the persona is to recommend the vaccine to others';
+comment on column public.persona_responses.vaccine_attitude_score is 'Ranked or probabilistic attitude score regarding vaccine sentiment';
 
 -- create policies
 
