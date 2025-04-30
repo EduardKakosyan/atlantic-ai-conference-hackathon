@@ -7,10 +7,11 @@ import {
   PieChart, Pie, Cell,
   ScatterChart, Scatter,
   LineChart, Line,
+  Treemap,
   XAxis, YAxis, CartesianGrid, Tooltip, Legend,
   ResponsiveContainer
 } from 'recharts'
-import { BellIcon, PieChartIcon, BarChartIcon, ScatterChartIcon, CheckCircleIcon, TableIcon, LineChartIcon } from 'lucide-react'
+import { BellIcon, PieChartIcon, BarChartIcon, ScatterChartIcon, CheckCircleIcon, TableIcon, LineChartIcon, LayoutDashboard } from 'lucide-react'
 import { BentoCard, BentoGrid } from '@/components/ui/bento-grid'
 import { formatDate, truncateText } from '@/lib/utils'
 import Link from 'next/link'
@@ -105,7 +106,7 @@ export default function DashboardBento() {
   }, {} as Record<string, number>)
 
   const vaccineChartData = Object.entries(vaccineData).map(([name, value]) => ({ name, value }))
-  const VACCINE_COLORS = ['#4CAF50', '#F44336']
+  const VACCINE_PIE_COLORS = ['#4CAF50', '#F44336']
 
   // Get most recent responses for a quick summary
   const recentResponses = [...responses]
@@ -141,6 +142,50 @@ export default function DashboardBento() {
       recommendationRating: item.recommendationRating / item.count
     }))
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+
+  // Prepare data for treemap (vaccine probability by persona)
+  const prepareTreemapData = () => {
+    // Group responses by persona
+    const personaGroups = responses.reduce((acc, response) => {
+      const personaId = response.persona_id;
+      if (!acc[personaId]) {
+        acc[personaId] = {
+          personaId,
+          total: 0,
+          vaccinated: 0
+        };
+      }
+      
+      acc[personaId].total += 1;
+      if (response.took_covid_vaccine) {
+        acc[personaId].vaccinated += 1;
+      }
+      
+      return acc;
+    }, {} as Record<number, { personaId: number; total: number; vaccinated: number }>);
+    
+    // Calculate probability and format for treemap
+    return Object.values(personaGroups).map(group => {
+      const probability = group.total > 0 ? (group.vaccinated / group.total) * 100 : 0;
+      
+      // Color based on probability
+      let fill;
+      if (probability < 25) fill = '#FF8042'; 
+      else if (probability < 50) fill = '#FFBB28';
+      else if (probability < 75) fill = '#00C49F';
+      else fill = '#0088FE';
+      
+      return {
+        name: `Persona ${group.personaId}`,
+        size: group.total,
+        value: probability.toFixed(1),
+        fill,
+        probability
+      };
+    });
+  };
+  
+  const treemapData = prepareTreemapData();
 
   const bentoFeatures = [
     {
@@ -268,7 +313,7 @@ export default function DashboardBento() {
                 label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
               >
                 {vaccineChartData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={VACCINE_COLORS[index % VACCINE_COLORS.length]} />
+                  <Cell key={`cell-${index}`} fill={VACCINE_PIE_COLORS[index % VACCINE_PIE_COLORS.length]} />
                 ))}
               </Pie>
               <Tooltip formatter={(value) => value} />
@@ -379,6 +424,46 @@ export default function DashboardBento() {
               />
             </LineChart>
           </ResponsiveContainer>
+        </div>
+      ),
+    },
+    {
+      Icon: LayoutDashboard,
+      name: "Vaccine Probability by Persona",
+      description: "Likelihood of vaccination across different personas.",
+      href: "/analytics",
+      cta: "View Details",
+      className: "col-span-3 lg:col-span-2",
+      background: (
+        <div className="absolute inset-0 flex items-center justify-center p-2">
+          <ResponsiveContainer width="100%" height={220}>
+            <Treemap
+              data={treemapData}
+              dataKey="size"
+              aspectRatio={4/3}
+              stroke="#fff"
+              fill="#8884d8" 
+              nameKey="name"
+              className="bg-white dark:bg-slate-800 rounded-lg"
+            >
+              <Tooltip 
+                formatter={(value: any, name: any, props: any) => {
+                  if (name === 'size') return [`${value} responses`, 'Sample Size'];
+                  return [`${props.payload.value}%`, 'Vaccination Probability'];
+                }}
+                labelFormatter={(label) => label}
+                wrapperStyle={{ backgroundColor: 'white', border: '1px solid #ccc', borderRadius: '5px', padding: '5px' }}
+              />
+            </Treemap>
+          </ResponsiveContainer>
+          <div className="absolute bottom-2 left-0 right-0 flex justify-center text-sm">
+            <div className="flex items-center space-x-4">
+              <span className="flex items-center"><span className="inline-block w-3 h-3 bg-[#FF8042] mr-1 rounded"></span> &lt;25%</span>
+              <span className="flex items-center"><span className="inline-block w-3 h-3 bg-[#FFBB28] mr-1 rounded"></span> 25-50%</span>
+              <span className="flex items-center"><span className="inline-block w-3 h-3 bg-[#00C49F] mr-1 rounded"></span> 50-75%</span>
+              <span className="flex items-center"><span className="inline-block w-3 h-3 bg-[#0088FE] mr-1 rounded"></span> &gt;75%</span>
+            </div>
+          </div>
         </div>
       ),
     },
