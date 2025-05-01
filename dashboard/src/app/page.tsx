@@ -13,14 +13,16 @@ export default function RootPage() {
       <h1 className="text-3xl font-bold mb-6">Vaccine Persuasion Dashboard</h1>
       <QuickInsights />
       <div className="grid grid-cols-1 gap-8">
-        <div className="bg-white p-6 rounded-lg shadow-md">
-          <NewsImpactChart className="w-full" />
+        <div className="flex flex-col md:flex-row gap-8">
+          <div className="bg-white p-6 rounded-lg shadow-md md:w-2/3 w-full">
+            <NewsImpactChart className="w-full" />
+          </div>
+          <div className="bg-white p-6 rounded-lg shadow-md md:w-1/3 w-full">
+            <ConversionTrajectory className="w-full" />
+          </div>
         </div>
         <div className="bg-white p-6 rounded-lg shadow-md">
           <NewsImpactAnalysis className="w-full" />
-        </div>
-        <div className="bg-white p-6 rounded-lg shadow-md">
-          <ConversionTrajectory className="w-full" />
         </div>
         <div className="bg-white p-6 rounded-lg shadow-md">
           <ReactionShift className="w-full" />
