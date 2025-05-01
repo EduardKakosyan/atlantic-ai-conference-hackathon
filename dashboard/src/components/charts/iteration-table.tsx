@@ -1,7 +1,9 @@
 'use client';
 
-import mockData, { PersonaData, getAvailablePersonas } from '@/lib/mock-data';
 import { useMemo } from 'react';
+import { PersonaData, getAvailablePersonas } from '@/lib/mock-data';
+import mockData from '@/lib/mock-data';
+
 
 interface HeatMapProps {
   className?: string;
@@ -38,8 +40,8 @@ export function RatingTable({ className }: HeatMapProps) {
     const personaData: Record<string, PersonaData[]> = {};
     personas.forEach(persona => {
       personaData[persona] = mockData
-        .filter(item => item.persona_name === persona)
-        .sort((a, b) => a.iteration - b.iteration);
+        .filter((item: PersonaData) => item.persona_name === persona)
+        .sort((a: PersonaData, b: PersonaData) => a.iteration - b.iteration);
     });
     
     // Calculate changes and prepare data

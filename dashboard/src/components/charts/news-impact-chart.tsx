@@ -32,8 +32,8 @@ export function NewsImpactChart({ className }: NewsImpactChartProps) {
     // Filter data based on selected news type
     const filteredData = mockData.filter(item => {
       if (newsFilter === 'all') return true;
-      if (newsFilter === 'fake') return item.is_fake;
-      if (newsFilter === 'real') return !item.is_fake;
+      if (newsFilter === 'fake') return item.is_real;
+      if (newsFilter === 'real') return !item.is_real;
       return true;
     });
 
@@ -51,7 +51,7 @@ export function NewsImpactChart({ className }: NewsImpactChartProps) {
     // Group data by persona and news type for extending lines
     const groupedData: Record<string, any> = {};
     filteredData.forEach(item => {
-      const key = `${item.persona_name}_${item.is_fake ? 'fake' : 'real'}`;
+      const key = `${item.persona_name}_${item.is_real ? 'real' : 'fake'}`;
       if (!groupedData[key]) {
         groupedData[key] = [];
       }
