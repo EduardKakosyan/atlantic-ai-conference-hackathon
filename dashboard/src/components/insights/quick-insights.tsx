@@ -112,6 +112,22 @@ export const QuickInsights: React.FC<{ className?: string }> = ({ className }) =
       <div className="bg-white rounded-lg p-4 border border-white/20 shadow-sm">
         <div className="flex items-center justify-between">
           <div>
+            <p className="text-sm font-medium text-gray-400 mb-1">Conversion Rate</p>
+            <div className="flex items-center">
+              <h3 className="text-3xl font-bold text-blue-600">{conversionRate}%</h3>
+            </div>
+          </div>
+          <div className="h-10 w-10 rounded-full bg-blue-500/20 flex items-center justify-center">
+            <BarChart4 className="h-5 w-5 text-blue-500" />
+          </div>
+        </div>
+        <p className="text-sm text-gray-400 mt-2">
+          Personas reaching high acceptance threshold
+        </p>
+      </div>
+      <div className="bg-white rounded-lg p-4 border border-white/20 shadow-sm">
+        <div className="flex items-center justify-between">
+          <div>
             <p className="text-sm font-medium text-gray-400 mb-1">Most Improved Persona</p>
             <div className="flex items-center">
               <h3 className="text-2xl font-bold">{mostPersuadable.name}</h3>
@@ -142,23 +158,6 @@ export const QuickInsights: React.FC<{ className?: string }> = ({ className }) =
         </div>
         <p className="text-sm text-gray-400 mt-2">
           Smallest change in vaccination acceptance
-        </p>
-      </div>
-      
-      <div className="bg-white rounded-lg p-4 border border-white/20 shadow-sm">
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-sm font-medium text-gray-400 mb-1">Conversion Rate</p>
-            <div className="flex items-center">
-              <h3 className="text-2xl font-bold">{conversionRate}%</h3>
-            </div>
-          </div>
-          <div className="h-10 w-10 rounded-full bg-blue-500/20 flex items-center justify-center">
-            <BarChart4 className="h-5 w-5 text-blue-500" />
-          </div>
-        </div>
-        <p className="text-sm text-gray-400 mt-2">
-          Personas reaching high acceptance threshold
         </p>
       </div>
     </div>
