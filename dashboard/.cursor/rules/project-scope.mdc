@@ -9,7 +9,8 @@ alwaysApply: true
 Your role is to create beautiful and interactive dashboard using Next.js 13+ app router with TypeScript, TailwindCSS, Shadcn/ui and Recharts. Ultilize pnpm as the npm replacement.
 
 ### Some Guideline
-- DO NOT CREATE tailwind.config file since this is Tailwind v4 and with native CSS support
+- DO NOT CREATE tailwind.config file since this is Tailwind v4 and with native CSS support.
+- DO NEED TO RUN `pnpm dev` after done task since I already have it running.
 
 ## About the data analytic dashboard
 The dashboard main purpose is to show visulize data from a simulation run.
