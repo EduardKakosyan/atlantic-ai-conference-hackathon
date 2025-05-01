@@ -174,7 +174,7 @@ export function NewsImpactChart({ className }: NewsImpactChartProps) {
               domain={[0, 1]} 
               ticks={[0, 0.25, 0.5, 0.75, 1]}
               tickFormatter={(value) => value.toFixed(2)}
-              label={{ value: 'Normalized Rating', angle: -90, position: 'insideLeft' }}
+              label={{ value: 'Normalized Rating', angle: -90, position: 'insideBottomLeft' }}
               tick={{ fontSize: 12 }}
             />
             <Tooltip content={<CustomTooltip />} />
@@ -186,7 +186,17 @@ export function NewsImpactChart({ className }: NewsImpactChartProps) {
                 color: getPersonaColor(persona)
               }))}
             />
-            <ReferenceLine y={0.875} stroke="red" strokeDasharray="3 3" />
+            <ReferenceLine 
+              y={0.875} 
+              stroke="red" 
+              strokeDasharray="3 3" 
+              label={{ 
+                value: 'Threshold', 
+                position: 'left', 
+                fill: 'red',
+                fontSize: 12
+              }} 
+            />
             
             {availablePersonas.map((persona) => {
               const color = getPersonaColor(persona);
