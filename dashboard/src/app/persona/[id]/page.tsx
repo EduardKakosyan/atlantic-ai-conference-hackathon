@@ -47,7 +47,7 @@ export default function PersonaDetailPage({ params }: Params) {
         <p className="text-gray-500 text-center">{persona.description}</p>
       </div>
 
-      {/* grouped cards */}
+      {/* First row: Demographics + (Beliefs & Attitudes, Concerns) */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Demographics */}
         <section className="bg-white p-6 rounded-lg shadow-md">
@@ -76,48 +76,47 @@ export default function PersonaDetailPage({ params }: Params) {
           </dl>
         </section>
 
-        {/* Beliefs & Attitudes */}
-        <section className="bg-white p-6 rounded-lg shadow-md">
-          <h2 className="text-xl font-semibold mb-4">
-            Beliefs & Attitudes
-          </h2>
-          <p>
-            <span className="font-medium">
-              {persona.beliefs_and_attitudes.initial_stance}
-            </span>
-            {": "}
-            {persona.beliefs_and_attitudes.stance_description}
-          </p>
-          <p className="mt-2">
-            <span className="font-medium">Key Motivator:</span>{" "}
-            {persona.beliefs_and_attitudes.key_motivator}
-          </p>
-        </section>
+        {/* Right column: stack Beliefs & Attitudes above Concerns */}
+        <div className="grid grid-rows-2 gap-6">
+          {/* Beliefs & Attitudes */}
+          <section className="bg-white p-6 rounded-lg shadow-md">
+            <h2 className="text-xl font-semibold mb-4">
+              Beliefs & Attitudes
+            </h2>
+            <p>
+              <span className="font-medium">
+                {persona.beliefs_and_attitudes.initial_stance}
+              </span>
+              {": "}
+              {persona.beliefs_and_attitudes.stance_description}
+            </p>
+            <p className="mt-2">
+              <span className="font-medium">Key Motivator:</span>{" "}
+              {persona.beliefs_and_attitudes.key_motivator}
+            </p>
+          </section>
 
-        {/* Concerns */}
-        <section className="bg-white p-6 rounded-lg shadow-md">
-          <h2 className="text-xl font-semibold mb-4">Concerns</h2>
-          <ul className="list-disc list-inside space-y-1">
-            {persona.beliefs_and_attitudes.concerns.map((c, i) => (
-              <li key={i}>{c}</li>
-            ))}
-          </ul>
-        </section>
-
-        {/* Personality */}
-        <section className="bg-white p-6 rounded-lg shadow-md">
-          <h2 className="text-xl font-semibold mb-4">Personality</h2>
-          <p>
-            <span className="font-medium">
-              {persona.personality.archetype}
-            </span>
-            {": "}
-            {persona.personality.notes}
-          </p>
-        </section>
-
-        
+          {/* Concerns */}
+          <section className="bg-white p-6 rounded-lg shadow-md">
+            <h2 className="text-xl font-semibold mb-4">Concerns</h2>
+            <ul className="list-disc list-inside space-y-1">
+              {persona.beliefs_and_attitudes.concerns.map((c, i) => (
+                <li key={i}>{c}</li>
+              ))}
+            </ul>
+          </section>
+        </div>
       </div>
+
+      {/* Personality (full-width below) */}
+      <section className="bg-white p-6 rounded-lg shadow-md">
+        <h2 className="text-xl font-semibold mb-4">Personality</h2>
+        <p>
+          <span className="font-medium">{persona.personality.archetype}</span>
+          {": "}
+          {persona.personality.notes}
+        </p>
+      </section>
     </main>
   )
 } 
