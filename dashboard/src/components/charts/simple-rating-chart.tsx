@@ -79,7 +79,7 @@ export function SimpleRatingChart({ data, className }: SimpleRatingChartProps) {
           <div className="mt-1">
             {payload.map((entry: any, index: number) => (
               <p key={index} className="text-sm" style={{ color: entry.color }}>
-                {entry.name}: {(entry.value * 100).toFixed(1)}%
+                {entry.name}: {entry.value.toFixed(3)}
               </p>
             ))}
           </div>
@@ -111,7 +111,7 @@ export function SimpleRatingChart({ data, className }: SimpleRatingChartProps) {
             />
             <YAxis 
               domain={[0, 1]} 
-              tickFormatter={(value) => `${(value * 100).toFixed(0)}%`}
+              tickFormatter={(value) => `${value.toFixed(2)}`}
               label={{ 
                 value: 'Normalized Rating', 
                 angle: -90, 

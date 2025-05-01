@@ -19,19 +19,18 @@ interface NewsImpactChartProps {
   className?: string;
 }
 
-type NewsFilter = 'all' | 'fake' | 'real';
+type NewsFilter = 'fake' | 'real';
 
 const COLORS = ['#8884d8', '#82ca9d', '#ffc658', '#ff8042', '#0088fe'];
 
 export function NewsImpactChart({ className }: NewsImpactChartProps) {
   const availablePersonas = getAvailablePersonas();
-  const [newsFilter, setNewsFilter] = useState<NewsFilter>('all');
+  const [newsFilter, setNewsFilter] = useState<NewsFilter>('fake');
   
   // Transform data for the chart
   const prepareChartData = () => {
     // Filter data based on selected news type
     const filteredData = mockData.filter(item => {
-      if (newsFilter === 'all') return true;
       if (newsFilter === 'fake') return !item.is_real;
       if (newsFilter === 'real') return item.is_real;
       return true;
@@ -159,16 +158,6 @@ export function NewsImpactChart({ className }: NewsImpactChartProps) {
       <div className="mb-6">
         <div className="flex gap-2">
           <button
-            onClick={() => setNewsFilter('all')}
-            className={`px-4 py-2 text-sm rounded-lg transition-colors ${
-              newsFilter === 'all' 
-                ? 'bg-blue-500 text-white' 
-                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-            }`}
-          >
-            All News
-          </button>
-          <button
             onClick={() => setNewsFilter('fake')}
             className={`px-4 py-2 text-sm rounded-lg transition-colors ${
               newsFilter === 'fake' 
@@ -176,7 +165,7 @@ export function NewsImpactChart({ className }: NewsImpactChartProps) {
                 : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
             }`}
           >
-            Only Fake News
+            Fake News
           </button>
           <button
             onClick={() => setNewsFilter('real')}
@@ -186,7 +175,7 @@ export function NewsImpactChart({ className }: NewsImpactChartProps) {
                 : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
             }`}
           >
-            Only Real News
+            Real News
           </button>
         </div>
       </div>
@@ -236,7 +225,7 @@ export function NewsImpactChart({ className }: NewsImpactChartProps) {
             {availablePersonas.map((persona) => {
               const color = getPersonaColor(persona);
               
-              if (newsFilter === 'all' || newsFilter === 'fake') {
+              if (newsFilter === 'fake') {
                 return (
                   <Line
                     key={`${persona}_fake`}
@@ -257,7 +246,7 @@ export function NewsImpactChart({ className }: NewsImpactChartProps) {
             {availablePersonas.map((persona) => {
               const color = getPersonaColor(persona);
               
-              if (newsFilter === 'all' || newsFilter === 'real') {
+              if (newsFilter === 'real') {
                 return (
                   <Line
                     key={`${persona}_real`}
