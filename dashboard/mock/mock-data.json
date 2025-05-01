@@ -1,6 +1,6 @@
 [
   {
-    "id": "5a92df57-a86f-4e69-b8ea-3657a1e21a7d",
+    "id": "49946618-49de-4753-86a8-13c8b9c634cd",
     "session_id": "0d6ac844-3abc-4429-af7a-39133f1b541b",
     "persona_id": 3,
     "persona_name": "David",
@@ -17,7 +17,7 @@
     "is_real": true
   },
   {
-    "id": "d77bec5b-6980-4591-88d5-0a8c639895f1",
+    "id": "2db2aed2-35ee-47e2-a95a-af33ed8a3a1d",
     "session_id": "0d6ac844-3abc-4429-af7a-39133f1b541b",
     "persona_id": 3,
     "persona_name": "David",
@@ -34,7 +34,7 @@
     "is_real": true
   },
   {
-    "id": "d523bc0a-4e57-43e2-af99-91e6421ee7d9",
+    "id": "51ed8847-199e-409b-8fd6-5dc89d9fc062",
     "session_id": "0d6ac844-3abc-4429-af7a-39133f1b541b",
     "persona_id": 3,
     "persona_name": "David",
@@ -51,7 +51,7 @@
     "is_real": true
   },
   {
-    "id": "4740bc8b-a175-4004-aeb0-f8aca2436848",
+    "id": "0076f7cc-1df2-49b4-8613-1b76c9a562e5",
     "session_id": "0d6ac844-3abc-4429-af7a-39133f1b541b",
     "persona_id": 3,
     "persona_name": "David",
@@ -68,7 +68,7 @@
     "is_real": true
   },
   {
-    "id": "26fdd478-2508-4e03-a238-809f7af26603",
+    "id": "7ac9ec18-f072-49f9-98e2-f4771e71f716",
     "session_id": "0d6ac844-3abc-4429-af7a-39133f1b541b",
     "persona_id": 3,
     "persona_name": "David",
@@ -85,7 +85,7 @@
     "is_real": true
   },
   {
-    "id": "149d14a8-f941-4957-8f29-c192f60d4324",
+    "id": "3f882eed-e87f-4040-a452-6728a4c16614",
     "session_id": "0d6ac844-3abc-4429-af7a-39133f1b541b",
     "persona_id": 3,
     "persona_name": "David",
@@ -102,7 +102,7 @@
     "is_real": true
   },
   {
-    "id": "9f55869c-36f2-407f-8e71-b0a0a4a3813d",
+    "id": "87114fe6-e0b2-49cd-a497-9fe041a0dfe4",
     "session_id": "0d6ac844-3abc-4429-af7a-39133f1b541b",
     "persona_id": 3,
     "persona_name": "David",
@@ -119,7 +119,7 @@
     "is_real": false
   },
   {
-    "id": "58aa7479-e3db-40bb-ad9b-efac7b2c77e7",
+    "id": "a2856799-4827-4526-b579-7fe9bf391e94",
     "session_id": "3c277b32-31d3-41df-8ee7-63283938a5af",
     "persona_id": 6,
     "persona_name": "Jennifer",
@@ -136,7 +136,7 @@
     "is_real": true
   },
   {
-    "id": "fea43274-625c-4802-948e-0dde4bfc898c",
+    "id": "381dbc6f-8ab6-47ed-9b5c-9ad679b81c50",
     "session_id": "3c277b32-31d3-41df-8ee7-63283938a5af",
     "persona_id": 6,
     "persona_name": "Jennifer",
@@ -153,7 +153,7 @@
     "is_real": false
   },
   {
-    "id": "5bc2fd0e-ee5a-4744-bc8f-df189a6487e9",
+    "id": "6ec16a2b-401d-42ef-a3ef-6db777ffbf25",
     "session_id": "3c277b32-31d3-41df-8ee7-63283938a5af",
     "persona_id": 6,
     "persona_name": "Jennifer",
@@ -170,7 +170,7 @@
     "is_real": true
   },
   {
-    "id": "d18cb184-8d3f-466b-a8c9-1f8778a5e383",
+    "id": "220c760c-0794-4396-b009-076d40d455b5",
     "session_id": "3c277b32-31d3-41df-8ee7-63283938a5af",
     "persona_id": 6,
     "persona_name": "Jennifer",
@@ -187,7 +187,7 @@
     "is_real": true
   },
   {
-    "id": "aaf614ab-76be-451d-a337-233368573f6b",
+    "id": "34c961c9-0498-4eda-91af-3eff75b8cbc9",
     "session_id": "3c277b32-31d3-41df-8ee7-63283938a5af",
     "persona_id": 6,
     "persona_name": "Jennifer",
@@ -204,7 +204,7 @@
     "is_real": false
   },
   {
-    "id": "19a3f9f3-2fe7-4e3e-bea0-8fef97057ff4",
+    "id": "b3c79574-17ad-4c5b-a6c5-69c412fe1955",
     "session_id": "3c277b32-31d3-41df-8ee7-63283938a5af",
     "persona_id": 6,
     "persona_name": "Jennifer",
@@ -221,7 +221,7 @@
     "is_real": true
   },
   {
-    "id": "6885a296-1a30-438b-ab08-4ad960e2bd4d",
+    "id": "f1d7d8fb-a5f0-4258-8768-85c43178562a",
     "session_id": "3c277b32-31d3-41df-8ee7-63283938a5af",
     "persona_id": 6,
     "persona_name": "Jennifer",
@@ -238,7 +238,7 @@
     "is_real": true
   },
   {
-    "id": "93dbca20-c153-4dfa-a516-229e4bcf94df",
+    "id": "8b798228-d2c4-43dd-a59b-8f57f1971808",
     "session_id": "002d48af-75b4-40d8-b953-ac6b1f5401d9",
     "persona_id": 5,
     "persona_name": "James",
@@ -255,7 +255,7 @@
     "is_real": false
   },
   {
-    "id": "6b67d6d8-c6e5-4bd4-a254-cfbc9fc6fe5d",
+    "id": "0b17ac0e-0c94-42ed-99be-41c32e035cbe",
     "session_id": "002d48af-75b4-40d8-b953-ac6b1f5401d9",
     "persona_id": 5,
     "persona_name": "James",
@@ -272,7 +272,7 @@
     "is_real": false
   },
   {
-    "id": "414afb5f-864c-46cf-9a17-7a8b9d563f5d",
+    "id": "d394f35d-aea2-41d4-a817-e38bb0091a66",
     "session_id": "002d48af-75b4-40d8-b953-ac6b1f5401d9",
     "persona_id": 5,
     "persona_name": "James",
@@ -289,7 +289,7 @@
     "is_real": false
   },
   {
-    "id": "647498cc-373e-4375-bf5c-b4b813b85a78",
+    "id": "cba8d00e-eb65-4a72-9370-3e33855f147f",
     "session_id": "002d48af-75b4-40d8-b953-ac6b1f5401d9",
     "persona_id": 5,
     "persona_name": "James",
@@ -306,13 +306,13 @@
     "is_real": false
   },
   {
-    "id": "57a1304c-3210-4105-9c89-bf52f09e711e",
+    "id": "734654d6-6892-4641-bc46-42e9c89b5c8d",
     "session_id": "002d48af-75b4-40d8-b953-ac6b1f5401d9",
     "persona_id": 5,
     "persona_name": "James",
     "iteration": 5,
-    "current_rating": "2.7",
-    "normalized_current_rating": "0.570000",
+    "current_rating": "3.0",
+    "normalized_current_rating": "0.730000",
     "recommened_rating": null,
     "normalized_recommened_rating": null,
     "reaction": "Positive",
@@ -323,13 +323,13 @@
     "is_real": false
   },
   {
-    "id": "4be229aa-a9e2-461b-835a-e6df568e7ff4",
+    "id": "16afc930-1277-4063-b7ec-34fd3d199ff7",
     "session_id": "002d48af-75b4-40d8-b953-ac6b1f5401d9",
     "persona_id": 5,
     "persona_name": "James",
     "iteration": 6,
-    "current_rating": "3.4",
-    "normalized_current_rating": "0.800000",
+    "current_rating": "3.1",
+    "normalized_current_rating": "0.760000",
     "recommened_rating": "3.2",
     "normalized_recommened_rating": "0.730000",
     "reaction": "Positive",
@@ -340,7 +340,24 @@
     "is_real": true
   },
   {
-    "id": "2aa5ca38-94c8-44c2-b1e6-e982d172309b",
+    "id": "3c7ff08f-ee65-467c-b87b-96fc487c50bb",
+    "session_id": "002d48af-75b4-40d8-b953-ac6b1f5401d9",
+    "persona_id": 5,
+    "persona_name": "James",
+    "iteration": 7,
+    "current_rating": "3.4",
+    "normalized_current_rating": "0.880000",
+    "recommened_rating": "3.2",
+    "normalized_recommened_rating": "0.730000",
+    "reaction": "Positive",
+    "reason": "This article provides valuable insights because it cites credible sources. I conditionally trust the institutions mentioned, and the population data raises questions. Coming from my medical background, I have increased concerns about the vaccine recommendations.",
+    "editor_changes": "Included more detail about the research methodology. Clarified the risk-benefit analysis. Acknowledged concerns while providing factual context",
+    "article": "A new report by epidemiologists explores the long-term immunity of COVID-19 vaccines. Their findings demonstrate reduced viral shedding, which could impact public health policy moving forward. Recent studies have shown that COVID-19 vaccines provide strong protection against the Delta variant. Research from the CDC indicates that antibody levels remain high for children and adolescents, particularly essential workers.",
+    "is_fact": true,
+    "is_real": true
+  },
+  {
+    "id": "1e98bdef-2084-4fcf-ab7f-f21cc6cdb204",
     "session_id": "21bca912-dbbd-4bac-a8cf-18099ae745b2",
     "persona_id": 4,
     "persona_name": "Sarah",
@@ -357,7 +374,7 @@
     "is_real": false
   },
   {
-    "id": "0b65143c-53c9-47a7-ab53-f9b5019b349e",
+    "id": "22885499-07c5-4ec6-88c3-a6b666128928",
     "session_id": "21bca912-dbbd-4bac-a8cf-18099ae745b2",
     "persona_id": 4,
     "persona_name": "Sarah",
@@ -374,7 +391,7 @@
     "is_real": true
   },
   {
-    "id": "ab482b85-8071-4922-a026-8d3fa2e4251b",
+    "id": "0c2da2e3-b362-455a-b2c5-962f5044419e",
     "session_id": "21bca912-dbbd-4bac-a8cf-18099ae745b2",
     "persona_id": 4,
     "persona_name": "Sarah",
@@ -391,7 +408,7 @@
     "is_real": false
   },
   {
-    "id": "6f0bd217-c8e0-403f-a97c-7cabbdf03983",
+    "id": "c1ec4772-8e08-44f3-876d-668c38f64b2d",
     "session_id": "21bca912-dbbd-4bac-a8cf-18099ae745b2",
     "persona_id": 4,
     "persona_name": "Sarah",
@@ -408,13 +425,13 @@
     "is_real": true
   },
   {
-    "id": "030707b0-339d-4669-ac2d-1034651393cf",
+    "id": "79f6d106-e8e5-4a39-8f77-77644212478e",
     "session_id": "21bca912-dbbd-4bac-a8cf-18099ae745b2",
     "persona_id": 4,
     "persona_name": "Sarah",
     "iteration": 5,
     "current_rating": "1.4",
-    "normalized_current_rating": "0.130000",
+    "normalized_current_rating": "0.360000",
     "recommened_rating": null,
     "normalized_recommened_rating": null,
     "reaction": "Negative",
@@ -425,13 +442,30 @@
     "is_real": false
   },
   {
-    "id": "142be321-0b7b-41e5-ad34-5681287cc422",
+    "id": "b119fdbc-7b96-4c18-be94-774095496a6e",
     "session_id": "21bca912-dbbd-4bac-a8cf-18099ae745b2",
     "persona_id": 4,
     "persona_name": "Sarah",
     "iteration": 6,
-    "current_rating": "3.4",
-    "normalized_current_rating": "0.320000",
+    "current_rating": "1.7",
+    "normalized_current_rating": "0.640000",
+    "recommened_rating": null,
+    "normalized_recommened_rating": null,
+    "reaction": "Negative",
+    "reason": null,
+    "editor_changes": "Adjusted tone to better align with the reader's values. Focused more on long-term data. Added perspectives from diverse experts",
+    "article": "A new report by immunologists explores the long-term immunity of COVID-19 vaccines. Their findings demonstrate durable antibody production, which could impact public health policy moving forward. According to Dr. Anthony Fauci, the latest data on vaccine development shows concerning patterns. This information is particularly relevant for parents when considering personal risk assessment. Recent studies have shown that COVID-19 vaccines show mixed results against the Delta variant. Research from the CDC indicates that booster shots significantly increase protection for the general population, particularly healthcare workers. Recent studies have shown that COVID-19 vaccines show declining effectiveness against all known variants. Research from Oxford University indicates that immunity may wane over time for previously infected people, particularly pregnant women.",
+    "is_fact": true,
+    "is_real": false
+  },
+  {
+    "id": "c5c3d368-74a4-4614-a989-01bc9a8c8c7f",
+    "session_id": "21bca912-dbbd-4bac-a8cf-18099ae745b2",
+    "persona_id": 4,
+    "persona_name": "Sarah",
+    "iteration": 7,
+    "current_rating": "2.0",
+    "normalized_current_rating": "0.820000",
     "recommened_rating": "3.4",
     "normalized_recommened_rating": "0.800000",
     "reaction": "Positive",
@@ -442,7 +476,7 @@
     "is_real": true
   },
   {
-    "id": "dcd8d0fa-c215-4de9-bdb5-64b3228d8f9b",
+    "id": "9dd422c4-f1f2-4fe2-8164-ab15823347a3",
     "session_id": "f03cc1ac-51cf-4b80-bfe3-eb277aebd846",
     "persona_id": 1,
     "persona_name": "Michael",
@@ -459,7 +493,7 @@
     "is_real": false
   },
   {
-    "id": "1a46cac9-bc4b-4d79-8717-32425e693a39",
+    "id": "acb06608-9a42-4a39-866c-e5cb6745f6ff",
     "session_id": "f03cc1ac-51cf-4b80-bfe3-eb277aebd846",
     "persona_id": 1,
     "persona_name": "Michael",
@@ -476,7 +510,7 @@
     "is_real": true
   },
   {
-    "id": "8f7b347e-334a-4cf9-8cc2-c5a2ee41f719",
+    "id": "3c5e788d-0f10-4670-9c06-5c4f839944e9",
     "session_id": "f03cc1ac-51cf-4b80-bfe3-eb277aebd846",
     "persona_id": 1,
     "persona_name": "Michael",
@@ -493,7 +527,7 @@
     "is_real": true
   },
   {
-    "id": "ed6007eb-a624-4fd6-a108-082f5a62b1df",
+    "id": "7123025b-9887-4cdf-b3a4-7fd62724d3fc",
     "session_id": "f03cc1ac-51cf-4b80-bfe3-eb277aebd846",
     "persona_id": 1,
     "persona_name": "Michael",
@@ -510,13 +544,13 @@
     "is_real": false
   },
   {
-    "id": "3294bcb2-4860-4435-bc61-95cc77ce4e11",
+    "id": "467a81b3-4e8e-4c6a-b454-8278fface58e",
     "session_id": "f03cc1ac-51cf-4b80-bfe3-eb277aebd846",
     "persona_id": 1,
     "persona_name": "Michael",
     "iteration": 5,
     "current_rating": "2.3",
-    "normalized_current_rating": "0.430000",
+    "normalized_current_rating": "0.630000",
     "recommened_rating": null,
     "normalized_recommened_rating": null,
     "reaction": "Negative",
@@ -527,13 +561,13 @@
     "is_real": false
   },
   {
-    "id": "6e95762a-3824-4cb1-a02b-5be0954f8ce2",
+    "id": "67cfe9b4-fd0d-4368-a6dd-f8290e9d246d",
     "session_id": "f03cc1ac-51cf-4b80-bfe3-eb277aebd846",
     "persona_id": 1,
     "persona_name": "Michael",
     "iteration": 6,
-    "current_rating": "3.4",
-    "normalized_current_rating": "0.720000",
+    "current_rating": "2.6",
+    "normalized_current_rating": "0.690000",
     "recommened_rating": "3.2",
     "normalized_recommened_rating": "0.730000",
     "reaction": "Positive",
@@ -544,7 +578,24 @@
     "is_real": true
   },
   {
-    "id": "767c493a-8874-449d-947b-f1a12c1c99be",
+    "id": "bd38b7b2-67d7-4cc5-af21-abc83af998a6",
+    "session_id": "f03cc1ac-51cf-4b80-bfe3-eb277aebd846",
+    "persona_id": 1,
+    "persona_name": "Michael",
+    "iteration": 7,
+    "current_rating": "3.4",
+    "normalized_current_rating": "0.800000",
+    "recommened_rating": "3.2",
+    "normalized_recommened_rating": "0.730000",
+    "reaction": "Positive",
+    "reason": "This article provides valuable insights because it ignores important factors. I barely trust the research groups mentioned, and the research findings appears solid. Coming from my public health background, I remain uncertain about the vaccine recommendations.",
+    "editor_changes": "Included more detail about the research methodology. Added perspectives from diverse experts",
+    "article": "Researchers at University of Washington have published a study on vaccine mixing strategies related to COVID-19 vaccines. The study provides new insights, adding to our understanding of vaccine efficacy. Recent studies have shown that COVID-19 vaccines maintain robust protection against Omicron subvariants. Research from Mayo Clinic indicates that booster shots significantly increase protection for previously infected people, particularly pregnant women. Researchers at Harvard Medical School have published a study on breakthrough infections related to COVID-19 vaccines. The study reveals unexpected patterns, adding to our understanding of public health strategies. A new report by an international team of scientists explores the long-term immunity of COVID-19 vaccines. Their findings demonstrate reduced viral shedding, which could impact travel restrictions moving forward.",
+    "is_fact": false,
+    "is_real": true
+  },
+  {
+    "id": "13021f1e-cc57-48a9-9686-7fb0953f3719",
     "session_id": "f1725587-c04f-487e-91c3-b34f330394ec",
     "persona_id": 2,
     "persona_name": "Emily",
@@ -561,7 +612,7 @@
     "is_real": true
   },
   {
-    "id": "0bad46ea-51d8-438f-a118-f37cffe0c19e",
+    "id": "214511b5-e3c8-4abe-9cc8-ff3fd74e3661",
     "session_id": "f1725587-c04f-487e-91c3-b34f330394ec",
     "persona_id": 2,
     "persona_name": "Emily",
@@ -578,7 +629,7 @@
     "is_real": true
   },
   {
-    "id": "d588569a-2c45-4a5b-ad9e-642e877f2aa9",
+    "id": "c2772ce0-265d-4e4c-8295-bd329bc1a749",
     "session_id": "f1725587-c04f-487e-91c3-b34f330394ec",
     "persona_id": 2,
     "persona_name": "Emily",
@@ -595,7 +646,7 @@
     "is_real": true
   },
   {
-    "id": "9f43d98e-b441-4d70-b017-cac5a90dcc13",
+    "id": "51990f60-5dae-4a0e-8063-e8f7fc5192e6",
     "session_id": "f1725587-c04f-487e-91c3-b34f330394ec",
     "persona_id": 2,
     "persona_name": "Emily",
@@ -612,7 +663,7 @@
     "is_real": true
   },
   {
-    "id": "b5ad9efb-3a0f-4529-b691-1891bc939c16",
+    "id": "acab0c6c-2983-4e5f-9e8b-cc7eba0f8bc9",
     "session_id": "f1725587-c04f-487e-91c3-b34f330394ec",
     "persona_id": 2,
     "persona_name": "Emily",
@@ -629,7 +680,7 @@
     "is_real": true
   },
   {
-    "id": "74ff89d3-9da9-4f4e-96b2-625b989deba6",
+    "id": "d52bf66c-d2d5-4873-b6a3-e3d17e2c5d37",
     "session_id": "f1725587-c04f-487e-91c3-b34f330394ec",
     "persona_id": 2,
     "persona_name": "Emily",
@@ -646,7 +697,7 @@
     "is_real": true
   },
   {
-    "id": "9f1cb005-4e10-4861-b1c1-470351e30f35",
+    "id": "89e7e7ea-265c-4f7e-a4a9-1115ca7bfcdd",
     "session_id": "f1725587-c04f-487e-91c3-b34f330394ec",
     "persona_id": 2,
     "persona_name": "Emily",
@@ -663,7 +714,7 @@
     "is_real": false
   },
   {
-    "id": "9f3e45f3-66f8-47a5-8949-e8b7b1388361",
+    "id": "cb98865b-8b1a-4cf3-bf85-4ec40b6db05c",
     "session_id": "44e7f1e0-bfb0-4517-88b3-e1b6b1aebee8",
     "persona_id": 7,
     "persona_name": "Robert",
@@ -680,7 +731,7 @@
     "is_real": true
   },
   {
-    "id": "ab5a2bd1-9137-4a65-b2b5-5116982f63cc",
+    "id": "6b16b2b6-40db-45ce-b94c-8c601884a27d",
     "session_id": "44e7f1e0-bfb0-4517-88b3-e1b6b1aebee8",
     "persona_id": 7,
     "persona_name": "Robert",
@@ -697,7 +748,7 @@
     "is_real": true
   },
   {
-    "id": "ac27fa8a-1e37-4f32-a75d-a9aa165de925",
+    "id": "bf31dfad-727e-4c27-b240-4ba39ad14e37",
     "session_id": "44e7f1e0-bfb0-4517-88b3-e1b6b1aebee8",
     "persona_id": 7,
     "persona_name": "Robert",
@@ -714,7 +765,7 @@
     "is_real": true
   },
   {
-    "id": "bd8219a8-ee82-4656-b4b9-5a0bfda6d7c3",
+    "id": "12a4303d-0a9d-4237-b371-401b60bd2919",
     "session_id": "44e7f1e0-bfb0-4517-88b3-e1b6b1aebee8",
     "persona_id": 7,
     "persona_name": "Robert",
@@ -731,13 +782,13 @@
     "is_real": true
   },
   {
-    "id": "02453a08-4c1f-4b7a-98b0-89b03c615c91",
+    "id": "e65d39ce-5eb1-414d-b55c-adf9bafae067",
     "session_id": "44e7f1e0-bfb0-4517-88b3-e1b6b1aebee8",
     "persona_id": 7,
     "persona_name": "Robert",
     "iteration": 5,
     "current_rating": "1.3",
-    "normalized_current_rating": "0.320000",
+    "normalized_current_rating": "0.620000",
     "recommened_rating": null,
     "normalized_recommened_rating": null,
     "reaction": "Negative",
@@ -748,13 +799,13 @@
     "is_real": true
   },
   {
-    "id": "9be031ba-1509-4a4c-9ebb-2e07889f8691",
+    "id": "c917fc89-a246-4dde-85e8-b0d7606d50c4",
     "session_id": "44e7f1e0-bfb0-4517-88b3-e1b6b1aebee8",
     "persona_id": 7,
     "persona_name": "Robert",
     "iteration": 6,
     "current_rating": "1.4",
-    "normalized_current_rating": "0.330000",
+    "normalized_current_rating": "0.730000",
     "recommened_rating": "1.5",
     "normalized_recommened_rating": "0.170000",
     "reaction": "Negative",
@@ -765,13 +816,13 @@
     "is_real": false
   },
   {
-    "id": "4ac569d5-1645-4a93-8ca5-2a43f716f800",
+    "id": "2fbac2c4-fbcf-474f-ad5f-1f9015a4dfb9",
     "session_id": "44e7f1e0-bfb0-4517-88b3-e1b6b1aebee8",
     "persona_id": 7,
     "persona_name": "Robert",
     "iteration": 7,
     "current_rating": "1.5",
-    "normalized_current_rating": "0.450000",
+    "normalized_current_rating": "0.890000",
     "recommened_rating": "1.5",
     "normalized_recommened_rating": "0.170000",
     "reaction": "Negative",

@@ -15,10 +15,10 @@ export default function RootPage() {
       <QuickInsights className="mb-12" />
       <div className="grid grid-cols-1 gap-8">
         <div className="flex flex-col md:flex-row gap-8">
-          <div className="bg-white p-6 rounded-lg shadow-md md:w-2/3 w-full">
+          <div className="bg-white p-6 rounded-lg shadow-md md:w-3/5 w-full">
             <NewsImpactChart className="w-full" />
           </div>
-          <div className="bg-white p-6 rounded-lg shadow-md md:w-1/3 w-full">
+          <div className="bg-white p-6 rounded-lg shadow-md md:w-2/5 w-full">
             <ConversionTrajectory className="w-full" />
           </div>
         </div>
