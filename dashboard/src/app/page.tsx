@@ -24,11 +24,13 @@ export default function RootPage() {
         <div className="bg-white p-6 rounded-lg shadow-md">
           <NewsImpactAnalysis className="w-full" />
         </div>
-        <div className="bg-white p-6 rounded-lg shadow-md">
-          <ReactionShift className="w-full" />
-        </div>
-        <div className="bg-white p-6 rounded-lg shadow-md">
-          <FinalRatingsByPersona data={mockData} className="w-full" />
+        <div className="flex flex-col md:flex-row gap-8">
+          <div className="bg-white p-6 rounded-lg shadow-md md:w-1/2 w-full">
+            <ReactionShift className="w-full" />
+          </div>
+          <div className="bg-white p-6 rounded-lg shadow-md md:w-1/2 w-full">
+            <FinalRatingsByPersona data={mockData} className="w-full" />
+          </div>
         </div>
         <div className="bg-white p-6 rounded-lg shadow-md">
           <RatingTable className="w-full" />
