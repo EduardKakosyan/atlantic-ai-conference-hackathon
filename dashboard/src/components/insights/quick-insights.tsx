@@ -112,7 +112,7 @@ export const QuickInsights: React.FC<{ className?: string }> = ({ className }) =
       <div className="bg-white rounded-lg p-4 border border-white/20 shadow-sm">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm font-medium text-gray-400 mb-1">Conversion Rate</p>
+            <p className="text-sm font-medium text-gray-400 mb-1">Success Rate</p>
             <div className="flex items-center">
               <h3 className="text-3xl font-bold text-blue-600">{conversionRate}%</h3>
             </div>

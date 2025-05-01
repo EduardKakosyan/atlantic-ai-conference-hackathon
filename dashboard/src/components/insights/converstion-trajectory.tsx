@@ -145,7 +145,7 @@ export function ConversionTrajectory({ className }: ConversionTrajectoryProps) {
 
   return (
     <div className={className}>
-      <h2 className="text-xl font-bold mb-2">Conversion Trajectory</h2>
+      <h2 className="text-xl font-bold mb-2">Trajectory</h2>
       <p className="text-sm text-gray-500 mb-4">
         <span className="inline-flex items-center"><span className="text-green-500 mr-1">↑</span> Positive change</span>
         <span className="mx-2">|</span>

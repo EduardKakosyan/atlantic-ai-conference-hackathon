@@ -1,5 +1,5 @@
 import { convertJsonToPersonaData } from '@/lib/utils';
-import jsonData from '../../mock/mock-data.json';
+import jsonData from '../../data/half-data.json';
 
 // Import types only
 export interface PersonaData {
