@@ -1,33 +1,12 @@
 "use client"
 import React, { useState } from 'react';
+import personasData from '../../../data/personas.json'; // Importing the mocked data
 
 const PersonaPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
-  const mockPersonas = [
-    {
-      persona_name: "Emma Richardson",
-      persona_id: 101,
-      description: "A public school teacher and mother of two who strongly believes in scientific consensus.",
-      articles_read: [
-        "Staying up to date with COVID-19 vaccinations is crucial for ongoing protection.",
-        "COVID-19 vaccines help the body develop immunity without causing illness."
-      ]
-    },
-    {
-      persona_name: "Jason Miller",
-      persona_id: 102,
-      description: "A self-employed mechanic in rural Alberta who distrusted government mandates.",
-      articles_read: [
-        "Florida Beach Reopening Photo Totally Fake.",
-        "COVID-19 Created with HIV Fragments in Wuhan Lab."
-      ]
-    },
-    // Add other personas similarly...
-  ];
-
-  const filteredPersonas = mockPersonas.filter(persona =>
-    persona.persona_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+  const filteredPersonas = personasData.filter(persona =>
+    persona.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     persona.description.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
@@ -46,17 +25,20 @@ const PersonaPage = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4"> {/* Reduced gap for tighter layout */}
         {filteredPersonas.map((persona) => (
-          <div key={persona.persona_id} className="bg-white p-6 rounded-lg shadow-md">
-            <h2 className="text-2xl font-semibold">{persona.persona_name}</h2>
-            <p className="mt-2">{persona.description}</p>
-            <h3 className="mt-4 font-bold">Articles Read:</h3>
-            <ul className="list-disc list-inside">
-              {persona.articles_read.map((article, index) => (
-                <li key={index}>{article}</li>
-              ))}
-            </ul>
+          <div key={persona.persona_id} className="bg-white p-4 rounded-lg shadow-md max-w-xs mx-auto"> {/* Reduced width */}
+            <img 
+              src={persona.demographics.gender === "Female" ? "/images/female-avatar.png" : "/images/male-avatar.png"} 
+              alt={`${persona.name}'s avatar`} 
+              className="w-24 h-24 rounded-full mb-4"
+            />
+            <h2 className="text-xl font-semibold">{persona.name}</h2>
+            <p className="mt-2 text-center">{persona.description}</p>
+            <div className="mt-4 w-full">
+              <h3 className="font-bold">Articles Read:</h3>
+              <p className="text-gray-600">{persona.articles_read ? persona.articles_read.slice(0, 2).join(', ') : 'No articles available'}</p> {/* Truncated articles */}
+            </div>
             <div className="mt-4">
               <a href={`/persona/${persona.persona_id}`} className="text-blue-500">View Full Persona</a>
             </div>
