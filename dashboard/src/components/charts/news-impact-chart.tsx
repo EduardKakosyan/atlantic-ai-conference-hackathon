@@ -191,17 +191,18 @@ export function NewsImpactChart({ className }: NewsImpactChartProps) {
         </div>
       </div>
 
-      <div className="h-[400px] w-full">
+      <div className="h-[450px] w-full">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart
             data={chartData}
-            margin={{ top: 20, right: 40, left: 30, bottom: 30 }}
+            margin={{ top: 20, right: 40, left: 30, bottom: 10 }}
           >
             <CartesianGrid strokeDasharray="5 5" opacity={0.3} />
             <XAxis 
               dataKey="iteration" 
               label={{ value: 'Iteration', position: 'insideBottomRight', offset: -5 }} 
               tick={{ fontSize: 12 }}
+              axisLine={false}
             />
             <YAxis 
               domain={[0, 1]} 
@@ -209,6 +210,7 @@ export function NewsImpactChart({ className }: NewsImpactChartProps) {
               tickFormatter={(value) => value.toFixed(2)}
               label={{ value: 'Normalized Rating', angle: -90, position: 'insideBottomLeft' }}
               tick={{ fontSize: 12 }}
+              axisLine={false}
             />
             <Tooltip content={<CustomTooltip />} />
             <Legend 
