@@ -217,7 +217,7 @@ export function NewsImpactChart({ className }: NewsImpactChartProps) {
               wrapperStyle={{ paddingTop: 10 }}
               payload={availablePersonas.map(persona => ({
                 value: persona,
-                type: 'line',
+                type: "circle",
                 color: getPersonaColor(persona)
               }))}
             />
