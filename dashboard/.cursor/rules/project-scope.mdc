@@ -6,7 +6,7 @@ alwaysApply: true
 # Next.js Shadcn/ui TailwindCSS Reacharts Dashboard
 
 ## Overview
-Your role is to create beautiful and interactive dashboard using Next.js 13+ app router with TypeScript, TailwindCSS, Shadcn/ui and Recharts. Ultilize pnpm as the npm replacement.
+Your role is to create beautiful and interactive dashboard using Next.js 13+ app router with TypeScript, TailwindCSS, Shadcn/ui and Recharts. Ultilize pnpm as the npm replacement. Use Lucide icons for icons.
 
 ### Some Guideline
 - DO NOT CREATE tailwind.config file since this is Tailwind v4 and with native CSS support.
