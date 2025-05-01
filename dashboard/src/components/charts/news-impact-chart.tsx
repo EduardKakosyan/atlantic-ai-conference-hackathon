@@ -12,11 +12,12 @@ import {
   ResponsiveContainer,
   ReferenceLine
 } from 'recharts';
-import mockData, { PersonaData, getAvailablePersonas } from '@/lib/data';
+import { PersonaData, getAvailablePersonas } from '@/lib/data';
 import { NORMALIZED_THRESHOLD } from '@/lib/constants';
 
 interface NewsImpactChartProps {
   className?: string;
+  data?: PersonaData[];
 }
 
 type NewsFilter = 'fake' | 'real';
@@ -34,14 +35,14 @@ const COLORS = [
   '#14b8a6', // Teal-500
 ];
 
-export function NewsImpactChart({ className }: NewsImpactChartProps) {
+export function NewsImpactChart({ className, data = [] }: NewsImpactChartProps) {
   const availablePersonas = getAvailablePersonas();
   const [newsFilter, setNewsFilter] = useState<NewsFilter>('fake');
   
   // Transform data for the chart
   const prepareChartData = () => {
     // Filter data based on selected news type
-    const filteredData = mockData.filter(item => {
+    const filteredData = data.filter(item => {
       if (newsFilter === 'fake') return !item.is_real;
       if (newsFilter === 'real') return item.is_real;
       return true;
