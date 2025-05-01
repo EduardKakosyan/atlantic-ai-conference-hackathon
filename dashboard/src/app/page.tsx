@@ -4,7 +4,7 @@ import { FinalRatingsByPersona } from "@/components/charts/bar-chart";
 import { RatingTable } from "@/components/charts/iteration-table";
 import { NewsImpactAnalysis } from "@/components/charts/news-impact-analysis";
 import { ConversionTrajectory } from "@/components/insights/converstion-trajectory";
-import { mixedNewsPersonaData, fakeNewsPersonaData, realNewsPersonaData, PersonaData, getAvailablePersonas } from "@/lib/data";
+import { mixedNewsPersonaData, fakeNewsPersonaData, realNewsPersonaData, PersonaData } from "@/lib/data";
 import { QuickInsights } from "@/components/insights/quick-insights";
 import { SimpleRatingChart } from "@/components/charts/simple-rating-chart";
 import { useState } from "react";
@@ -28,8 +28,6 @@ export default function RootPage() {
     setSelectedDataset(value);
     handlePersonaChange(value);
   };
-
-  const availablePersonas = getAvailablePersonas();
 
   return (
     <main className="container mx-auto py-8 px-4">
