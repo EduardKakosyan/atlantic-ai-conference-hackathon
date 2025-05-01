@@ -32,8 +32,8 @@ export function NewsImpactChart({ className }: NewsImpactChartProps) {
     // Filter data based on selected news type
     const filteredData = mockData.filter(item => {
       if (newsFilter === 'all') return true;
-      if (newsFilter === 'fake') return item.is_real;
-      if (newsFilter === 'real') return !item.is_real;
+      if (newsFilter === 'fake') return !item.is_real;
+      if (newsFilter === 'real') return item.is_real;
       return true;
     });
 
