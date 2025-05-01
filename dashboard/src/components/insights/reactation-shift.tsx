@@ -318,13 +318,13 @@ export function ReactionShift({ className }: ReactionShiftProps) {
                   
                   if (isShiftPoint) {
                     return (
-                      <g>
+                      <g key={index}>
                         <circle cx={cx} cy={cy} r={6} fill={persona.color} />
                       </g>
                     );
                   }
                   
-                  return <circle cx={cx} cy={cy} r={0} />;
+                  return <circle cx={cx} cy={cy} r={0} key={index} />;
                 }}
                 activeDot={{ r: 6 }}
                 name={persona.name}
