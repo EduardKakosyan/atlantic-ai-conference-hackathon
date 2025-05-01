@@ -120,3 +120,12 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Animation delay utilities for chat loading indicator */
+.animation-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animation-delay-500 {
+  animation-delay: 500ms;
+}
