@@ -15,6 +15,7 @@ import {
 } from 'recharts';
 import { Check } from 'lucide-react';
 import mockData, { getAvailablePersonas, PersonaData } from '@/lib/mock-data';
+import { THRESHOLD } from '@/lib/constants';
 
 interface ReactionShiftProps {
   className?: string;
@@ -290,9 +291,9 @@ export function ReactionShift({ className }: ReactionShiftProps) {
             />
             <Tooltip content={<CustomTooltip />} />
             
-            {/* Reference line for the threshold (3.5) */}
+            {/* Reference line for the threshold (3.4) */}
             <ReferenceLine 
-              y={3.5} 
+              y={THRESHOLD} 
               stroke="#94a3b8" 
               strokeDasharray="3 3" 
               label={{ value: 'Vaccine Acceptance Threshold', position: 'left', fill: '#94a3b8' }} 

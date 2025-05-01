@@ -13,6 +13,7 @@ import {
   ReferenceLine
 } from 'recharts';
 import mockData, { getAvailablePersonas } from '@/lib/mock-data';
+import { THRESHOLD, NORMALIZED_THRESHOLD } from '@/lib/constants';
 
 interface PersonaTrajectoriesProps {
   className?: string;
@@ -129,7 +130,7 @@ export function PersonaTrajectories({ className }: PersonaTrajectoriesProps) {
             />
             <Tooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ paddingTop: 10 }} />
-            <ReferenceLine y={3.5} stroke="red" strokeDasharray="3 3" />
+            <ReferenceLine y={THRESHOLD} stroke="red" strokeDasharray="3 3" />
             
             {selectedPersonas.map((persona) => {
               const index = getPersonaIndex(persona);
@@ -151,7 +152,7 @@ export function PersonaTrajectories({ className }: PersonaTrajectoriesProps) {
       </div>
       
       <div className="mt-4 text-sm text-gray-600">
-        <p>The <span className="text-red-500">red line</span> at 3.5 represents the threshold where personas would decide to take the vaccine.</p>
+        <p>The <span className="text-red-500">red line</span> at 3.4 represents the threshold where personas would decide to take the vaccine.</p>
       </div>
     </div>
   );

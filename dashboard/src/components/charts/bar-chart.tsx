@@ -5,12 +5,12 @@ import {
   Bar,
   XAxis,
   YAxis,
-  CartesianGrid,
   Tooltip,
   Legend,
   ResponsiveContainer
 } from 'recharts';
 import { PersonaData } from '@/lib/mock-data';
+import { THRESHOLD, NORMALIZED_THRESHOLD } from '@/lib/constants';
 
 interface FinalRatingsByPersonaProps {
   data: PersonaData[];
@@ -43,7 +43,7 @@ const getFinalRatingsData = (data: PersonaData[]) => {
   // Convert to array and sort by normalized_current_rating for better visualization
   return Array.from(personaMap.values())
     .map(item => {
-      const isAboveThreshold = item.normalized_current_rating >= 0.875; // 3.5/4 normalized
+      const isAboveThreshold = item.normalized_current_rating >= NORMALIZED_THRESHOLD;
       return {
         name: item.persona_name,
         rating: item.normalized_current_rating,
@@ -75,8 +75,8 @@ export function FinalRatingsByPersona({ data, className }: FinalRatingsByPersona
           <p className="text-sm mt-1">Final Rating: {data.formattedRating}</p>
           <p className="text-sm mt-1 text-gray-500">
             {data.isAboveThreshold ? 
-              'Above vaccination threshold (3.5/4)' : 
-              'Below vaccination threshold (3.5/4)'}
+              'Above vaccination threshold' : 
+              'Below vaccination threshold'}
           </p>
         </div>
       );
