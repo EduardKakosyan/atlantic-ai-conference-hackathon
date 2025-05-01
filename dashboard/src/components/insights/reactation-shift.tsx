@@ -14,11 +14,12 @@ import {
   Label,
 } from 'recharts';
 import { Check } from 'lucide-react';
-import mockData, { getAvailablePersonas, PersonaData } from '@/lib/data';
+import { getAvailablePersonas, PersonaData } from '@/lib/data';
 import { THRESHOLD } from '@/lib/constants';
 
-interface ReactionShiftProps {
+export interface ReactionShiftProps {
   className?: string;
+  data: PersonaData[];
 }
 
 // Color palette for different personas
@@ -28,23 +29,52 @@ const PERSONA_COLORS = {
   Michael: '#f59e0b', // amber-500
   Emily: '#8b5cf6', // violet-500
   David: '#ef4444', // red-500
+  James: '#14b8a6', // teal-500
+  Jennifer: '#ec4899', // pink-500
+  Robert: '#f97316', // orange-500
 };
 
-export function ReactionShift({ className }: ReactionShiftProps) {
+interface ShiftPoint {
+  iteration: number;
+  data: PersonaData;
+}
+
+interface ChartDataPoint {
+  iteration: number;
+  reaction: string;
+  [key: string]: any;
+}
+
+interface PersonaShiftData {
+  name: string;
+  chartData: ChartDataPoint[];
+  shiftPoints: ShiftPoint[];
+  color: string;
+  hasShift: boolean;
+  initialReaction: string | undefined;
+  finalReaction: string | undefined;
+}
+
+export function ReactionShift({ className, data }: ReactionShiftProps) {
   const availablePersonas = getAvailablePersonas();
 
   const reactionShiftData = useMemo(() => {
     return availablePersonas.map((personaName) => {
       // Filter data for this persona
-      const personaData = mockData.filter(
+      const personaData = data.filter(
         (item) => item.persona_name === personaName
       );
+
+      // Skip if there's no data for this persona in the current dataset
+      if (personaData.length === 0) {
+        return null;
+      }
 
       // Sort by iteration to ensure correct order
       personaData.sort((a, b) => a.iteration - b.iteration);
 
       // Find where reaction shifted from Negative to Positive
-      const shiftPoints: { iteration: number; data: PersonaData }[] = [];
+      const shiftPoints: ShiftPoint[] = [];
       
       for (let i = 1; i < personaData.length; i++) {
         if (
@@ -59,10 +89,10 @@ export function ReactionShift({ className }: ReactionShiftProps) {
       }
 
       // Prepare data for visualization with standard ratings (1-4 scale)
-      const chartData = personaData.map((data) => ({
-        iteration: data.iteration,
-        [personaName]: data.current_rating,
-        reaction: data.reaction,
+      const chartData = personaData.map((d) => ({
+        iteration: d.iteration,
+        [personaName]: d.current_rating,
+        reaction: d.reaction,
       }));
 
       return {
@@ -71,11 +101,11 @@ export function ReactionShift({ className }: ReactionShiftProps) {
         shiftPoints,
         color: PERSONA_COLORS[personaName as keyof typeof PERSONA_COLORS] || '#94a3b8', // slate-400 as fallback
         hasShift: shiftPoints.length > 0,
-        initialReaction: personaData[0].reaction,
-        finalReaction: personaData[personaData.length - 1].reaction,
-      };
-    });
-  }, [availablePersonas]);
+        initialReaction: personaData[0]?.reaction,
+        finalReaction: personaData[personaData.length - 1]?.reaction,
+      } as PersonaShiftData;
+    }).filter((item): item is PersonaShiftData => item !== null); // Remove null entries with type guard
+  }, [availablePersonas, data]);
 
   // Combine all chart data
   const combinedChartData = useMemo(() => {

@@ -12,17 +12,18 @@ import {
   ResponsiveContainer,
   ReferenceLine
 } from 'recharts';
-import mockData, { PersonaData, getAvailablePersonas } from '@/lib/data';
+import { PersonaData, getAvailablePersonas } from '@/lib/data';
 import { NORMALIZED_THRESHOLD } from '@/lib/constants';
 
 // Utility function to reverse values (for fake news visualization)
 const reverseImpact = (value: number) => -value;
 
-interface NewsImpactAnalysisProps {
+export interface NewsImpactAnalysisProps {
   className?: string;
+  data: PersonaData[];
 }
 
-export function NewsImpactAnalysis({ className }: NewsImpactAnalysisProps) {
+export function NewsImpactAnalysis({ className, data }: NewsImpactAnalysisProps) {
   const availablePersonas = getAvailablePersonas();
 
   // Calculate impact data - average change in rating per iteration by news type
@@ -36,11 +37,11 @@ export function NewsImpactAnalysis({ className }: NewsImpactAnalysisProps) {
     });
 
     // Group data by persona and news type (fake/real)
-    mockData.forEach(item => {
+    data.forEach(item => {
       if (item.is_real) {
-        personaProgress[item.persona_name].fake.push(item);
-      } else {
         personaProgress[item.persona_name].real.push(item);
+      } else {
+        personaProgress[item.persona_name].fake.push(item);
       }
     });
 
@@ -53,18 +54,18 @@ export function NewsImpactAnalysis({ className }: NewsImpactAnalysisProps) {
     };
 
     // Count number of exposures to each type
-    result.fakeNewsExposureCount = mockData.filter(item => !item.is_real).length;
-    result.realNewsExposureCount = mockData.filter(item => item.is_real).length;
+    result.fakeNewsExposureCount = data.filter(item => !item.is_real).length;
+    result.realNewsExposureCount = data.filter(item => item.is_real).length;
 
     // Calculate total change and average change per iteration for each news type
     let totalFakeChange = 0;
     let totalRealChange = 0;
 
     // Process each persona's progress
-    Object.entries(personaProgress).forEach(([persona, data]) => {
+    Object.entries(personaProgress).forEach(([persona, personaData]) => {
       // Sort by iteration
-      const fakeData = [...data.fake].sort((a, b) => a.iteration - b.iteration);
-      const realData = [...data.real].sort((a, b) => a.iteration - b.iteration);
+      const fakeData = [...personaData.fake].sort((a, b) => a.iteration - b.iteration);
+      const realData = [...personaData.real].sort((a, b) => a.iteration - b.iteration);
 
       // Calculate total change for fake news
       if (fakeData.length > 1) {
@@ -80,8 +81,8 @@ export function NewsImpactAnalysis({ className }: NewsImpactAnalysisProps) {
     });
 
     // Calculate average change per iteration per news type
-    const fakePersonaCount = Object.values(personaProgress).filter(data => data.fake.length > 1).length;
-    const realPersonaCount = Object.values(personaProgress).filter(data => data.real.length > 1).length;
+    const fakePersonaCount = Object.values(personaProgress).filter(personaData => personaData.fake.length > 1).length;
+    const realPersonaCount = Object.values(personaProgress).filter(personaData => personaData.real.length > 1).length;
 
     if (fakePersonaCount > 0) {
       result.averageChangePerIteration.fake = totalFakeChange / fakePersonaCount;
@@ -92,7 +93,9 @@ export function NewsImpactAnalysis({ className }: NewsImpactAnalysisProps) {
     }
 
     // Calculate cumulative ratings per iteration for each news type
-    const maxIteration = Math.max(...mockData.map(item => item.iteration));
+    // Use a safe default if the dataset is empty
+    const maxIteration = data.length > 0 ? Math.max(...data.map(item => item.iteration)) : 0;
+    
     for (let i = 1; i <= maxIteration; i++) {
       const iterationData = {
         iteration: i,
@@ -105,8 +108,8 @@ export function NewsImpactAnalysis({ className }: NewsImpactAnalysisProps) {
       };
 
       // Calculate average rating for this iteration
-      const fakeItems = mockData.filter(item => !item.is_real && item.iteration === i);
-      const realItems = mockData.filter(item => item.is_real && item.iteration === i);
+      const fakeItems = data.filter(item => !item.is_real && item.iteration === i);
+      const realItems = data.filter(item => item.is_real && item.iteration === i);
 
       if (fakeItems.length > 0) {
         iterationData.avgFakeRating = fakeItems.reduce((sum, item) => sum + item.normalized_current_rating, 0) / fakeItems.length;
@@ -134,7 +137,7 @@ export function NewsImpactAnalysis({ className }: NewsImpactAnalysisProps) {
     }
 
     return result;
-  }, [availablePersonas]);
+  }, [availablePersonas, data]);
 
   const ImpactTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {

@@ -13,10 +13,11 @@ import {
   Cell,
   ReferenceLine,
 } from 'recharts';
-import mockData, { getAvailablePersonas } from '@/lib/data';
+import { PersonaData, getAvailablePersonas } from '@/lib/data';
 
-interface ConversionTrajectoryProps {
+export interface ConversionTrajectoryProps {
   className?: string;
+  data: PersonaData[];
 }
 
 // Define color scales
@@ -56,18 +57,34 @@ const RED_COLORS = [
   '#7f1d1d', // red-900
 ];
 
-export function ConversionTrajectory({ className }: ConversionTrajectoryProps) {
+export function ConversionTrajectory({ className, data }: ConversionTrajectoryProps) {
   const availablePersonas = getAvailablePersonas();
 
   const trajectoryData = useMemo(() => {
+    interface TrajectoryItem {
+      name: string;
+      startRating: number;
+      endRating: number;
+      ratingChange: number;
+      absoluteRatingChange: number;
+      finalIteration: number;
+      changePerIteration: number;
+      direction: 'positive' | 'negative';
+    }
+
     const personaChanges = availablePersonas.map((personaName) => {
       // Filter data for this persona
-      const personaData = mockData.filter(
+      const personaData = data.filter(
         (item) => item.persona_name === personaName
       );
 
       // Sort by iteration to ensure correct order
       personaData.sort((a, b) => a.iteration - b.iteration);
+
+      // Skip if there's no data for this persona in the current dataset
+      if (personaData.length === 0) {
+        return null;
+      }
 
       // Find first and last iterations
       const firstIteration = personaData[0];
@@ -92,12 +109,12 @@ export function ConversionTrajectory({ className }: ConversionTrajectoryProps) {
         finalIteration,
         changePerIteration,
         direction: ratingChange >= 0 ? 'positive' : 'negative',
-      };
-    });
+      } as TrajectoryItem;
+    }).filter((item): item is TrajectoryItem => item !== null); // Remove null entries and type guard
 
     // Sort by absolute rating change in descending order to show most changed first
     return personaChanges.sort((a, b) => b.absoluteRatingChange - a.absoluteRatingChange);
-  }, [availablePersonas]);
+  }, [availablePersonas, data]);
 
   // Function to determine color based on direction and intensity
   const getBarColor = (entry: any) => {
