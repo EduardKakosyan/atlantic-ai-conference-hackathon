@@ -129,9 +129,9 @@ export const QuickInsights: React.FC<{ className?: string }> = ({ className }) =
         <div className="flex items-center justify-between">
           <div>
             <p className="text-sm font-medium text-gray-400 mb-1">Most Improved Persona</p>
-            <div className="flex items-center">
-              <h3 className="text-2xl font-bold">{mostPersuadable.name}</h3>
-              <span className="ml-2 text-sm text-emerald-400">+{mostPersuadable.improvement}%</span>
+            <div className="flex items-baseline">
+              <h3 className="text-3xl font-bold text-emerald-400">+{mostPersuadable.improvement}%</h3>
+              <span className="ml-2 text-sm text-gray-600">{mostPersuadable.name}</span>
             </div>
           </div>
           <div className="h-10 w-10 rounded-full bg-emerald-500/20 flex items-center justify-center">
@@ -147,9 +147,9 @@ export const QuickInsights: React.FC<{ className?: string }> = ({ className }) =
         <div className="flex items-center justify-between">
           <div>
             <p className="text-sm font-medium text-gray-400 mb-1">Most Resistant Persona</p>
-            <div className="flex items-center">
-              <h3 className="text-2xl font-bold">{leastPersuadable.name}</h3>
-              <span className="ml-2 text-sm text-amber-400">+{leastPersuadable.improvement}%</span>
+            <div className="flex items-baseline">
+              <h3 className="text-3xl font-bold text-amber-400">{leastPersuadable.improvement >= 0 ? '+' : ''}{leastPersuadable.improvement}%</h3>
+              <span className="ml-2 text-sm text-gray-600">{leastPersuadable.name}</span>
             </div>
           </div>
           <div className="h-10 w-10 rounded-full bg-amber-500/20 flex items-center justify-center">
