@@ -24,14 +24,29 @@ interface ChartDataItem {
   [key: string]: number | string; // Dynamic keys for each persona
 }
 
-const PERSONA_COLORS = ['#8884d8', '#82ca9d', '#ffc658', '#ff8042', '#0088fe'];
+const PERSONA_COLORS = [
+  '#f97316', // Orange-500
+  '#3b82f6', // Blue-500
+  '#a855f7', // Purple-500
+  '#22c55e', // Green-500
+  '#ef4444', // Red-500
+  '#f59e0b', // Amber-500
+  '#06b6d4', // Cyan-500
+  '#ec4899', // Pink-500
+  '#8b5cf6', // Violet-500
+  '#14b8a6', // Teal-500
+];
 
 const prepareChartData = (data: PersonaData[]): ChartDataItem[] => {
-  // Get all unique iterations
-  const iterations = Array.from(new Set(data.map(item => item.iteration))).sort();
+  // Get all unique iterations up to max 7
+  const maxIteration = 7;
+  const iterations = Array.from({ length: maxIteration }, (_, i) => i + 1);
   
   // Get all unique personas
   const personas = Array.from(new Set(data.map(item => item.persona_name)));
+  
+  // Create a map to store the last known rating for each persona
+  const lastKnownRatings: Map<string, number> = new Map();
   
   // Create a map of iteration -> persona -> rating
   const ratingMap: Map<number, Map<string, number>> = new Map();
@@ -46,6 +61,8 @@ const prepareChartData = (data: PersonaData[]): ChartDataItem[] => {
     const personaMap = ratingMap.get(item.iteration);
     if (personaMap) {
       personaMap.set(item.persona_name, item.normalized_current_rating);
+      // Update last known rating for this persona
+      lastKnownRatings.set(item.persona_name, item.normalized_current_rating);
     }
   });
   
@@ -59,6 +76,14 @@ const prepareChartData = (data: PersonaData[]): ChartDataItem[] => {
         const rating = personaMap.get(persona);
         if (rating !== undefined) {
           chartItem[persona] = rating;
+          // Update last known rating
+          lastKnownRatings.set(persona, rating);
+        } else {
+          // Use last known rating if available
+          const lastKnown = lastKnownRatings.get(persona);
+          if (lastKnown !== undefined) {
+            chartItem[persona] = lastKnown;
+          }
         }
       });
     }
@@ -137,7 +162,7 @@ export function SimpleRatingChart({ data, className }: SimpleRatingChartProps) {
               }} 
               stroke="#ef4444" 
               strokeDasharray="3 3" 
-              strokeWidth={2}
+              strokeWidth={1}
             />
             
             {personas.map((persona, index) => (
