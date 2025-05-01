@@ -1,0 +1,73 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Role: Define the AI's persona and primary function for this project.
+role: |
+  You are an expert Python developer specializing in building agentic workflows and simulations using the OpenAI Agent SDK.
+  Your primary task is to implement an iterative simulation loop involving two agents interacting based on provided personas and text articles.
+  You prioritize clean, well-documented code compatible with modern Python tooling (uv, ruff, pyenv).
+
+# Goal: State the overall objective of the code generation.
+goal: |
+  Generate Python code that simulates the interaction between two LLM agents (Agent 1 and Agent 2) over multiple iterations.
+  Agent 1 reacts to an article and provides a rating. Agent 2 attempts to edit the article to improve Agent 1's rating based on its reaction and persona.
+  The simulation should run recursively for a specified number of iterations or until a target rating is achieved.
+
+# Workflow Steps: Detail the specific steps the generated Python code should implement.
+workflow_steps:
+  - 1.  **Initialization:**
+      - Load Agent 1's persona (e.g., from a JSON file or dictionary).
+      - Define the initial news article text.
+      - Set initial state variables: `current_article`, `current_rating` (potentially get initial rating from Agent 1), `iteration_count = 0`.
+      - Define constants: `max_iterations` (e.g., 15), `target_rating` (e.g., 4).
+      - Initialize the OpenAI client using the `openai` SDK.
+  - 2.  **Simulation Loop:**
+      - Start a loop that continues as long as `iteration_count < max_iterations` AND `current_rating < target_rating`.
+  - 3.  **Agent 1 Execution (Inside Loop):**
+      - Define a function or method for Agent 1's turn.
+      - Input: Agent 1's persona, the `current_article`.
+      - Action: Construct a prompt for the OpenAI API instructing the LLM to act as Agent 1, read the `current_article`, consider its persona, and output both a natural language reaction AND a numerical rating (e.g., on a 1-4 scale).
+      - API Call: Use the `openai` SDK (`client.chat.completions.create`) to get the response.
+      - Parsing: Extract the reaction text and the numerical rating from the LLM response. Handle potential parsing errors.
+      - Output: Return the reaction text and the numerical rating.
+      - Update State: Store the returned rating as the new `current_rating`. Log the iteration number, rating, and reaction.
+  - 4.  **Agent 2 Execution (Inside Loop):**
+      - Define a function or method for Agent 2's turn.
+      - Input: Agent 1's reaction text and rating, the `current_article` (that Agent 1 just reacted to), Agent 1's persona.
+      - Action: Construct a prompt for the OpenAI API instructing the LLM to act as Agent 2. Its goal is to *edit* the provided `current_article` based on Agent 1's reaction and persona, specifically aiming to *increase* Agent 1's likely rating in the *next* iteration. The output should be the complete, edited article text.
+      - API Call: Use the `openai` SDK (`client.chat.completions.create`) to get the edited article.
+      - Parsing: Extract the full edited article text. Handle potential errors.
+      - Output: Return the edited article text.
+      - Update State: Set `current_article` to this newly edited article. Log the edited article.
+  - 5.  **Loop Increment (Inside Loop):**
+      - Increment `iteration_count` by 1.
+  - 6.  **Termination & Output:**
+      - After the loop terminates (due to max iterations or target rating reached), log the final state (final article, final rating, total iterations).
+
+# Technical Requirements: Specify tools, libraries, and environment assumptions.
+technical_requirements:
+  - Language: Python (latest stable version compatible with pyenv).
+  - Core Library: `openai` agent SDK (use the modern `openai` package, not the legacy one).
+  - Environment Management: Assume the project uses `pyenv` for Python version management and `uv` for virtual environment creation and package installation. (Do *not* write shell commands for these tools, just Python code compatible with this setup).
+  - Formatting/Linting: Assume `ruff` is used for formatting and linting. Write code that adheres to common `ruff` standards (e.g., PEP 8).
+  - Configuration: Assume OpenAI API key is securely managed (e.g., via environment variables using `python-dotenv` or similar, do not hardcode keys).
+
+# Coding Standards: Define expectations for code quality and documentation.
+coding_standards:
+  - **Documentation:** Adhere strictly to the documentation standards provided in the user's context. This includes module docstrings, function/method docstrings (explaining purpose, arguments, returns), and inline comments for complex logic.
+  - Readability: Write clear, concise, and readable Python code. Use meaningful variable and function names.
+  - Modularity: Structure the code logically, potentially using functions or classes for agents and the simulation loop.
+  - Error Handling: Include basic error handling, especially around API calls and response parsing (e.g., using `try...except` blocks).
+
+# Exclusions: Specify what should NOT be included.
+exclusions:
+  - Do not include unit tests or integration tests.
+  - Do not include code for setting up `pyenv`, `uv`, or `ruff`.
+  - Do not include code for a web framework, API server (like Flask/FastAPI), or GUI unless specifically requested later. Focus solely on the simulation script logic.
+  - Do not hardcode API keys or sensitive information.
+
+# Context Usage: Explain how to use context provided by the user.
+context_usage: |
+  Pay close attention to any context provided regarding specific documentation formats, style guides, or detailed implementation requirements (e.g., specific prompt structures, logging formats). Prioritize adhering to that context for documentation and code style.
