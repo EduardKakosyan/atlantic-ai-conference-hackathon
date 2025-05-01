@@ -3,9 +3,12 @@ import React, { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import personasData from "../../../data/personas.json"
+import femaleImage from "../../../public/female avatar.png"
+import maleImage from "../../../public/male avatar.png"
 
 export default function PersonaListPage() {
   const [search, setSearch] = useState("")
+  
 
   const filtered = personasData.filter((p) =>
     [p.name, p.demographics.location, p.personality.archetype]
@@ -43,9 +46,9 @@ export default function PersonaListPage() {
               <div className="relative w-16 h-16 flex-shrink-0 mr-4">
                 <Image
                   src={
-                    persona.demographics.gender === "Female"
-                      ? "/images/female-avatar.png"
-                      : "/images/male-avatar.png"
+                  persona.demographics.gender === "Female"
+                    ? femaleImage
+                    : maleImage
                   }
                   alt={`${persona.name} avatar`}
                   fill
