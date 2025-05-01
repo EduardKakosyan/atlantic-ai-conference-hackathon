@@ -111,15 +111,6 @@ export function NewsImpactChart({ className }: NewsImpactChartProps) {
     return null;
   };
 
-  // Get subtitle based on filter
-  const getSubtitle = () => {
-    switch (newsFilter) {
-      case 'fake': return 'Showing impact of fake news only';
-      case 'real': return 'Showing impact of real news only';
-      default: return 'Showing impact of all news types';
-    }
-  };
-
   // Function to get persona index for consistent colors
   const getPersonaColor = (personaName: string) => {
     const index = availablePersonas.indexOf(personaName);
@@ -129,8 +120,7 @@ export function NewsImpactChart({ className }: NewsImpactChartProps) {
   return (
     <div className={className}>
       <div className="flex flex-col gap-1 mb-6">
-        <h2 className="text-xl font-bold">Impact of Fake News on Persona Vaccine Attitudes</h2>
-        <p className="text-sm text-gray-600">{getSubtitle()}</p>
+        <h2 className="text-xl font-bold">Impact of News Types on Persona Vaccine Attitudes</h2>
       </div>
       
       <div className="mb-6">
@@ -174,7 +164,7 @@ export function NewsImpactChart({ className }: NewsImpactChartProps) {
             data={chartData}
             margin={{ top: 20, right: 40, left: 30, bottom: 30 }}
           >
-            <CartesianGrid strokeDasharray="3 3" opacity={0.3} />
+            <CartesianGrid strokeDasharray="5 5" opacity={0.3} />
             <XAxis 
               dataKey="iteration" 
               label={{ value: 'Iteration', position: 'insideBottomRight', offset: -5 }} 
@@ -188,8 +178,15 @@ export function NewsImpactChart({ className }: NewsImpactChartProps) {
               tick={{ fontSize: 12 }}
             />
             <Tooltip content={<CustomTooltip />} />
-            <Legend wrapperStyle={{ paddingTop: 10 }} />
-            <ReferenceLine y={0.875} stroke="red" strokeDasharray="3 3" label="Threshold (3.5)" />
+            <Legend 
+              wrapperStyle={{ paddingTop: 10 }}
+              payload={availablePersonas.map(persona => ({
+                value: persona,
+                type: 'line',
+                color: getPersonaColor(persona)
+              }))}
+            />
+            <ReferenceLine y={0.875} stroke="red" strokeDasharray="3 3" />
             
             {availablePersonas.map((persona) => {
               const color = getPersonaColor(persona);
@@ -203,10 +200,9 @@ export function NewsImpactChart({ className }: NewsImpactChartProps) {
                     stroke={color}
                     strokeWidth={2}
                     strokeDasharray="5 5"
-                    activeDot={{ r: 8 }}
                     name={`${persona} (Fake News)`}
-                    dot={{ fill: color, r: 4 }}
                     connectNulls={true}
+                    dot={false}
                   />
                 );
               }
@@ -224,10 +220,9 @@ export function NewsImpactChart({ className }: NewsImpactChartProps) {
                     dataKey={`${persona}_real`}
                     stroke={color}
                     strokeWidth={2}
-                    activeDot={{ r: 8 }}
                     name={`${persona} (Real News)`}
-                    dot={{ fill: color, r: 4 }}
                     connectNulls={true}
+                    dot={false}
                   />
                 );
               }
@@ -239,13 +234,7 @@ export function NewsImpactChart({ className }: NewsImpactChartProps) {
       
       <div className="mt-4 text-sm text-gray-600">
         <p>
-          <span className="text-red-500">Red line</span> at 0.875 (3.5 normalized) represents the threshold where personas would decide to take the vaccine.
-        </p>
-        <p>
-          <span className="inline-block w-4 border-t-2 border-gray-400 mr-2"></span> Solid lines represent real news
-        </p>
-        <p>
-          <span className="inline-block w-4 border-t-2 border-dashed border-gray-400 mr-2"></span> Dashed lines represent fake news
+          <span className="text-red-500">Red line</span> at 0.8 represents the threshold where personas would decide to take the vaccine.
         </p>
       </div>
     </div>
