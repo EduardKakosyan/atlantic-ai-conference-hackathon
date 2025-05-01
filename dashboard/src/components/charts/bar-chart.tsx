@@ -9,7 +9,7 @@ import {
   Legend,
   ResponsiveContainer
 } from 'recharts';
-import { PersonaData } from '@/lib/mock-data';
+import { PersonaData } from '@/lib/data';
 import { THRESHOLD, NORMALIZED_THRESHOLD } from '@/lib/constants';
 
 interface FinalRatingsByPersonaProps {

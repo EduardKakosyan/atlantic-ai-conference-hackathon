@@ -14,7 +14,7 @@ import {
   Label,
 } from 'recharts';
 import { Check } from 'lucide-react';
-import mockData, { getAvailablePersonas, PersonaData } from '@/lib/mock-data';
+import mockData, { getAvailablePersonas, PersonaData } from '@/lib/data';
 import { THRESHOLD } from '@/lib/constants';
 
 interface ReactionShiftProps {

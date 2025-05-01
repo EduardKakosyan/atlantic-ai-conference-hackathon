@@ -12,7 +12,7 @@ import {
   ResponsiveContainer,
   ReferenceLine
 } from 'recharts';
-import mockData, { PersonaData, getAvailablePersonas } from '@/lib/mock-data';
+import mockData, { PersonaData, getAvailablePersonas } from '@/lib/data';
 import { NORMALIZED_THRESHOLD } from '@/lib/constants';
 
 interface NewsImpactChartProps {

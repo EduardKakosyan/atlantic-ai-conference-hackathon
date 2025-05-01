@@ -13,7 +13,7 @@ import {
   Cell,
   ReferenceLine,
 } from 'recharts';
-import mockData, { getAvailablePersonas } from '@/lib/mock-data';
+import mockData, { getAvailablePersonas } from '@/lib/data';
 
 interface ConversionTrajectoryProps {
   className?: string;

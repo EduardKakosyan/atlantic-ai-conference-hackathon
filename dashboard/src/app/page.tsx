@@ -4,7 +4,7 @@ import { NewsImpactChart } from "@/components/charts/news-impact-chart";
 import { NewsImpactAnalysis } from "@/components/charts/news-impact-analysis";
 import { ConversionTrajectory } from "@/components/insights/converstion-trajectory";
 import { ReactionShift } from "@/components/insights/reactation-shift";
-import personaData from "@/lib/mock-data";
+import { mixedNewsPersonaData, fakeNewsPersonaData, realNewsPersonaData } from "@/lib/data";
 import { QuickInsights } from "@/components/insights/quick-insights";
 import { SimpleRatingChart } from "@/components/charts/simple-rating-chart";
 
