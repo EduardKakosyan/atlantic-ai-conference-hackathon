@@ -107,10 +107,6 @@ export function ConversionTrajectory({ className }: ConversionTrajectoryProps) {
   return (
     <div className={className}>
       <h2 className="text-xl font-bold mb-4">Conversion Trajectory</h2>
-      <p className="text-sm text-gray-600 mb-4">
-        This chart shows which personas experienced the greatest change in their likelihood to take the vaccine,
-        measured by the absolute difference between their initial and final ratings.
-      </p>
 
       <div className="h-[400px] w-full">
         <ResponsiveContainer width="100%" height="100%">
@@ -124,7 +120,7 @@ export function ConversionTrajectory({ className }: ConversionTrajectoryProps) {
               type="number" 
               domain={[0, 1]}
               tickFormatter={(value) => `${(value * 100).toFixed(0)}%`}
-              label={{ value: 'Absolute Rating Change', position: 'insideBottom', offset: -10 }}
+              label={{ value: 'Absolute Rating Change', position: 'insideBottom', offset: -30 }}
               axisLine={false}
               tickLine={false}
             />
@@ -155,29 +151,8 @@ export function ConversionTrajectory({ className }: ConversionTrajectoryProps) {
           </BarChart>
         </ResponsiveContainer>
       </div>
-      
-      <div className="mt-6 space-y-2">
-        <h3 className="text-lg font-semibold">Key Insights:</h3>
-        <ul className="list-disc list-inside text-sm text-gray-700 space-y-1">
-          <li>
-            <span className="font-medium">{trajectoryData[0].name}</span> showed the most significant change
-            ({(trajectoryData[0].absoluteRatingChange * 100).toFixed(1)}%) in their vaccination stance.
-          </li>
-          <li>
-            <span className="font-medium">{trajectoryData[trajectoryData.length - 1].name}</span> was the least affected
-            by the simulation, changing only {(trajectoryData[trajectoryData.length - 1].absoluteRatingChange * 100).toFixed(1)}%.
-          </li>
-          {trajectoryData.filter(d => d.direction === 'negative').length > 0 && (
-            <li>
-              {trajectoryData.filter(d => d.direction === 'negative').length} persona(s) became less likely to take the vaccine
-              during the simulation.
-            </li>
-          )}
-        </ul>
-      </div>
 
       <div className="mt-4 flex items-center">
-        <span className="text-xs text-gray-500 mr-2">Color intensity indicates magnitude of change:</span>
         <div className="flex h-4">
           {BLUE_COLORS.map((color, i) => (
             <div 
