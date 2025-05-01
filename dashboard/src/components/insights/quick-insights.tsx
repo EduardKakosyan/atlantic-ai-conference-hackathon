@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import mockData, { PersonaData } from '@/lib/mock-data';
+import mockData, { PersonaData } from '@/lib/data';
 import { TrendingUp, TrendingDown, BarChart4 } from 'lucide-react';
 import { NORMALIZED_THRESHOLD } from '@/lib/constants';
 

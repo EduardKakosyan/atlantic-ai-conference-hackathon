@@ -11,7 +11,7 @@ import {
   ReferenceLine,
   ResponsiveContainer
 } from 'recharts';
-import { PersonaData, getAvailablePersonas } from '@/lib/mock-data';
+import { PersonaData, getAvailablePersonas } from '@/lib/data';
 import { NORMALIZED_THRESHOLD } from '@/lib/constants';
 
 interface SimpleRatingChartProps {

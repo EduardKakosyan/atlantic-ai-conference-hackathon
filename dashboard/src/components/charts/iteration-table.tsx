@@ -1,8 +1,8 @@
 'use client';
 
 import { useMemo } from 'react';
-import { PersonaData, getAvailablePersonas } from '@/lib/mock-data';
-import mockData from '@/lib/mock-data';
+import { PersonaData, getAvailablePersonas } from '@/lib/data';
+import mockData from '@/lib/data';
 
 
 interface HeatMapProps {
