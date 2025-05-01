@@ -3,6 +3,7 @@
 import { FinalRatingsByPersona } from "@/components/charts/bar-chart";
 import { RatingTable } from "@/components/charts/iteration-table";
 import { NewsImpactAnalysis } from "@/components/charts/news-impact-analysis";
+import { VaccinePieChart } from "@/components/charts/pie-chart";
 import { ConversionTrajectory } from "@/components/insights/converstion-trajectory";
 import { mixedNewsPersonaData, fakeNewsPersonaData, realNewsPersonaData, PersonaData } from "@/lib/data";
 import { QuickInsights } from "@/components/insights/quick-insights";
@@ -27,6 +28,16 @@ export default function RootPage() {
   const handleDatasetChange = (value: string) => {
     setSelectedDataset(value);
     handlePersonaChange(value);
+  };
+
+  // Map selected dataset to pie chart data source
+  const getDataSource = (): "mixed" | "fake" | "real" | "all" => {
+    switch (selectedDataset) {
+      case "Mixed News": return "mixed";
+      case "Fake News": return "fake";
+      case "Real News": return "real";
+      default: return "all";
+    }
   };
 
   return (
@@ -57,6 +68,9 @@ export default function RootPage() {
         <div className="flex flex-col md:flex-row gap-8">
           <div className="bg-white p-6 rounded-lg shadow-md md:w-2/5 w-full">
             <ConversionTrajectory data={personaData} className="w-full" />
+          </div>
+          <div className="bg-white p-6 rounded-lg shadow-md md:w-3/5 w-full">
+            <VaccinePieChart dataSource={getDataSource()} className="w-full" />
           </div>
         </div>
         <div className="bg-white p-6 rounded-lg shadow-md">
