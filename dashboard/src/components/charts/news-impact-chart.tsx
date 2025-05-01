@@ -21,7 +21,18 @@ interface NewsImpactChartProps {
 
 type NewsFilter = 'fake' | 'real';
 
-const COLORS = ['#8884d8', '#82ca9d', '#ffc658', '#ff8042', '#0088fe'];
+const COLORS = [
+  '#f97316', // Orange-500
+  '#3b82f6', // Blue-500
+  '#a855f7', // Purple-500
+  '#22c55e', // Green-500
+  '#ef4444', // Red-500
+  '#f59e0b', // Amber-500
+  '#06b6d4', // Cyan-500
+  '#ec4899', // Pink-500
+  '#8b5cf6', // Violet-500
+  '#14b8a6', // Teal-500
+];
 
 export function NewsImpactChart({ className }: NewsImpactChartProps) {
   const availablePersonas = getAvailablePersonas();
