@@ -29,7 +29,7 @@ const formatRating = (rating: number): string => {
   return `${(rating * 100).toFixed(1)}%`;
 };
 
-export function RatingHeatMap({ className }: HeatMapProps) {
+export function RatingTable({ className }: HeatMapProps) {
   const ratingChangesData = useMemo(() => {
     // Get all available personas
     const personas = getAvailablePersonas();
@@ -132,11 +132,7 @@ export function RatingHeatMap({ className }: HeatMapProps) {
           </tbody>
         </table>
       </div>
-      
-      <div className="mt-4 text-sm text-gray-600">
-        <p>This table shows how each persona's rating changes between iterations, helping identify when personas became more receptive to vaccination information.</p>
-        <p className="mt-1">Ratings are color-coded from red (low) to green (high), with changes highlighted to show improvements or declines.</p>
-      </div>
+
     </div>
   );
 }

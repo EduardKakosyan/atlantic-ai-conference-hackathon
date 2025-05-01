@@ -94,6 +94,16 @@ export function FinalRatingsByPersona({ data, className }: FinalRatingsByPersona
             layout="vertical"
             margin={{ top: 20, right: 30, left: 80, bottom: 20 }}
           >
+            <defs>
+              <linearGradient id="greenGradient" x1="1" y1="0" x2="0" y2="0">
+                <stop offset="0%" stopColor="#4ade80" />
+                <stop offset="100%" stopColor="#86efac" />
+              </linearGradient>
+              <linearGradient id="redGradient" x1="1" y1="0" x2="0" y2="0">
+                <stop offset="0%" stopColor="#f87171" />
+                <stop offset="100%" stopColor="#fca5a5" />
+              </linearGradient>
+            </defs>
             <XAxis 
               type="number" 
               domain={[0, 1]} 
@@ -114,8 +124,8 @@ export function FinalRatingsByPersona({ data, className }: FinalRatingsByPersona
             <Legend />
             <Bar 
               dataKey="aboveThresholdRating" 
-              name="Above Threshold" 
-              fill="#4ade80"
+              name="Take the vaccine" 
+              fill="url(#greenGradient)"
               radius={[4, 4, 4, 4]}
               stackId="stack"
               label={{ 
@@ -127,8 +137,8 @@ export function FinalRatingsByPersona({ data, className }: FinalRatingsByPersona
             />
             <Bar 
               dataKey="belowThresholdRating" 
-              name="Below Threshold" 
-              fill="#f87171"
+              name="Refuse the vaccine" 
+              fill="url(#redGradient)"
               radius={[4, 4, 4, 4]}
               stackId="stack"
               label={{ 
@@ -142,10 +152,6 @@ export function FinalRatingsByPersona({ data, className }: FinalRatingsByPersona
         </ResponsiveContainer>
       </div>
       
-      <div className="mt-4 text-sm text-gray-600">
-        <p>This chart shows the final vaccination rating for each persona. A rating of 87.5% (3.5/4) or higher indicates the persona would take the vaccine.</p>
-        <p className="mt-1">Personas with higher ratings were more likely to be persuaded by the information presented.</p>
-      </div>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import { FinalRatingsByPersona } from "@/components/charts/bar-chart";
-import { RatingHeatMap } from "@/components/charts/iteration-table";
+import { RatingTable } from "@/components/charts/iteration-table";
 import { NewsImpactChart } from "@/components/charts/news-impact-chart";
 import { NewsImpactAnalysis } from "@/components/charts/news-impact-analysis";
 import { ConversionTrajectory } from "@/components/insights/converstion-trajectory";
@@ -29,7 +29,7 @@ export default function RootPage() {
           <FinalRatingsByPersona data={mockData} className="w-full" />
         </div>
         <div className="bg-white p-6 rounded-lg shadow-md">
-          <RatingHeatMap className="w-full" />
+          <RatingTable className="w-full" />
         </div>
       </div>
     </main>
