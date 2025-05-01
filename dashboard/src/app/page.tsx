@@ -14,7 +14,7 @@ export default function RootPage() {
     <main className="container mx-auto py-8 px-4">
       <h1 className="text-3xl font-bold mb-6">HealthByte Data Dashboard</h1>
       <div className="mb-4">
-        <Link href="/personas" className="text-blue-500">View Personas</Link>
+        <Link href="/personas" className="px-3 py-1 rounded-md bg-blue-50 text-blue-600 hover:bg-blue-100 hover:text-blue-800 transition">View Personas</Link>
       </div>
       <QuickInsights className="mb-12" />
       <div className="grid grid-cols-1 gap-8">

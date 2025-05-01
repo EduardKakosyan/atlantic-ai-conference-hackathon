@@ -21,7 +21,7 @@ export default function PersonaListPage() {
     <main className="container mx-auto py-8 px-4">
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-3xl font-bold">Personas</h1>
-        <Link href="/" className="text-blue-500 hover:underline">
+        <Link href="/" className="px-3 py-1 rounded-md bg-blue-50 text-blue-600 hover:bg-blue-100 hover:text-blue-800 transition mb-5">
           ← Dashboard
         </Link>
       </div>
