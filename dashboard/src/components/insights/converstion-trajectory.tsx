@@ -149,7 +149,7 @@ export function ConversionTrajectory({ className }: ConversionTrajectoryProps) {
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             data={trajectoryData}
-            margin={{ top: 20, right: 30, left: 30, bottom: 0 }}
+            margin={{ top: 20, right: 5, left: 5, bottom: 0 }}
             layout="horizontal"
           >
             <CartesianGrid strokeDasharray="3 3" opacity={0.2} horizontal={true} vertical={false} />
