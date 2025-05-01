@@ -6,6 +6,7 @@ import { ConversionTrajectory } from "@/components/insights/converstion-trajecto
 import { ReactionShift } from "@/components/insights/reactation-shift";
 import personaData from "@/lib/mock-data";
 import { QuickInsights } from "@/components/insights/quick-insights";
+import { SimpleRatingChart } from "@/components/charts/simple-rating-chart";
 
 export default function RootPage() {
   return (
@@ -20,6 +21,9 @@ export default function RootPage() {
           <div className="bg-white p-6 rounded-lg shadow-md md:w-1/3 w-full">
             <ConversionTrajectory className="w-full" />
           </div>
+        </div>
+        <div className="bg-white p-6 rounded-lg shadow-md">
+          <SimpleRatingChart data={personaData} className="w-full" />
         </div>
         <div className="bg-white p-6 rounded-lg shadow-md">
           <NewsImpactAnalysis className="w-full" />
