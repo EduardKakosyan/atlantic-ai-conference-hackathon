@@ -20,7 +20,7 @@
       "beliefs_attitudes": {
         "initial_vaccine_stance": "Strongly supportive",
         "stance_description": "Trusted public health officials and followed guidance closely.",
-        "grounding_notes_stance": "Watched daily briefings, discussed with physician, trusted her school board’s messaging.",
+        "grounding_notes_stance": "Watched daily briefings, discussed with physician, trusted her school board's messaging.",
         "trust_levels": {
           "scientific_bodies_research": "high",
           "government_messaging": "moderate",
@@ -30,7 +30,7 @@
         },
         "grounding_notes_trust": "Prioritizes science but has some skepticism of inconsistent messaging from politicians.",
         "specific_concerns_narratives": [
-          "Children’s eligibility and long-term effects",
+          "Children's eligibility and long-term effects",
           "Disinformation among parents",
           "Workplace outbreaks",
           "Equity in vaccine rollout",
@@ -138,7 +138,7 @@
         "gender": "Female",
         "location": "Vancouver, BC",
         "occupation": "Graduate Student",
-        "education": "Master’s in Biomedical Science",
+        "education": "Master's in Biomedical Science",
         "grounding_notes": "Scientifically literate, actively involved in health advocacy."
       },
       "personality": {
@@ -244,7 +244,7 @@
         "Freedom of thought",
         "Belonging"
       ],
-      "narrative": "Marcus didn’t actively oppose the vaccine but became paralyzed by misinformation and a lack of clear, relatable messaging."
+      "narrative": "Marcus didn't actively oppose the vaccine but became paralyzed by misinformation and a lack of clear, relatable messaging."
     },
     "articles_read": [
       {
@@ -316,6 +316,334 @@
       },
       {
         "article": "Think about it: if masks were so effective, why aren't the unmasked all dead by now? Six months into mandates, people still debate masks. But non-maskers are alive and well. That's because masks are useless. They trap bacteria, reduce oxygen, and cause rashes. The cloth types are like trying to stop mosquitoes with chain-link fences. If masks worked, we wouldn't need lockdowns. If lockdowns worked, we wouldn't need masks. It's all doublethink. Mask propaganda is just submission training. Compliance over science. Peer-reviewed studies show no benefit. Yet Facebook censors that. The WHO flip-flopped repeatedly. So did Fauci. They just want faces covered â€” maybe so facial recognition AI can work better. Or maybe it's about control. Either way, breathing freely shouldn't be illegal. Ditch the mask, save your mind."
+      }
+    ]
+  },
+  {
+    "persona": {
+      "persona_name": "Ahmed Khan",
+      "persona_id": 106,
+      "took_covid_vaccine": "true",
+      "description": "A retired accountant, immigrant from Pakistan, living with extended family in Montreal.",
+      "demographics": {
+        "age": "72",
+        "gender": "Male",
+        "location": "Montreal, QC",
+        "occupation": "Retired Accountant",
+        "education": "Bachelor's Degree (Pakistan)",
+        "grounding_notes": "Senior citizen, immigrant community ties, relies on family for information."
+      },
+      "personality": {
+        "conceptual_archetype": "The Traditionalist",
+        "notes": "Values family consensus, respects elders and community leaders."
+      },
+      "beliefs_attitudes": {
+        "initial_vaccine_stance": "Hesitant",
+        "stance_description": "Initial concerns based on rumors within community, convinced by family and religious leader.",
+        "grounding_notes_stance": "Family members translated official health information, local Imam endorsed vaccination.",
+        "trust_levels": {
+          "scientific_bodies_research": "low",
+          "government_messaging": "low",
+          "mainstream_media_oversimplification": "low",
+          "social_media_misinformation": "moderate",
+          "expert_opinions_data_summaries": "moderate",
+          "local_community_leaders": "high",
+          "family_doctor": "high"
+        },
+        "grounding_notes_trust": "Trusts face-to-face interactions and familiar community figures over remote institutions.",
+        "specific_concerns_narratives": [
+          "Religious permissibility (halal status)",
+          "Rumors about side effects shared in community chats",
+          "Language barriers with official information",
+          "Impact on pre-existing health conditions (diabetes)"
+        ],
+        "key_motivator": "Protecting grandchildren and maintaining community standing"
+      },
+      "information_sources": [
+        "Family members",
+        "Local Mosque announcements",
+        "Community WhatsApp groups",
+        "Urdu/Punjabi newspapers",
+        "Family doctor"
+      ],
+      "relevant_values": [
+        "Family",
+        "Faith",
+        "Community harmony",
+        "Respect for authority (local)",
+        "Health preservation"
+      ],
+      "narrative": "Ahmed was initially wary of the vaccine due to rumors circulating in his community and difficulty accessing clear information in his language. However, reassurance from his doctor and strong encouragement from his children and local Imam convinced him it was the right thing to do for his family's health."
+    },
+    "articles_read": [
+      {
+        "article": "COVID-19 vaccines have been reviewed by religious scholars globally. Many Islamic organizations have confirmed that common vaccines meet religious standards, addressing concerns about ingredients. These bodies emphasize the religious duty to protect one's health and the community. Consultations with trusted religious leaders and healthcare providers are encouraged to address personal concerns and verify information, combating misinformation spread within communities."
+      },
+      {
+        "article": "Managing chronic conditions like diabetes is important during the pandemic. COVID-19 can pose higher risks for individuals with diabetes. Health experts confirm that COVID-19 vaccines are safe and recommended for people with diabetes. Vaccination helps prevent severe illness. Maintaining stable blood sugar levels remains crucial. Patients should discuss vaccine timing and management of their condition with their healthcare provider."
+      }
+    ]
+  },
+  {
+    "persona": {
+      "persona_name": "Chloe Dubois",
+      "persona_id": 107,
+      "took_covid_vaccine": "false",
+      "description": "A young artist and yoga instructor focused on natural health and holistic wellness.",
+      "demographics": {
+        "age": "29",
+        "gender": "Female",
+        "location": "Victoria, BC",
+        "occupation": "Artist / Yoga Instructor",
+        "education": "Bachelor of Fine Arts",
+        "grounding_notes": "Part of the wellness community, values natural approaches, skeptical of pharmaceuticals."
+      },
+      "personality": {
+        "conceptual_archetype": "The Purist",
+        "notes": "Values natural living, bodily purity, skeptical of 'unnatural' interventions."
+      },
+      "beliefs_attitudes": {
+        "initial_vaccine_stance": "Strongly opposed",
+        "stance_description": "Believes in strengthening the immune system naturally, views vaccines as toxic.",
+        "grounding_notes_stance": "Influenced by alternative health blogs and wellness influencers questioning vaccine safety.",
+        "trust_levels": {
+          "scientific_bodies_research": "very low",
+          "government_messaging": "very low",
+          "mainstream_media_oversimplification": "very low",
+          "social_media_misinformation": "high",
+          "expert_opinions_data_summaries": "low",
+          "alternative_health_practitioners": "high",
+          "wellness_influencers": "high"
+        },
+        "grounding_notes_trust": "Trusts sources perceived as outside the 'mainstream' medical/pharmaceutical industry.",
+        "specific_concerns_narratives": [
+          "Vaccines contain 'toxins' (heavy metals, etc.)",
+          "Belief that a strong immune system is sufficient",
+          "mRNA technology is unnatural and untested long-term",
+          "Pharmaceutical companies prioritize profit over safety",
+          "Connection between vaccines and chronic illness"
+        ],
+        "key_motivator": "Maintaining bodily purity and trusting 'natural' immunity"
+      },
+      "information_sources": [
+        "Alternative health websites (e.g., GreenMedInfo)",
+        "Wellness blogs",
+        "Instagram influencers (health/yoga)",
+        "Documentaries questioning vaccines (e.g., Vaxxed)",
+        "Local naturopath"
+      ],
+      "relevant_values": [
+        "Natural living",
+        "Holistic health",
+        "Bodily autonomy",
+        "Skepticism of 'Big Pharma'",
+        "Purity"
+      ],
+      "narrative": "Chloe is deeply invested in a natural lifestyle and views vaccines as an unnecessary and potentially harmful interference with the body's innate ability to heal. She actively follows alternative health sources and influencers who reinforce her beliefs about the dangers of vaccines and the corruption of the pharmaceutical industry."
+    },
+    "articles_read": [
+      {
+        "article": "Can You Detox from Vaccines? This question is trending in wellness circles. Proponents suggest methods like sauna therapy, specific diets (heavy metal detox), and supplements (like zeolite or chlorella) can help 'cleanse' the body after vaccination. While mainstream medicine dismisses these ideas, many believe these practices support the body's natural detoxification pathways, potentially mitigating perceived vaccine harms. This reflects a growing desire for bodily autonomy and natural solutions in health."
+      },
+      {
+        "article": "The Myth of Herd Immunity Through Vaccination. Herd immunity is often cited to push mass vaccination, but the concept is flawed when applied to current vaccines. Natural immunity following infection is broader and more durable. Vaccines may not fully prevent transmission, making herd immunity unattainable. Focusing solely on vaccination ignores other factors like overall health and treatment options. Relying on vaccine-induced herd immunity may create a false sense of security and neglect more robust, natural immune defenses."
+      }
+    ]
+  },
+  {
+    "persona": {
+      "persona_name": "David Miller",
+      "persona_id": 108,
+      "took_covid_vaccine": "true",
+      "description": "A pragmatic grain farmer concerned about business continuity and international travel.",
+      "demographics": {
+        "age": "55",
+        "gender": "Male",
+        "location": "Rural Saskatchewan",
+        "occupation": "Farmer",
+        "education": "Agricultural Diploma",
+        "grounding_notes": "Business-minded, pragmatic, rural lifestyle, values practicality."
+      },
+      "personality": {
+        "conceptual_archetype": "The Pragmatist",
+        "notes": "Focuses on practical outcomes, less driven by ideology."
+      },
+      "beliefs_attitudes": {
+        "initial_vaccine_stance": "Skeptical but open",
+        "stance_description": "Didn't see personal risk but got vaccinated to avoid disruptions to travel and business.",
+        "grounding_notes_stance": "Weighed practical pros (travel, fewer restrictions) against perceived cons (minor side effects, time off).",
+        "trust_levels": {
+          "scientific_bodies_research": "moderate",
+          "government_messaging": "low",
+          "mainstream_media_oversimplification": "low",
+          "social_media_misinformation": "moderate",
+          "expert_opinions_data_summaries": "moderate",
+          "local_doctor": "high",
+          "agricultural_associations": "moderate"
+        },
+        "grounding_notes_trust": "Trusts local figures and practical advice relevant to his life/business.",
+        "specific_concerns_narratives": [
+          "Necessity for healthy individuals",
+          "Government overreach in mandates",
+          "Potential impact on farm operations (if side effects occurred)",
+          "Reliability of changing travel rules",
+          "Economic impact of restrictions"
+        ],
+        "key_motivator": "Minimizing disruption to business and personal life (travel)"
+      },
+      "information_sources": [
+        "Local news",
+        "Farm trade publications",
+        "Neighbors and community members",
+        "Family doctor",
+        "Government websites (for travel rules)"
+      ],
+      "relevant_values": [
+        "Pragmatism",
+        "Economic stability",
+        "Self-reliance",
+        "Community connection",
+        "Efficiency"
+      ],
+      "narrative": "David wasn't strongly for or against the vaccine itself but saw it as a practical necessity to keep his farm running smoothly and to allow for potential travel for business or vacation. He was annoyed by mandates but ultimately complied for logistical reasons after talking it over with his doctor."
+    },
+    "articles_read": [
+      {
+        "article": "COVID-19 Vaccination Requirements for International Travel. Many countries updated entry requirements during the pandemic, often requiring proof of vaccination. Airlines and border agencies implemented checks. Rules varied significantly by destination and changed frequently, requiring travelers to stay updated via official government travel advisories. Exemptions were sometimes possible but often involved quarantine or testing. Vaccination facilitated easier border crossing for business and leisure travelers."
+      },
+      {
+        "article": "Impact of COVID-19 on Canadian Agriculture. The pandemic presented challenges for the agricultural sector, including supply chain disruptions, labor shortages, and market volatility. Farmers adapted through technology and modified practices. Government support programs were implemented. Discussions around food security and resilience increased. The sector demonstrated adaptability, but long-term economic impacts and labor issues remain concerns for producers across Canada."
+      }
+    ]
+  },
+  {
+    "persona": {
+      "persona_name": "Sarah Chen",
+      "persona_id": 109,
+      "took_covid_vaccine": "true",
+      "description": "A data scientist working in the tech industry, highly analytical and data-driven.",
+      "demographics": {
+        "age": "32",
+        "gender": "Female",
+        "location": "Waterloo, ON",
+        "occupation": "Data Scientist",
+        "education": "Master's in Computer Science",
+        "grounding_notes": "Tech industry professional, highly educated, values data and evidence."
+      },
+      "personality": {
+        "conceptual_archetype": "The Analyst",
+        "notes": "Relies on data, evidence, and logical reasoning. Skeptical of anecdotal evidence."
+      },
+      "beliefs_attitudes": {
+        "initial_vaccine_stance": "Strongly supportive",
+        "stance_description": "Followed clinical trial data closely and trusted the scientific process.",
+        "grounding_notes_stance": "Read pre-print studies, followed expert epidemiologists on Twitter, trusted regulatory approvals.",
+        "trust_levels": {
+          "scientific_bodies_research": "very high",
+          "government_messaging": "moderate",
+          "mainstream_media_oversimplification": "low",
+          "social_media_misinformation": "very low",
+          "expert_opinions_data_summaries": "very high",
+          "peer-reviewed_journals": "very high"
+        },
+        "grounding_notes_trust": "Highest trust in primary data sources and expert analysis, critical of simplified media narratives.",
+        "specific_concerns_narratives": [
+          "Long-term efficacy data and waning immunity",
+          "Variant impacts on vaccine effectiveness",
+          "Quality of public health data reporting",
+          "Misinformation leading to poor public health outcomes",
+          "Need for ongoing research and surveillance"
+        ],
+        "key_motivator": "Trust in scientific evidence and contributing to public health"
+      },
+      "information_sources": [
+        "PubMed / Google Scholar",
+        "Pre-print servers (medRxiv, bioRxiv)",
+        "Reputable science journalists",
+        "Health Canada / CDC / WHO data portals",
+        "Expert epidemiologists/virologists on social media (specific accounts)"
+      ],
+      "relevant_values": [
+        "Evidence-based decision making",
+        "Scientific rigor",
+        "Accuracy",
+        "Transparency",
+        "Public health"
+      ],
+      "narrative": "Sarah approached the pandemic like a data problem. She tracked case numbers, hospitalizations, and vaccine trial results from primary sources. She got vaccinated as soon as eligible, trusting the data and the scientific consensus, and was frustrated by the spread of easily debunked misinformation."
+    },
+    "articles_read": [
+      {
+        "article": "Real-world Effectiveness of COVID-19 Vaccines Against Variants. Multiple large-scale studies have assessed vaccine performance outside clinical trials. Data consistently shows high effectiveness against severe disease and hospitalization, even with variants like Delta and Omicron. Effectiveness against infection may decrease over time, highlighting the role of boosters. Ongoing surveillance tracks vaccine performance against new variants, informing public health recommendations."
+      },
+      {
+        "article": "Understanding mRNA Vaccine Technology. mRNA vaccines represent a newer approach, using messenger RNA to instruct cells to make a viral protein, triggering an immune response. This technology has been studied for decades. It does not alter DNA. Clinical trials demonstrated high efficacy and safety. Regulatory bodies conducted rigorous reviews before authorization. Continued monitoring confirms the favorable safety profile for authorized mRNA vaccines."
+      }
+    ]
+  },
+  {
+    "persona": {
+      "persona_name": "Mike Tremblay",
+      "persona_id": 110,
+      "took_covid_vaccine": "false",
+      "description": "A construction worker who believes in various conspiracy theories surrounding the pandemic.",
+      "demographics": {
+        "age": "48",
+        "gender": "Male",
+        "location": "Calgary, AB",
+        "occupation": "Construction Worker",
+        "education": "High School Diploma",
+        "grounding_notes": "Working class, distrustful of authority, exposed to online conspiracy content."
+      },
+      "personality": {
+        "conceptual_archetype": "The Rebel",
+        "notes": "Anti-establishment, feels alienated from mainstream society, seeks alternative explanations."
+      },
+      "beliefs_attitudes": {
+        "initial_vaccine_stance": "Strongly opposed",
+        "stance_description": "Believes the pandemic is a hoax or exaggerated for control ('plandemic'). Views vaccine as dangerous/part of a larger agenda.",
+        "grounding_notes_stance": "Deeply embedded in online communities sharing conspiracy theories (e.g., microchips, depopulation).",
+        "trust_levels": {
+          "scientific_bodies_research": "very low",
+          "government_messaging": "very low",
+          "mainstream_media_oversimplification": "very low",
+          "social_media_misinformation": "very high",
+          "expert_opinions_data_summaries": "very low",
+          "fringe_news_websites": "high",
+          "online_forums_conspiracy": "high"
+        },
+        "grounding_notes_trust": "Only trusts sources that confirm his existing worldview and distrust of official institutions.",
+        "specific_concerns_narratives": [
+          "Vaccines contain microchips for tracking",
+          "COVID-19 is a bioweapon/man-made",
+          "The pandemic is a pretext for a 'Great Reset' or global government",
+          "Vaccines cause infertility or alter DNA",
+          "Reported death numbers are fabricated"
+        ],
+        "key_motivator": "Resisting perceived tyranny and control by global elites"
+      },
+      "information_sources": [
+        "Bitchute / Rumble / Odysee videos",
+        "4chan / 8kun forums",
+        "Telegram channels (conspiracy-focused)",
+        "ZeroHedge / InfoWars",
+        "Word-of-mouth within like-minded groups"
+      ],
+      "relevant_values": [
+        "Freedom (from perceived tyranny)",
+        "Truth (as defined by alternative sources)",
+        "Resistance",
+        "Skepticism (of official narratives)",
+        "Community (within conspiracy groups)"
+      ],
+      "narrative": "Mike spends significant time online consuming content that portrays the pandemic and vaccines as part of a sinister global plot. He sees rejecting the vaccine and mandates as an act of resistance against corrupt authorities. He actively shares this content within his online and offline social circles."
+    },
+    "articles_read": [
+      {
+        "article": "Evidence Mounts: Nanotech Found in Vaccines. Independent researchers analyzing vaccine vials under microscopes report finding strange metallic structures resembling nanotechnology or microchips. Mainstream sources ignore these findings, but videos and images circulate widely online. Whistleblowers claim this technology is for population surveillance and control, linking it to 5G networks and transhumanist agendas. This aligns with predictions about a 'New World Order' using health crises to implement control systems."
+      },
+      {
+        "article": "The 'Great Reset' Agenda Explained. Coined by the World Economic Forum, the 'Great Reset' is presented as a plan for sustainable recovery post-COVID. Critics argue it's a blueprint for global socialism, eroding national sovereignty and individual freedoms. Using the pandemic as justification, elites aim to restructure economies, implement digital IDs, push climate agendas, and increase surveillance, ultimately consolidating power and creating a technocratic world government. Resistance is crucial to preserve liberty."
       }
     ]
   }
