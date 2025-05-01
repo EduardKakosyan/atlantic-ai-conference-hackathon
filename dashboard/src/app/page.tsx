@@ -1,6 +1,7 @@
 import { PersonaTrajectories } from "@/components/charts/line-chart";
 import { ReactionByIteration } from "@/components/charts/area-chart";
 import { FinalRatingsByPersona } from "@/components/charts/bar-chart";
+import { RatingHeatMap } from "@/components/charts/iteration-table";
 import mockData from "@/lib/mock-data";
 
 export default function Home() {
@@ -16,6 +17,9 @@ export default function Home() {
         </div>
         <div className="bg-white p-6 rounded-lg shadow-md">
           <FinalRatingsByPersona data={mockData} className="w-full" />
+        </div>
+        <div className="bg-white p-6 rounded-lg shadow-md">
+          <RatingHeatMap className="w-full" />
         </div>
       </div>
     </main>
