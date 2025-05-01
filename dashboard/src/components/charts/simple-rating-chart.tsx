@@ -1,0 +1,161 @@
+'use client';
+
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ReferenceLine,
+  ResponsiveContainer
+} from 'recharts';
+import { PersonaData, getAvailablePersonas } from '@/lib/mock-data';
+import { NORMALIZED_THRESHOLD } from '@/lib/constants';
+
+interface SimpleRatingChartProps {
+  data: PersonaData[];
+  className?: string;
+}
+
+interface ChartDataItem {
+  iteration: number;
+  [key: string]: number | string; // Dynamic keys for each persona
+}
+
+const PERSONA_COLORS = ['#8884d8', '#82ca9d', '#ffc658', '#ff8042', '#0088fe'];
+
+const prepareChartData = (data: PersonaData[]): ChartDataItem[] => {
+  // Get all unique iterations
+  const iterations = Array.from(new Set(data.map(item => item.iteration))).sort();
+  
+  // Get all unique personas
+  const personas = Array.from(new Set(data.map(item => item.persona_name)));
+  
+  // Create a map of iteration -> persona -> rating
+  const ratingMap: Map<number, Map<string, number>> = new Map();
+  
+  // Initialize the map with all iterations
+  iterations.forEach(iteration => {
+    ratingMap.set(iteration, new Map());
+  });
+  
+  // Fill in the ratings
+  data.forEach(item => {
+    const personaMap = ratingMap.get(item.iteration);
+    if (personaMap) {
+      personaMap.set(item.persona_name, item.normalized_current_rating);
+    }
+  });
+  
+  // Convert to array of chart data items
+  return iterations.map(iteration => {
+    const chartItem: ChartDataItem = { iteration };
+    const personaMap = ratingMap.get(iteration);
+    
+    if (personaMap) {
+      personas.forEach(persona => {
+        const rating = personaMap.get(persona);
+        if (rating !== undefined) {
+          chartItem[persona] = rating;
+        }
+      });
+    }
+    
+    return chartItem;
+  });
+};
+
+export function SimpleRatingChart({ data, className }: SimpleRatingChartProps) {
+  const chartData = prepareChartData(data);
+  const personas = getAvailablePersonas();
+  
+  const CustomTooltip = ({ active, payload, label }: any) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="bg-white p-4 border border-gray-200 shadow-md rounded-md">
+          <p className="font-bold text-sm">Iteration {label}</p>
+          <div className="mt-1">
+            {payload.map((entry: any, index: number) => (
+              <p key={index} className="text-sm" style={{ color: entry.color }}>
+                {entry.name}: {(entry.value * 100).toFixed(1)}%
+              </p>
+            ))}
+          </div>
+        </div>
+      );
+    }
+    return null;
+  };
+
+  return (
+    <div className={className}>
+      <h2 className="text-xl font-bold mb-4">Persona Rating Progression</h2>
+      <div className="h-[400px] w-full">
+        <ResponsiveContainer width="100%" height="100%">
+          <LineChart
+            data={chartData}
+            margin={{ top: 20, right: 20, left: 20, bottom: 40 }}
+          >
+            <CartesianGrid strokeDasharray="3 3" opacity={0.2} />
+            <XAxis 
+              dataKey="iteration" 
+              label={{ 
+                value: 'Iteration', 
+                position: 'insideBottomRight', 
+                offset: -10 
+              }}
+              tick={{ fontSize: 12 }}
+              axisLine={false}
+            />
+            <YAxis 
+              domain={[0, 1]} 
+              tickFormatter={(value) => `${(value * 100).toFixed(0)}%`}
+              label={{ 
+                value: 'Normalized Rating', 
+                angle: -90, 
+                position: 'insideLeft',
+                style: { textAnchor: 'middle' }
+              }}
+              tick={{ fontSize: 12 }}
+              axisLine={false}
+            />
+            <Tooltip content={<CustomTooltip />} />
+            <Legend 
+              verticalAlign="bottom" 
+              height={36}
+              iconType="circle"
+            />
+            <ReferenceLine 
+              y={NORMALIZED_THRESHOLD} 
+              label={{ 
+                value: 'Threshold', 
+                position: 'left',
+                fill: '#ef4444',
+                fontSize: 12
+              }} 
+              stroke="#ef4444" 
+              strokeDasharray="3 3" 
+              strokeWidth={2}
+            />
+            
+            {personas.map((persona, index) => (
+              <Line 
+                key={persona}
+                type="monotone" 
+                dataKey={persona} 
+                name={persona} 
+                stroke={PERSONA_COLORS[index % PERSONA_COLORS.length]}
+                strokeWidth={2}
+                dot={false}
+                activeDot={{ r: 6 }}
+                connectNulls={true}
+              />
+            ))}
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
+    </div>
+  );
+}
