@@ -8,7 +8,6 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
   LabelList,
   Cell,
@@ -137,10 +136,8 @@ export function ConversionTrajectory({ className }: ConversionTrajectoryProps) {
               tickLine={false}
             />
             <Tooltip content={<CustomTooltip />} />
-            <Legend />
             <Bar 
               dataKey="absoluteRatingChange" 
-              name="Rating Change"
               radius={[4, 4, 4, 4]}
             >
               {trajectoryData.map((entry, index) => (
