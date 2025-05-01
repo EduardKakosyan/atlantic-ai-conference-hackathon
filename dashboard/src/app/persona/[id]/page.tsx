@@ -31,9 +31,14 @@ export default function PersonaDetailPage({ params }: Params) {
 
   return (
     <main className="container mx-auto py-8 px-4 space-y-8">
-      <Link href="/personas" className="text-blue-500 hover:underline">
-        ← Back to Personas
-      </Link>
+        <div className='mb-5'> 
+          <Link
+          href="/personas"
+          className="px-3 py-1 rounded-md bg-blue-50 text-blue-600 hover:bg-blue-100 hover:text-blue-800 transition"
+        >
+          ← Personas
+        </Link>
+        </div>
 
       {/* Hero Card */}
       <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center">
