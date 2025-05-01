@@ -2,6 +2,7 @@ import { PersonaTrajectories } from "@/components/charts/line-chart";
 import { ReactionByIteration } from "@/components/charts/area-chart";
 import { FinalRatingsByPersona } from "@/components/charts/bar-chart";
 import { RatingHeatMap } from "@/components/charts/iteration-table";
+import { ConversionTrajectory } from "@/components/insights/converstion-trajectory";
 import mockData from "@/lib/mock-data";
 
 export default function Home() {
@@ -11,6 +12,9 @@ export default function Home() {
       <div className="grid grid-cols-1 gap-8">
         <div className="bg-white p-6 rounded-lg shadow-md">
           <PersonaTrajectories className="w-full" />
+        </div>
+        <div className="bg-white p-6 rounded-lg shadow-md">
+          <ConversionTrajectory className="w-full" />
         </div>
         <div className="bg-white p-6 rounded-lg shadow-md">
           <ReactionByIteration className="w-full" />
