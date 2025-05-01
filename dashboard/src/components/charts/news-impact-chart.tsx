@@ -37,26 +37,58 @@ export function NewsImpactChart({ className }: NewsImpactChartProps) {
       return true;
     });
 
+    // Find the maximum iteration
+    const maxIteration = Math.max(...filteredData.map(item => item.iteration));
+
     // Group by iteration and persona, separating fake and real news
     const chartData: Record<number, any> = {};
     
     // Initialize all iterations
-    const iterations = Array.from(new Set(filteredData.map(item => item.iteration)));
-    iterations.forEach(iteration => {
-      chartData[iteration] = { iteration };
-    });
+    for (let i = 1; i <= maxIteration; i++) {
+      chartData[i] = { iteration: i };
+    }
 
-    // Add data points
+    // Group data by persona and news type for extending lines
+    const groupedData: Record<string, any> = {};
     filteredData.forEach(item => {
       const key = `${item.persona_name}_${item.is_fake ? 'fake' : 'real'}`;
-      chartData[item.iteration][key] = item.normalized_current_rating;
+      if (!groupedData[key]) {
+        groupedData[key] = [];
+      }
+      groupedData[key].push(item);
+    });
+
+    // For each persona/news type combination, sort by iteration and get the last point
+    Object.entries(groupedData).forEach(([key, items]) => {
+      const sortedItems = [...items].sort((a: any, b: any) => a.iteration - b.iteration);
+      const lastItem = sortedItems[sortedItems.length - 1];
       
-      // Store additional data for tooltip
-      chartData[item.iteration][`${key}_data`] = {
-        reaction: item.reaction,
-        article: item.article,
-        reason: item.reason
-      };
+      // Add data points for all iterations
+      for (let i = 1; i <= maxIteration; i++) {
+        const itemForIteration = sortedItems.find((item: any) => item.iteration === i);
+        
+        if (itemForIteration) {
+          // Use actual data
+          chartData[i][key] = itemForIteration.normalized_current_rating;
+          
+          // Store additional data for tooltip
+          chartData[i][`${key}_data`] = {
+            reaction: itemForIteration.reaction,
+            article: itemForIteration.article,
+            reason: itemForIteration.reason
+          };
+        } else if (i > lastItem.iteration) {
+          // For iterations after the last one, extend the final value as flat
+          chartData[i][key] = lastItem.normalized_current_rating;
+          
+          // Store additional data for tooltip (using the last item's data)
+          chartData[i][`${key}_data`] = {
+            reaction: lastItem.reaction,
+            article: lastItem.article,
+            reason: lastItem.reason
+          };
+        }
+      }
     });
 
     return Object.values(chartData).sort((a: any, b: any) => a.iteration - b.iteration);
