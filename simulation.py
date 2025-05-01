@@ -16,6 +16,15 @@ load_dotenv()
 print(f"Current working directory: {os.getcwd()}")
 print(f".env file exists: {os.path.exists('.env')}")
 
+# Debug: Check if Supabase environment variables exist (redacting actual values)
+supabase_url = os.getenv("SUPABASE_URL")
+supabase_key = os.getenv("SUPABASE_KEY")
+print(f"SUPABASE_URL exists: {supabase_url is not None}")
+print(f"SUPABASE_KEY exists: {supabase_key is not None}")
+if supabase_url and supabase_key:
+    print(f"Supabase URL format looks valid: {'http' in supabase_url.lower()}")
+    print(f"Supabase key length: {len(supabase_key)}")
+
 # Get API key and validate
 api_key = os.getenv("OPENAI_API_KEY")
 if not api_key:
@@ -57,6 +66,7 @@ class Agent:
             
         self.history = []
         self.memory = []  # Store previous interactions
+        self.recommendation_rating = None
 
     def get_prompt(self, article: str = None) -> str:
         if self.role == "user":
@@ -180,6 +190,59 @@ The goal is to increase the user's vaccine acceptance rating above their current
     def add_to_memory(self, article: str, reaction: str = None, rating: float = None):
         self.memory.append((article, reaction, rating))
 
+    def get_recommendation_prompt(self) -> str:
+        """Create prompt for asking about likelihood to recommend vaccination to others."""
+        # Create memory context
+        memory_context = ""
+        if self.memory:
+            memory_context = "\nYour previous interactions with articles:\n"
+            for i, (prev_article, prev_reaction, prev_rating) in enumerate(self.memory[-3:], 1):
+                memory_context += f"\nInteraction {i}:\nArticle: {prev_article}\nYour Reaction: {prev_reaction}\nYour Rating: {prev_rating}\n"
+        
+        return f"""Take on the persona provided in the JSON object and determine how likely you would be to recommend COVID-19 vaccination to friends and family with similar backgrounds and values.
+
+Based on all the articles you've read and your persona's evolution throughout this experience, provide a recommendation rating.
+
+Your persona details:
+{json.dumps(self.persona, indent=2)}
+{memory_context}
+
+Your current vaccination acceptance rating is: {self.current_rating}/4
+
+Format your response EXACTLY as follows:
+RECOMMENDATION_RATING: [number between 1 and 4]
+REASONING: [5-10 sentences explaining your recommendation likelihood based on your persona]
+
+Where on the scale from 1 to 4:
+1 = Would strongly advise against vaccination
+2 = Would probably not recommend vaccination
+3 = Would cautiously recommend vaccination
+4 = Would strongly recommend vaccination
+"""
+
+    def process_recommendation_response(self, response: str) -> Tuple[float, str]:
+        """Process the recommendation response to extract rating and reasoning."""
+        try:
+            # Extract rating
+            rating_str = response.split("RECOMMENDATION_RATING:")[1].split("REASONING:")[0].strip()
+            # Handle cases like "4/4" or "4"
+            rating = float(rating_str.split("/")[0])
+            
+            # Extract reasoning
+            reasoning = response.split("REASONING:")[1].strip()
+            
+            # Validate rating is within bounds
+            if not 1 <= rating <= 4:
+                print(f"Warning: Recommendation rating {rating} out of bounds, clamping to valid range")
+                rating = max(1, min(4, rating))
+            
+            return rating, reasoning
+        except Exception as e:
+            print(f"Error processing recommendation response: {e}")
+            print(f"Raw response: {response}")
+            # Return default values in case of error
+            return self.current_rating, "Error in response format"
+
 def generate_diff_summary(old_text: str, new_text: str) -> str:
     """Generate a summary of differences between two texts."""
     diff = difflib.ndiff(old_text.splitlines(), new_text.splitlines())
@@ -209,6 +272,15 @@ class Simulation:
                 try:
                     self.supabase = create_client(supabase_url, supabase_key)
                     print("Successfully connected to Supabase")
+                    
+                    # Test if the table exists by trying to get a single row
+                    try:
+                        test_result = self.supabase.table("persona_responses_duplicate").select("*").limit(1).execute()
+                        print(f"Table test query successful: got {len(test_result.data)} rows")
+                    except Exception as table_error:
+                        print(f"Error accessing table 'persona_responses_duplicate': {table_error}")
+                        print("Table might not exist or permissions might be incorrect")
+                        
                 except Exception as e:
                     print(f"Supabase connection error: {e}")
                     print("Falling back to CSV output")
@@ -227,34 +299,51 @@ class Simulation:
             writer = csv.writer(f)
             writer.writerow([
                 'session_id', 'iteration', 'persona_id', 'persona_name', 'current_rating',
-                'normalized_current_rating', 'reaction', 'article'
+                'normalized_current_rating', 'reaction', 'article', 'recommendation_rating',
+                'normalized_recommendation_rating', 'recommendation_reasoning'
             ])
 
-    def _log_to_supabase(self, iteration: int, reaction: str, rating: float, article: str, recommended_rating: float = None):
+    def _log_to_supabase(self, iteration: int, reaction: str, rating: float, article: str, recommended_rating: float = None, recommendation_reasoning: str = None):
         """Log iteration results to Supabase"""
         if not self.supabase:
+            print("Supabase client is not initialized, skipping database logging")
             return
         
         try:
+            print(f"Attempting to log to Supabase, iteration {iteration}")
             # Calculate normalized ratings (1-4 scale to 0-1 scale)
             normalized_rating = (rating - 1) / 3
             normalized_recommended = (recommended_rating - 1) / 3 if recommended_rating else None
             
-            # Create data object
+            # Ensure reaction is either 'Positive' or 'Negative'
+            # The schema constraint requires exactly these values
+            formatted_reaction = "Positive" if reaction.lower().startswith("positive") else "Negative"
+            
+            # Create data object matching the table schema exactly
+            # Note the misspelled column names in the actual schema (recommened instead of recommended)
             data = {
                 "persona_id": self.user_agent.persona.get("persona_id", 0),
                 "persona_name": self.user_agent.persona["persona_name"],
-                "iteration": iteration,
+                "iteration": min(max(1, iteration), 10),  # Constrained to 1-10 in schema
                 "current_rating": rating,
                 "normalized_current_rating": normalized_rating,
-                "recommened_rating": recommended_rating,
-                "normalized_recommened_rating": normalized_recommended,
-                "reaction": reaction,
-                "article": article
+                "recommened_rating": recommended_rating,  # Note: misspelled in schema 
+                "normalized_recommened_rating": normalized_recommended,  # Note: misspelled in schema
+                "reaction": formatted_reaction,
+                "reason": recommendation_reasoning or "",
+                "article": article or "",
+                "is_fact": True,  # Required field
+                "is_real": True,  # Required field
+                "editor_changes": ""  # Optional field
             }
             
+            print(f"Data prepared: {json.dumps(data, indent=2)[:200]}...")
+            
             # Insert into Supabase
-            result = self.supabase.table("persona_responses").insert(data).execute()
+            print(f"Inserting into table: persona_responses_duplicate")
+            result = self.supabase.table("persona_responses_duplicate").insert(data).execute()
+            
+            print(f"Supabase insert result: {result}")
             
             # Check for errors
             if hasattr(result, 'error') and result.error:
@@ -262,15 +351,20 @@ class Simulation:
                 
         except Exception as e:
             print(f"Supabase error when logging: {e}")
+            print(f"Error type: {type(e)}")
+            import traceback
+            traceback.print_exc()
             # If Supabase fails, log to CSV as backup
             if not hasattr(self, 'output_file'):
                 self.output_file = f"backup_results_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
                 self._initialize_csv()
-            self._log_to_csv(iteration, reaction, rating, article)
+            self._log_to_csv(iteration, reaction, rating, article, recommended_rating, recommendation_reasoning)
 
-    def _log_to_csv(self, iteration: int, reaction: str, rating: float, article: str):
+    def _log_to_csv(self, iteration: int, reaction: str, rating: float, article: str, 
+                   recommendation_rating: float = None, recommendation_reasoning: str = None):
         """Log iteration results to CSV file"""
         normalized_rating = (rating - 1) / 3  # Convert 1-4 scale to 0-1 scale
+        normalized_recommendation = (recommendation_rating - 1) / 3 if recommendation_rating else None
         
         with open(self.output_file, 'a', newline='') as f:
             writer = csv.writer(f)
@@ -282,10 +376,20 @@ class Simulation:
                 rating,
                 normalized_rating,
                 reaction,
-                article
+                article,
+                recommendation_rating if recommendation_rating else "",
+                normalized_recommendation if normalized_recommendation else "",
+                recommendation_reasoning if recommendation_reasoning else ""
             ])
 
     def run(self):
+        # Debug: Check Supabase connection status
+        print(f"\nDEBUG - Supabase connection status:")
+        print(f"use_db flag: {self.use_db}")
+        print(f"supabase client initialized: {self.supabase is not None}")
+        if self.supabase:
+            print(f"supabase client type: {type(self.supabase)}")
+        
         iteration = 0
         while iteration < self.max_iterations:
             print(f"\n{'='*50}")
@@ -309,7 +413,8 @@ class Simulation:
             
             # Log the iteration
             if self.use_db:
-                self._log_to_supabase(iteration, reaction, rating, self.current_article)
+                # Note: during iterations, we pass None for recommended_rating
+                self._log_to_supabase(iteration + 1, reaction, rating, self.current_article)
             else:
                 self._log_to_csv(iteration, reaction, rating, self.current_article)
             
@@ -348,10 +453,49 @@ class Simulation:
             print(f"{edited_article[:200]}...") # Print the first 200 chars of the article
             
             iteration += 1
-            
-        return self.user_agent.history
+        
+        # After simulation completes, ask user agent for recommendation rating
+        print(f"\n{'='*50}")
+        print(f"Simulation completed after {iteration} iterations.")
+        print(f"Final acceptance rating: {self.user_agent.current_rating}/4")
+        print(f"Asking persona for vaccine recommendation likelihood...")
+        print(f"{'='*50}\n")
+        
+        recommendation_prompt = self.user_agent.get_recommendation_prompt()
+        recommendation_response = client.chat.completions.create(
+            model="gpt-4",
+            messages=[{"role": "user", "content": recommendation_prompt}]
+        ).choices[0].message.content
+        
+        recommendation_rating, recommendation_reasoning = self.user_agent.process_recommendation_response(recommendation_response)
+        self.user_agent.recommendation_rating = recommendation_rating
+        
+        print(f"Recommendation rating: {recommendation_rating}/4")
+        print(f"Recommendation reasoning: {recommendation_reasoning}")
+        
+        # Log the final state with recommendation
+        if self.use_db:
+            self._log_to_supabase(
+                iteration, 
+                "Positive" if self.user_agent.current_rating >= 2.5 else "Negative", 
+                self.user_agent.current_rating,
+                self.current_article,
+                recommendation_rating,
+                recommendation_reasoning
+            )
+        else:
+            self._log_to_csv(
+                iteration,
+                "Final state", 
+                self.user_agent.current_rating, 
+                self.current_article,
+                recommendation_rating,
+                recommendation_reasoning
+            )
+        
+        return self.user_agent.history, recommendation_rating, recommendation_reasoning
 
-def load_personas(file_path='repo/personas.json'):
+def load_personas(file_path='personas.json'):
     """Load personas from JSON file"""
     try:
         with open(file_path, 'r') as f:
@@ -445,12 +589,14 @@ def main():
         
         # Run simulation
         sim = Simulation(persona_data, use_db=use_db)
-        history = sim.run()
+        history, recommendation_rating, recommendation_reasoning = sim.run()
         results.append({
             'persona_name': persona_data['persona']['persona_name'],
             'persona_id': persona_data['persona'].get('persona_id', f"unknown_{i}"),
             'final_rating': sim.user_agent.current_rating,
-            'history': history
+            'history': history,
+            'recommendation_rating': recommendation_rating,
+            'recommendation_reasoning': recommendation_reasoning
         })
         
         # Output individual result
@@ -460,11 +606,15 @@ def main():
             print("Simulation completed. Results saved to Supabase.")
         
         print(f"Final rating: {sim.user_agent.current_rating}/4")
-    
-    # Output summary
-    print("\n=== SIMULATION SUMMARY ===")
-    for result in results:
-        print(f"Persona: {result['persona_name']} (ID: {result['persona_id']}) - Final Rating: {result['final_rating']}/4")
+        print(f"Recommendation rating: {recommendation_rating}/4")
+        
+        # Output summary
+        print("\n=== SIMULATION SUMMARY ===")
+        for result in results:
+            print(f"Persona: {result['persona_name']} (ID: {result['persona_id']})")
+            print(f"  - Final Rating: {result['final_rating']}/4")
+            print(f"  - Recommendation Rating: {result['recommendation_rating']}/4")
+            print(f"  - Recommendation Reasoning: {result['recommendation_reasoning'][:150]}..." if len(result['recommendation_reasoning']) > 150 else result['recommendation_reasoning'])
 
 if __name__ == "__main__":
     main() 
