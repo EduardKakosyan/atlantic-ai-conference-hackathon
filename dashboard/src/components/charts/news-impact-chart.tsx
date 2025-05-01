@@ -1,0 +1,253 @@
+'use client';
+
+import { useState } from 'react';
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+  ReferenceLine
+} from 'recharts';
+import mockData, { PersonaData, getAvailablePersonas } from '@/lib/mock-data';
+
+interface NewsImpactChartProps {
+  className?: string;
+}
+
+type NewsFilter = 'all' | 'fake' | 'real';
+
+const COLORS = ['#8884d8', '#82ca9d', '#ffc658', '#ff8042', '#0088fe'];
+
+export function NewsImpactChart({ className }: NewsImpactChartProps) {
+  const availablePersonas = getAvailablePersonas();
+  const [newsFilter, setNewsFilter] = useState<NewsFilter>('all');
+  
+  // Transform data for the chart
+  const prepareChartData = () => {
+    // Filter data based on selected news type
+    const filteredData = mockData.filter(item => {
+      if (newsFilter === 'all') return true;
+      if (newsFilter === 'fake') return item.is_fake;
+      if (newsFilter === 'real') return !item.is_fake;
+      return true;
+    });
+
+    // Group by iteration and persona, separating fake and real news
+    const chartData: Record<number, any> = {};
+    
+    // Initialize all iterations
+    const iterations = Array.from(new Set(filteredData.map(item => item.iteration)));
+    iterations.forEach(iteration => {
+      chartData[iteration] = { iteration };
+    });
+
+    // Add data points
+    filteredData.forEach(item => {
+      const key = `${item.persona_name}_${item.is_fake ? 'fake' : 'real'}`;
+      chartData[item.iteration][key] = item.normalized_current_rating;
+      
+      // Store additional data for tooltip
+      chartData[item.iteration][`${key}_data`] = {
+        reaction: item.reaction,
+        article: item.article,
+        reason: item.reason
+      };
+    });
+
+    return Object.values(chartData).sort((a: any, b: any) => a.iteration - b.iteration);
+  };
+
+  const chartData = prepareChartData();
+
+  const CustomTooltip = ({ active, payload, label }: any) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="bg-white p-4 border border-gray-200 shadow-md rounded-md max-w-sm">
+          <p className="font-bold text-sm">Iteration {label}</p>
+          <div className="mt-2">
+            {payload.map((entry: any, index: number) => {
+              // Skip metadata entries (those ending with _data)
+              if (entry.dataKey.endsWith('_data')) return null;
+              
+              const [persona, newsType] = entry.dataKey.split('_');
+              const dataKey = `${entry.dataKey}_data`;
+              const additionalData = payload.find((p: any) => p.dataKey === dataKey)?.payload[dataKey];
+              
+              return (
+                <div key={`item-${index}`} className="mb-3">
+                  <div className="flex items-center mb-1">
+                    <div 
+                      className="w-3 h-3 mr-2 rounded-full" 
+                      style={{ backgroundColor: entry.color }}
+                    />
+                    <span className="text-sm font-medium">{persona}</span>
+                    <span className="text-xs ml-2 px-1.5 py-0.5 rounded-full bg-gray-200">
+                      {newsType === 'fake' ? 'Fake News' : 'Real News'}
+                    </span>
+                  </div>
+                  <div className="text-sm ml-5">Rating: {Number(entry.value).toFixed(2)}</div>
+                  
+                  {additionalData && (
+                    <div className="ml-5 mt-1 text-xs text-gray-600">
+                      <div className={`font-medium ${additionalData.reaction === 'Positive' ? 'text-green-600' : 'text-red-600'}`}>
+                        {additionalData.reaction} Reaction
+                      </div>
+                      {additionalData.article && (
+                        <div className="mt-1 text-gray-700 line-clamp-2">{additionalData.article}</div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              );
+            }).filter(Boolean)}
+          </div>
+        </div>
+      );
+    }
+    return null;
+  };
+
+  // Get subtitle based on filter
+  const getSubtitle = () => {
+    switch (newsFilter) {
+      case 'fake': return 'Showing impact of fake news only';
+      case 'real': return 'Showing impact of real news only';
+      default: return 'Showing impact of all news types';
+    }
+  };
+
+  // Function to get persona index for consistent colors
+  const getPersonaColor = (personaName: string) => {
+    const index = availablePersonas.indexOf(personaName);
+    return COLORS[index % COLORS.length];
+  };
+
+  return (
+    <div className={className}>
+      <div className="flex flex-col gap-1 mb-6">
+        <h2 className="text-xl font-bold">Impact of Fake News on Persona Vaccine Attitudes</h2>
+        <p className="text-sm text-gray-600">{getSubtitle()}</p>
+      </div>
+      
+      <div className="mb-6">
+        <div className="flex gap-2">
+          <button
+            onClick={() => setNewsFilter('all')}
+            className={`px-4 py-2 text-sm rounded-lg transition-colors ${
+              newsFilter === 'all' 
+                ? 'bg-blue-500 text-white' 
+                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+            }`}
+          >
+            All News
+          </button>
+          <button
+            onClick={() => setNewsFilter('fake')}
+            className={`px-4 py-2 text-sm rounded-lg transition-colors ${
+              newsFilter === 'fake' 
+                ? 'bg-blue-500 text-white' 
+                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+            }`}
+          >
+            Only Fake News
+          </button>
+          <button
+            onClick={() => setNewsFilter('real')}
+            className={`px-4 py-2 text-sm rounded-lg transition-colors ${
+              newsFilter === 'real' 
+                ? 'bg-blue-500 text-white' 
+                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+            }`}
+          >
+            Only Real News
+          </button>
+        </div>
+      </div>
+
+      <div className="h-[400px] w-full">
+        <ResponsiveContainer width="100%" height="100%">
+          <LineChart
+            data={chartData}
+            margin={{ top: 20, right: 40, left: 30, bottom: 30 }}
+          >
+            <CartesianGrid strokeDasharray="3 3" opacity={0.3} />
+            <XAxis 
+              dataKey="iteration" 
+              label={{ value: 'Iteration', position: 'insideBottomRight', offset: -5 }} 
+              tick={{ fontSize: 12 }}
+            />
+            <YAxis 
+              domain={[0, 1]} 
+              ticks={[0, 0.25, 0.5, 0.75, 1]}
+              tickFormatter={(value) => value.toFixed(2)}
+              label={{ value: 'Normalized Rating', angle: -90, position: 'insideLeft' }}
+              tick={{ fontSize: 12 }}
+            />
+            <Tooltip content={<CustomTooltip />} />
+            <Legend wrapperStyle={{ paddingTop: 10 }} />
+            <ReferenceLine y={0.875} stroke="red" strokeDasharray="3 3" label="Threshold (3.5)" />
+            
+            {availablePersonas.map((persona) => {
+              const color = getPersonaColor(persona);
+              
+              if (newsFilter === 'all' || newsFilter === 'fake') {
+                return (
+                  <Line
+                    key={`${persona}_fake`}
+                    type="monotone"
+                    dataKey={`${persona}_fake`}
+                    stroke={color}
+                    strokeWidth={2}
+                    strokeDasharray="5 5"
+                    activeDot={{ r: 8 }}
+                    name={`${persona} (Fake News)`}
+                    dot={{ fill: color, r: 4 }}
+                    connectNulls={true}
+                  />
+                );
+              }
+              return null;
+            })}
+            
+            {availablePersonas.map((persona) => {
+              const color = getPersonaColor(persona);
+              
+              if (newsFilter === 'all' || newsFilter === 'real') {
+                return (
+                  <Line
+                    key={`${persona}_real`}
+                    type="monotone"
+                    dataKey={`${persona}_real`}
+                    stroke={color}
+                    strokeWidth={2}
+                    activeDot={{ r: 8 }}
+                    name={`${persona} (Real News)`}
+                    dot={{ fill: color, r: 4 }}
+                    connectNulls={true}
+                  />
+                );
+              }
+              return null;
+            })}
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
+      
+      <div className="mt-4 text-sm text-gray-600">
+        <p>
+          <span className="text-red-500">Red line</span> at 0.875 (3.5 normalized) represents the threshold where personas would decide to take the vaccine.
+        </p>
+        <p>
+          <span className="inline-block w-4 border-t-2 border-gray-400 mr-2"></span> Solid lines represent real news
+        </p>
+        <p>
+          <span className="inline-block w-4 border-t-2 border-dashed border-gray-400 mr-2"></span> Dashed lines represent fake news
+        </p>
+      </div>
+    </div>
+  );
+}
