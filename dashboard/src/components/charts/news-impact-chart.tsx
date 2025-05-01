@@ -265,12 +265,6 @@ export function NewsImpactChart({ className }: NewsImpactChartProps) {
           </LineChart>
         </ResponsiveContainer>
       </div>
-      
-      <div className="mt-4 text-sm text-gray-600">
-        <p>
-          <span className="text-red-500">Red line</span> at 0.8 represents the threshold where personas would decide to take the vaccine.
-        </p>
-      </div>
     </div>
   );
 }

@@ -11,6 +11,7 @@ import {
   ResponsiveContainer,
   LabelList,
   Cell,
+  ReferenceLine,
 } from 'recharts';
 import mockData, { getAvailablePersonas } from '@/lib/mock-data';
 
@@ -120,7 +121,7 @@ export function ConversionTrajectory({ className }: ConversionTrajectoryProps) {
           <div className="mt-2 space-y-1 text-sm">
             <p>Initial Rating: {(data.startRating * 100).toFixed(1)}%</p>
             <p>Final Rating: {(data.endRating * 100).toFixed(1)}%</p>
-            <p>Absolute Change: {(data.absoluteRatingChange * 100).toFixed(1)}%</p>
+            <p>Change: {(data.ratingChange * 100).toFixed(1)}%</p>
             <p>
               Direction: 
               <span className={data.direction === 'positive' ? 'text-green-600 ml-1' : 'text-red-600 ml-1'}>
@@ -136,6 +137,12 @@ export function ConversionTrajectory({ className }: ConversionTrajectoryProps) {
     return null;
   };
 
+  // Find max absolute value for domain symmetry
+  const maxAbsoluteValue = Math.max(
+    ...trajectoryData.map(d => Math.abs(d.ratingChange)),
+    0.1 // Minimum value to prevent empty chart
+  );
+
   return (
     <div className={className}>
       <h2 className="text-xl font-bold mb-2">Conversion Trajectory</h2>
@@ -149,7 +156,7 @@ export function ConversionTrajectory({ className }: ConversionTrajectoryProps) {
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             data={trajectoryData}
-            margin={{ top: 20, right: 5, left: 5, bottom: 0 }}
+            margin={{ top: 30, right: 5, left: 5, bottom: 0 }}
             layout="horizontal"
           >
             <CartesianGrid strokeDasharray="3 3" opacity={0.2} horizontal={true} vertical={false} />
@@ -165,14 +172,15 @@ export function ConversionTrajectory({ className }: ConversionTrajectoryProps) {
             />
             <YAxis 
               type="number" 
-              domain={[0, 1]}
+              domain={[-maxAbsoluteValue, maxAbsoluteValue]}
               tickFormatter={(value) => `${(value * 100).toFixed(0)}%`}
               axisLine={false}
               tickLine={false}
             />
             <Tooltip content={<CustomTooltip />} />
+            <ReferenceLine y={0} stroke="#718096" strokeWidth={1} />
             <Bar 
-              dataKey="absoluteRatingChange" 
+              dataKey="ratingChange" 
               radius={[4, 4, 4, 4]}
             >
               {trajectoryData.map((entry, index) => (
@@ -182,8 +190,7 @@ export function ConversionTrajectory({ className }: ConversionTrajectoryProps) {
                 />
               ))}
               <LabelList 
-                dataKey="absoluteRatingChange" 
-                position="top" 
+                dataKey="ratingChange" 
                 content={({ x, y, width, height, value, index }) => {
                   if (typeof index !== 'number' || index < 0 || index >= trajectoryData.length) return null;
                   const entry = trajectoryData[index];
@@ -193,11 +200,16 @@ export function ConversionTrajectory({ className }: ConversionTrajectoryProps) {
                   const directionColor = entry.direction === 'positive' ? '#16a34a' : '#dc2626';
                   const formattedValue = `${((value as number) * 100).toFixed(1)}%`;
                   
+                  // Position labels outside the bar for both positive and negative values
+                  const labelPosition = entry.direction === 'positive' 
+                    ? (y as number) - 10 // Above bar for positive
+                    : (y as number) + 20; // Above bar for negative too
+                  
                   return (
                     <g>
                       <text 
                         x={(x as number) + (width as number) / 2} 
-                        y={(y as number) - 6} 
+                        y={labelPosition}
                         textAnchor="middle" 
                         dominantBaseline="middle"
                         fontSize="12"

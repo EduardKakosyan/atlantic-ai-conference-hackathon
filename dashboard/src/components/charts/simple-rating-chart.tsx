@@ -92,7 +92,7 @@ export function SimpleRatingChart({ data, className }: SimpleRatingChartProps) {
   return (
     <div className={className}>
       <h2 className="text-xl font-bold mb-4">Persona Rating Progression</h2>
-      <div className="h-[400px] w-full">
+      <div className="h-[500px] w-full">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart
             data={chartData}
@@ -155,6 +155,12 @@ export function SimpleRatingChart({ data, className }: SimpleRatingChartProps) {
             ))}
           </LineChart>
         </ResponsiveContainer>
+      </div>
+
+      <div className="mt-4 text-sm text-gray-600">
+        <p>
+          <span className="text-red-500">Red line</span> at 0.8 represents the threshold where personas would decide to take the vaccine.
+        </p>
       </div>
     </div>
   );
