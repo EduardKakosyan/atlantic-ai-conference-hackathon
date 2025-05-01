@@ -14,32 +14,31 @@ export function formatMessageTime(date: Date = new Date()): string {
 }
 
 /**
- * Converts JSON data from string format to TypeScript constants
- * @param jsonData JSON string containing persona data
+ * Converts JSON data to TypeScript constants
+ * @param jsonData JSON data containing persona data
  * @returns Array of PersonaData objects with proper typing
  */
-export function convertJsonToPersonaData(jsonData: string): PersonaData[] {
+export function convertJsonToPersonaData(jsonData: any[]): PersonaData[] {
   try {
-    const parsedData = JSON.parse(jsonData);
-    
-    return parsedData.map((item: any) => ({
+    return jsonData.map((item: any) => ({
       id: item.id,
+      session_id: item.session_id,
       persona_id: Number(item.persona_id),
       persona_name: item.persona_name,
       iteration: Number(item.iteration),
       current_rating: Number(item.current_rating),
       normalized_current_rating: Number(item.normalized_current_rating),
-      recommened_rating: Number(item.recommened_rating),
-      normalized_recommened_rating: Number(item.normalized_recommened_rating),
+      recommened_rating: item.recommened_rating ? Number(item.recommened_rating) : null,
+      normalized_recommened_rating: item.normalized_recommened_rating ? Number(item.normalized_recommened_rating) : null,
       reaction: item.reaction,
       reason: item.reason,
       editor_changes: item.editor_changes,
       article: item.article,
-      is_fake: Boolean(item.is_fake),
+      is_fact: Boolean(item.is_fact),
       is_real: Boolean(item.is_real)
     }));
   } catch (error) {
-    console.error("Error parsing JSON data:", error);
+    console.error("Error processing JSON data:", error);
     return [];
   }
 }

@@ -4,7 +4,7 @@ import { NewsImpactChart } from "@/components/charts/news-impact-chart";
 import { NewsImpactAnalysis } from "@/components/charts/news-impact-analysis";
 import { ConversionTrajectory } from "@/components/insights/converstion-trajectory";
 import { ReactionShift } from "@/components/insights/reactation-shift";
-import mockData from "@/lib/mock-data";
+import personaData from "@/lib/mock-data";
 import { QuickInsights } from "@/components/insights/quick-insights";
 
 export default function RootPage() {
@@ -29,7 +29,7 @@ export default function RootPage() {
             <ReactionShift className="w-full" />
           </div>
           <div className="bg-white p-6 rounded-lg shadow-md md:w-1/2 w-full">
-            <FinalRatingsByPersona data={mockData} className="w-full" />
+            <FinalRatingsByPersona data={personaData} className="w-full" />
           </div>
         </div>
         <div className="bg-white p-6 rounded-lg shadow-md">
