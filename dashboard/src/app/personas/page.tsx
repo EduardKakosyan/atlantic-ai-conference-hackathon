@@ -1,52 +1,74 @@
 "use client"
-import React, { useState } from 'react';
-import personasData from '../../../data/personas.json'; // Importing the mocked data
+import React, { useState } from "react"
+import Link from "next/link"
+import Image from "next/image"
+import personasData from "../../../data/personas.json"
 
-const PersonaPage = () => {
-  const [searchTerm, setSearchTerm] = useState('');
+export default function PersonaListPage() {
+  const [search, setSearch] = useState("")
 
-  const filteredPersonas = personasData.filter(persona =>
-    persona.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    persona.description.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filtered = personasData.filter((p) =>
+    [p.name, p.demographics.location, p.personality.archetype]
+      .join(" ")
+      .toLowerCase()
+      .includes(search.toLowerCase())
+  )
 
   return (
     <main className="container mx-auto py-8 px-4">
-      <h1 className="text-3xl font-bold mb-6">Persona Characteristics</h1>
-      <div className="mb-4">
-        <a href="/" className="text-blue-500">Back to Dashboard</a>
+      <div className="flex items-center justify-between mb-6">
+        <h1 className="text-3xl font-bold">Personas</h1>
+        <Link href="/" className="text-blue-500 hover:underline">
+          ← Dashboard
+        </Link>
       </div>
-      <div className="mb-4">
-        <input
-          type="text"
-          placeholder="Search Personas..."
-          className="border rounded-lg p-2 w-full"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4"> {/* Reduced gap for tighter layout */}
-        {filteredPersonas.map((persona) => (
-          <div key={persona.persona_id} className="bg-white p-4 rounded-lg shadow-md max-w-xs mx-auto"> {/* Reduced width */}
-            <img 
-              src={persona.demographics.gender === "Female" ? "/images/female-avatar.png" : "/images/male-avatar.png"} 
-              alt={`${persona.name}'s avatar`} 
-              className="w-24 h-24 rounded-full mb-4"
-            />
-            <h2 className="text-xl font-semibold">{persona.name}</h2>
-            <p className="mt-2 text-center">{persona.description}</p>
-            <div className="mt-4 w-full">
-              <h3 className="font-bold">Articles Read:</h3>
-              <p className="text-gray-600">{persona.articles_read ? persona.articles_read.slice(0, 2).join(', ') : 'No articles available'}</p> {/* Truncated articles */}
+
+      <input
+        type="search"
+        placeholder="Search by name, location or personality…"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        className="w-full md:w-1/2 mb-8 border border-gray-300 rounded-lg px-4 py-2
+                   focus:outline-none focus:ring-2 focus:ring-blue-400"
+      />
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {filtered.map((persona) => (
+          <Link
+            key={persona.persona_id}
+            href={`/persona/${persona.persona_id}`}
+            className="block bg-white rounded-lg shadow hover:shadow-lg transition p-5"
+          >
+            <div className="flex items-center mb-4">
+              <div className="relative w-16 h-16 flex-shrink-0 mr-4">
+                <Image
+                  src={
+                    persona.demographics.gender === "Female"
+                      ? "/images/female-avatar.png"
+                      : "/images/male-avatar.png"
+                  }
+                  alt={`${persona.name} avatar`}
+                  fill
+                  className="rounded-full object-cover"
+                />
+              </div>
+              <div>
+                <h2 className="text-xl font-semibold">{persona.name}</h2>
+                <p className="text-sm text-gray-500">
+                  {persona.demographics.location}
+                </p>
+              </div>
             </div>
-            <div className="mt-4">
-              <a href={`/persona/${persona.persona_id}`} className="text-blue-500">View Full Persona</a>
-            </div>
-          </div>
+            <p className="text-gray-600 mb-2">
+              Age {persona.demographics.age},{" "}
+              {persona.personality.archetype}
+            </p>
+            <p className="text-gray-700 line-clamp-3">
+              {persona.description}
+            </p>
+          </Link>
         ))}
       </div>
     </main>
-  );
-};
-
-export default PersonaPage; 
+  )
+} 
