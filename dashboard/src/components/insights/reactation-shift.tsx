@@ -2,8 +2,8 @@
 
 import { useMemo, useCallback } from 'react';
 import {
-  LineChart,
-  Line,
+  AreaChart,
+  Area,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -269,16 +269,12 @@ export function ReactionShift({ className }: ReactionShiftProps) {
   return (
     <div className={className}>
       <h2 className="text-xl font-bold mb-4">Reaction Sentiment Shift</h2>
-      <p className="text-sm text-gray-600 mb-4">
-        This chart tracks when personas shifted from a Negative to Positive reaction during the simulation.
-        <span className="font-medium text-blue-600"> Large highlighted circles indicate the exact moment when sentiment shifted.</span>
-      </p>
 
-      <div className="h-[400px] w-full relative">
-        <ResponsiveContainer width="100%" height="100%">
-          <LineChart
+      <div className="h-[450px] w-full relative mb-12">
+        <ResponsiveContainer width="100%" height="90%">
+          <AreaChart
             data={combinedChartData}
-            margin={{ top: 20, right: 30, left: 20, bottom: 40 }}
+            margin={{ top: 20, right: 30, left: 20, bottom: 30 }}
           >
             <CartesianGrid strokeDasharray="3 3" opacity={0.2} />
             <XAxis 
@@ -289,28 +285,54 @@ export function ReactionShift({ className }: ReactionShiftProps) {
             <YAxis 
               domain={[1, 4]} 
               tickFormatter={(value) => `${value.toFixed(1)}`}
-              label={{ value: 'Rating (1-4)', angle: -90, position: 'insideLeft' }}
+              label={{ value: 'Rating (1-4)', angle: -90, position: 'insideBottomLeft' }}
               tick={{ fontSize: 12 }}
             />
             <Tooltip content={<CustomTooltip />} />
-            <Legend content={<CustomLegend />} verticalAlign="top" height={36} />
             
             {/* Reference line for the threshold (3.5) */}
             <ReferenceLine 
               y={3.5} 
               stroke="#94a3b8" 
               strokeDasharray="3 3" 
-              label={{ value: 'Vaccine Acceptance Threshold', position: 'right', fill: '#94a3b8' }} 
+              label={{ value: 'Vaccine Acceptance Threshold', position: 'left', fill: '#94a3b8' }} 
             />
             
-            {/* Render lines for each persona */}
-            {reactionShiftData.map((persona) => (
-              <Line
+            {/* Define gradients for each persona */}
+            <defs>
+              {reactionShiftData.map((persona) => (
+                <linearGradient
+                  key={`gradient-${persona.name}`}
+                  id={`fill${persona.name}`}
+                  x1="0"
+                  y1="0"
+                  x2="0"
+                  y2="1"
+                >
+                  <stop
+                    offset="5%"
+                    stopColor={persona.color}
+                    stopOpacity={0.8}
+                  />
+                  <stop
+                    offset="95%"
+                    stopColor={persona.color}
+                    stopOpacity={0.1}
+                  />
+                </linearGradient>
+              ))}
+            </defs>
+            
+            {/* Render areas for each persona */}
+            {reactionShiftData.map((persona, index) => (
+              <Area
                 key={persona.name}
-                type="monotone"
+                type="natural"
                 dataKey={persona.name}
                 stroke={persona.color}
                 strokeWidth={2}
+                fill={`url(#fill${persona.name})`}
+                fillOpacity={0.4}
                 // Using the built-in dot pattern, but only showing dots at shift points
                 dot={({ cx, cy, index }) => {
                   const iterationValue = combinedChartData[index].iteration;
@@ -347,19 +369,16 @@ export function ReactionShift({ className }: ReactionShiftProps) {
                 />
               </ReferenceLine>
             ))}
-          </LineChart>
+          </AreaChart>
         </ResponsiveContainer>
-      </div>
-      
-      
-      <div className="mt-4 text-xs text-gray-500">
-        <div className="flex items-center gap-2 mt-1">
-          <svg width="24" height="24" className="inline-block">
-            <circle cx="12" cy="12" r="6" fill="#3b82f6" />
-          </svg>
-          <span>Sentiment shift point - marks when reaction changed from Negative to Positive</span>
-        </div>
         
+        <div className="mt-4 pt-4">
+          <CustomLegend payload={reactionShiftData.map(p => ({
+            value: p.name,
+            color: p.color,
+            type: 'line'
+          }))} />
+        </div>
       </div>
     </div>
   );

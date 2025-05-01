@@ -152,7 +152,7 @@ export function ConversionTrajectory({ className }: ConversionTrajectoryProps) {
         </ResponsiveContainer>
       </div>
 
-      <div className="mt-4 flex items-center">
+      <div className="mt-4 flex items-center justify-center">
         <div className="flex h-4">
           {BLUE_COLORS.map((color, i) => (
             <div 
