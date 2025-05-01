@@ -101,13 +101,13 @@ const calculateConversionRate = (): number => {
   return parseFloat(((convertedCount / personaNames.length) * 100).toFixed(0));
 };
 
-export const QuickInsights: React.FC = () => {
+export const QuickInsights: React.FC<{ className?: string }> = ({ className }) => {
   const mostPersuadable = calculateMostPersuadablePersona();
   const leastPersuadable = calculateLeastPersuadablePersona();
   const conversionRate = calculateConversionRate();
   
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+    <div className={`grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 ${className}`}>
       <div className="bg-white rounded-lg p-4 border border-white/20 shadow-sm">
         <div className="flex items-center justify-between">
           <div>

@@ -21,7 +21,13 @@
 /build
 
 # misc
+# Start of Selection
 .DS_Store
+.DS_Store/
+*/.DS_Store
+*.DS_Store
+../.DS_Store
+# End of Selection
 *.pem
 
 # debug
