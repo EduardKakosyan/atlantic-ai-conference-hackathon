@@ -1,7 +1,8 @@
 import { convertJsonToPersonaData } from '@/lib/utils';
-import jsonData from '../../data/half-data.json';
+import mixedNewsData from '../../data/mixed-news.json';
+import fakeNewsData from '../../data/fake_news.json';
+import realNewsData from '../../data/real_news.json';
 
-// Import types only
 export interface PersonaData {
   id: string;
   session_id: string;
@@ -20,18 +21,26 @@ export interface PersonaData {
   is_real: boolean;
 }
 
-const personaData: PersonaData[] = convertJsonToPersonaData(jsonData);
+const mixedNewsPersonaData: PersonaData[] = convertJsonToPersonaData(mixedNewsData);
+const fakeNewsPersonaData: PersonaData[] = convertJsonToPersonaData(fakeNewsData);
+const realNewsPersonaData: PersonaData[] = convertJsonToPersonaData(realNewsData);
 
 export const getPersonaData = (personaName: string): PersonaData[] => {
-  return personaData.filter((item: PersonaData) => item.persona_name === personaName);
+  return mixedNewsPersonaData.filter((item: PersonaData) => item.persona_name === personaName);
 };
 
 export const getAvailablePersonas = (): string[] => {
   const personas = new Set<string>();
-  personaData.forEach((item: PersonaData) => {
+  mixedNewsPersonaData.forEach((item: PersonaData) => {
+    personas.add(item.persona_name);
+  });
+  fakeNewsPersonaData.forEach((item: PersonaData) => {
+    personas.add(item.persona_name);
+  });
+  realNewsPersonaData.forEach((item: PersonaData) => {
     personas.add(item.persona_name);
   });
   return Array.from(personas);
 };
 
-export default personaData; 
+export { mixedNewsPersonaData, fakeNewsPersonaData, realNewsPersonaData };

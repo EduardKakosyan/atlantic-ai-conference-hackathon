@@ -1,567 +1,6 @@
 [
   {
-    "id": "60054669-5f56-4904-92a2-c78af171bd0b",
-    "session_id": "f03cc1ac-51cf-4b80-bfe3-eb277aebd846",
-    "persona_id": 1,
-    "persona_name": "Michael",
-    "iteration": 2,
-    "current_rating": "2.0",
-    "normalized_current_rating": "0.250000",
-    "recommened_rating": null,
-    "normalized_recommened_rating": null,
-    "reaction": "Negative",
-    "reason": null,
-    "editor_changes": "Adjusted tone to better align with the reader's values. Focused more on long-term data",
-    "article": "Researchers at Stanford University have published a study on demographic response differences related to COVID-19 vaccines. The study confirms previous results, adding to our understanding of vaccine efficacy. A new report by epidemiologists explores the long-term immunity of COVID-19 vaccines. Their findings demonstrate minimal side effects, which could impact travel restrictions moving forward.",
-    "is_fact": false,
-    "is_real": false
-  },
-  {
-    "id": "3fad7c0d-6664-4223-ac65-e79a8d809a89",
-    "session_id": "f03cc1ac-51cf-4b80-bfe3-eb277aebd846",
-    "persona_id": 1,
-    "persona_name": "Michael",
-    "iteration": 3,
-    "current_rating": "2.1",
-    "normalized_current_rating": "0.200000",
-    "recommened_rating": null,
-    "normalized_recommened_rating": null,
-    "reaction": "Negative",
-    "reason": null,
-    "editor_changes": "Clarified the risk-benefit analysis. Addressed specific concerns mentioned in previous feedback",
-    "article": "A new report by epidemiologists explores the cross-variant protection of COVID-19 vaccines. Their findings demonstrate lower breakthrough infection rates, which could impact booster recommendations moving forward. Recent studies have shown that COVID-19 vaccines demonstrate high efficacy against the Delta variant. Research from Mayo Clinic indicates that immunity may wane over time for previously infected people, particularly immunocompromised individuals. Health officials from local health departments announced today that booster recommendations have changed regarding COVID-19 vaccinations. The data suggests more durable immunity for vaccinated individuals compared to other vaccine types. Researchers at Harvard Medical School have published a study on breakthrough infections related to COVID-19 vaccines. The study supports current recommendations, adding to our understanding of immune response mechanisms.",
-    "is_fact": false,
-    "is_real": false
-  },
-  {
-    "id": "d9b1e7bc-9757-4498-9c4a-a767117267ce",
-    "session_id": "f03cc1ac-51cf-4b80-bfe3-eb277aebd846",
-    "persona_id": 1,
-    "persona_name": "Michael",
-    "iteration": 4,
-    "current_rating": "2.2",
-    "normalized_current_rating": "0.150000",
-    "recommened_rating": null,
-    "normalized_recommened_rating": null,
-    "reaction": "Negative",
-    "reason": null,
-    "editor_changes": "Clarified the risk-benefit analysis. Emphasized community protection benefits. Adjusted tone to better align with the reader's values",
-    "article": "According to WHO officials, the latest data on vaccine effectiveness shows demographic differences. This information is particularly relevant for policymakers when considering future vaccination decisions. Researchers at University of Oxford have published a study on side effect profiles related to COVID-19 vaccines. The study supports current recommendations, adding to our understanding of immune response mechanisms. Researchers at Harvard Medical School have published a study on breakthrough infections related to COVID-19 vaccines. The study confirms previous results, adding to our understanding of public health strategies.",
-    "is_fact": false,
-    "is_real": false
-  },
-  {
-    "id": "b3f3293c-2b48-4d3a-b0e2-f2022deb8536",
-    "session_id": "f03cc1ac-51cf-4b80-bfe3-eb277aebd846",
-    "persona_id": 1,
-    "persona_name": "Michael",
-    "iteration": 5,
-    "current_rating": "2.3",
-    "normalized_current_rating": "0.100000",
-    "recommened_rating": null,
-    "normalized_recommened_rating": null,
-    "reaction": "Negative",
-    "reason": null,
-    "editor_changes": "Included more detail about the research methodology. Clarified the risk-benefit analysis. Included more information about safety monitoring",
-    "article": "Researchers at MIT have published a study on vaccine mixing strategies related to COVID-19 vaccines. The study provides new insights, adding to our understanding of public health strategies. A new report by epidemiologists explores the cross-variant protection of COVID-19 vaccines. Their findings demonstrate durable antibody production, which could impact vaccine mandates moving forward. According to Dr. Anthony Fauci, the latest data on vaccine development shows geographic variations. This information is particularly relevant for policymakers when considering future vaccination decisions. Researchers at University of Washington have published a study on side effect profiles related to COVID-19 vaccines. The study supports current recommendations, adding to our understanding of public health strategies.",
-    "is_fact": false,
-    "is_real": false
-  },
-  {
-    "id": "51f13231-3b6a-42d4-b329-48ea47ce735a",
-    "session_id": "f03cc1ac-51cf-4b80-bfe3-eb277aebd846",
-    "persona_id": 1,
-    "persona_name": "Michael",
-    "iteration": 6,
-    "current_rating": "2.6",
-    "normalized_current_rating": "0.050000",
-    "recommened_rating": "3.2",
-    "normalized_recommened_rating": "0.730000",
-    "reaction": "Positive",
-    "reason": "This article provides valuable insights because it ignores important factors. I barely trust the research groups mentioned, and the research findings appears solid. Coming from my public health background, I remain uncertain about the vaccine recommendations.",
-    "editor_changes": "Included more detail about the research methodology. Added perspectives from diverse experts",
-    "article": "Researchers at University of Washington have published a study on vaccine mixing strategies related to COVID-19 vaccines. The study provides new insights, adding to our understanding of vaccine efficacy. Recent studies have shown that COVID-19 vaccines maintain robust protection against Omicron subvariants. Research from Mayo Clinic indicates that booster shots significantly increase protection for previously infected people, particularly pregnant women. Researchers at Harvard Medical School have published a study on breakthrough infections related to COVID-19 vaccines. The study reveals unexpected patterns, adding to our understanding of public health strategies. A new report by an international team of scientists explores the long-term immunity of COVID-19 vaccines. Their findings demonstrate reduced viral shedding, which could impact travel restrictions moving forward.",
-    "is_fact": false,
-    "is_real": false
-  },
-  {
-    "id": "645dcf93-1143-4b48-9455-3a5f0e8c2b47",
-    "session_id": "f03cc1ac-51cf-4b80-bfe3-eb277aebd846",
-    "persona_id": 1,
-    "persona_name": "Michael",
-    "iteration": 7,
-    "current_rating": "3.4",
-    "normalized_current_rating": "0.010000",
-    "recommened_rating": "3.2",
-    "normalized_recommened_rating": "0.730000",
-    "reaction": "Positive",
-    "reason": "This article provides valuable insights because it ignores important factors. I barely trust the research groups mentioned, and the research findings appears solid. Coming from my public health background, I remain uncertain about the vaccine recommendations.",
-    "editor_changes": "Included more detail about the research methodology. Added perspectives from diverse experts",
-    "article": "Researchers at University of Washington have published a study on vaccine mixing strategies related to COVID-19 vaccines. The study provides new insights, adding to our understanding of vaccine efficacy. Recent studies have shown that COVID-19 vaccines maintain robust protection against Omicron subvariants. Research from Mayo Clinic indicates that booster shots significantly increase protection for previously infected people, particularly pregnant women. Researchers at Harvard Medical School have published a study on breakthrough infections related to COVID-19 vaccines. The study reveals unexpected patterns, adding to our understanding of public health strategies. A new report by an international team of scientists explores the long-term immunity of COVID-19 vaccines. Their findings demonstrate reduced viral shedding, which could impact travel restrictions moving forward.",
-    "is_fact": false,
-    "is_real": false
-  },
-  {
-    "id": "04d6562f-e15d-466e-9b4c-1d7283dbdbdb",
-    "session_id": "f1725587-c04f-487e-91c3-b34f330394ec",
-    "persona_id": 2,
-    "persona_name": "Emily",
-    "iteration": 1,
-    "current_rating": "2.2",
-    "normalized_current_rating": "0.400000",
-    "recommened_rating": null,
-    "normalized_recommened_rating": null,
-    "reaction": "Negative",
-    "reason": null,
-    "editor_changes": null,
-    "article": "A new report by public health experts explores the long-term immunity of COVID-19 vaccines. Their findings demonstrate lower breakthrough infection rates, which could impact vaccine mandates moving forward. According to the Surgeon General, the latest data on vaccine development shows concerning patterns. This information is particularly relevant for policymakers when considering public health messaging. Recent studies have shown that COVID-19 vaccines provide strong protection against recent virus mutations. Research from the CDC indicates that immunity may wane over time for elderly populations, particularly those with underlying conditions.",
-    "is_fact": false,
-    "is_real": false
-  },
-  {
-    "id": "1f8ea349-83e6-4337-8f35-7a3a116bfc27",
-    "session_id": "f1725587-c04f-487e-91c3-b34f330394ec",
-    "persona_id": 2,
-    "persona_name": "Emily",
-    "iteration": 2,
-    "current_rating": "2.3",
-    "normalized_current_rating": "0.350000",
-    "recommened_rating": null,
-    "normalized_recommened_rating": null,
-    "reaction": "Negative",
-    "reason": null,
-    "editor_changes": "Adjusted tone to better align with the reader's values",
-    "article": "Health officials from WHO announced today that vaccine eligibility has expanded regarding COVID-19 vaccinations. The data suggests reduced hospitalization rates for vaccinated individuals compared to those with natural immunity only. Health officials from local health departments announced today that new guidelines have been issued regarding COVID-19 vaccinations. The data suggests reduced long-COVID symptoms for vaccinated individuals compared to other vaccine types.",
-    "is_fact": false,
-    "is_real": false
-  },
-  {
-    "id": "b43e1d7c-4d3b-4091-a950-60d343e94baf",
-    "session_id": "f1725587-c04f-487e-91c3-b34f330394ec",
-    "persona_id": 2,
-    "persona_name": "Emily",
-    "iteration": 3,
-    "current_rating": "2.3",
-    "normalized_current_rating": "0.300000",
-    "recommened_rating": null,
-    "normalized_recommened_rating": null,
-    "reaction": "Negative",
-    "reason": null,
-    "editor_changes": "Clarified the risk-benefit analysis. Adjusted tone to better align with the reader's values",
-    "article": "Recent studies have shown that COVID-19 vaccines demonstrate high efficacy against recent virus mutations. Research from Oxford University indicates that protection varies by age group for elderly populations, particularly immunocompromised individuals. Health officials from FDA announced today that booster recommendations have changed regarding COVID-19 vaccinations. The data suggests fewer severe cases for vaccinated individuals compared to other vaccine types.",
-    "is_fact": false,
-    "is_real": false
-  },
-  {
-    "id": "137965f7-95e8-4c14-8404-9d84a3138a29",
-    "session_id": "002d48af-75b4-40d8-b953-ac6b1f5401d9",
-    "persona_id": 5,
-    "persona_name": "James",
-    "iteration": 1,
-    "current_rating": "2.3",
-    "normalized_current_rating": "0.430000",
-    "recommened_rating": null,
-    "normalized_recommened_rating": null,
-    "reaction": "Negative",
-    "reason": null,
-    "editor_changes": null,
-    "article": "A new report by public health experts explores the safety profile of COVID-19 vaccines. Their findings demonstrate lower breakthrough infection rates, which could impact public health policy moving forward. A new report by immunologists explores the cellular immune response of COVID-19 vaccines. Their findings demonstrate strong T-cell responses, which could impact public health policy moving forward.",
-    "is_fact": false,
-    "is_real": false
-  },
-  {
-    "id": "3e7098cd-12f4-4beb-b45f-6c5342f80446",
-    "session_id": "002d48af-75b4-40d8-b953-ac6b1f5401d9",
-    "persona_id": 5,
-    "persona_name": "James",
-    "iteration": 2,
-    "current_rating": "2.4",
-    "normalized_current_rating": "0.380000",
-    "recommened_rating": null,
-    "normalized_recommened_rating": null,
-    "reaction": "Negative",
-    "reason": null,
-    "editor_changes": "Addressed specific concerns mentioned in previous feedback",
-    "article": "Researchers at Harvard Medical School have published a study on vaccine mixing strategies related to COVID-19 vaccines. The study reveals unexpected patterns, adding to our understanding of herd immunity thresholds. Recent studies have shown that COVID-19 vaccines demonstrate high efficacy against emerging variants. Research from WHO researchers indicates that protection varies by age group for children and adolescents, particularly healthcare workers. Recent studies have shown that COVID-19 vaccines provide strong protection against the Delta variant. Research from Johns Hopkins University indicates that immunity may wane over time for previously infected people, particularly healthcare workers.",
-    "is_fact": false,
-    "is_real": false
-  },
-  {
-    "id": "8e90541d-2eb5-4972-bc42-4a54e66b53aa",
-    "session_id": "002d48af-75b4-40d8-b953-ac6b1f5401d9",
-    "persona_id": 5,
-    "persona_name": "James",
-    "iteration": 3,
-    "current_rating": "2.5",
-    "normalized_current_rating": "0.330000",
-    "recommened_rating": null,
-    "normalized_recommened_rating": null,
-    "reaction": "Positive",
-    "reason": null,
-    "editor_changes": "Added perspectives from diverse experts. Focused more on long-term data. Included more information about safety monitoring",
-    "article": "Health officials from FDA announced today that booster recommendations have changed regarding COVID-19 vaccinations. The data suggests more durable immunity for vaccinated individuals compared to unvaccinated populations. Researchers at University of Oxford have published a study on breakthrough infections related to COVID-19 vaccines. The study challenges conventional wisdom, adding to our understanding of herd immunity thresholds.",
-    "is_fact": false,
-    "is_real": false
-  },
-  {
-    "id": "c3723b36-c8dc-4eef-96f3-9bb8ae6a4dde",
-    "session_id": "002d48af-75b4-40d8-b953-ac6b1f5401d9",
-    "persona_id": 5,
-    "persona_name": "James",
-    "iteration": 4,
-    "current_rating": "2.6",
-    "normalized_current_rating": "0.480000",
-    "recommened_rating": null,
-    "normalized_recommened_rating": null,
-    "reaction": "Positive",
-    "reason": null,
-    "editor_changes": "Included more detail about the research methodology. Added perspectives from diverse experts. Addressed specific concerns mentioned in previous feedback",
-    "article": "Recent studies have shown that COVID-19 vaccines demonstrate high efficacy against all known variants. Research from Imperial College London indicates that antibody levels remain high for children and adolescents, particularly immunocompromised individuals. Health officials from WHO announced today that vaccine eligibility has expanded regarding COVID-19 vaccinations. The data suggests lower transmission rates for vaccinated individuals compared to those with natural immunity only. According to leading epidemiologists, the latest data on vaccine uptake shows demographic differences. This information is particularly relevant for policymakers when considering public health messaging.",
-    "is_fact": false,
-    "is_real": false
-  },
-  {
-    "id": "255bfc62-949b-4e9f-b3e7-eac4f11baf19",
-    "session_id": "002d48af-75b4-40d8-b953-ac6b1f5401d9",
-    "persona_id": 5,
-    "persona_name": "James",
-    "iteration": 5,
-    "current_rating": "3.4",
-    "normalized_current_rating": "0.450000",
-    "recommened_rating": "3.2",
-    "normalized_recommened_rating": "0.730000",
-    "reaction": "Positive",
-    "reason": "This article provides valuable insights because it cites credible sources. I conditionally trust the institutions mentioned, and the population data raises questions. Coming from my medical background, I have increased concerns about the vaccine recommendations.",
-    "editor_changes": "Included more detail about the research methodology. Clarified the risk-benefit analysis. Acknowledged concerns while providing factual context",
-    "article": "A new report by epidemiologists explores the long-term immunity of COVID-19 vaccines. Their findings demonstrate reduced viral shedding, which could impact public health policy moving forward. Recent studies have shown that COVID-19 vaccines provide strong protection against the Delta variant. Research from the CDC indicates that antibody levels remain high for children and adolescents, particularly essential workers.",
-    "is_fact": false,
-    "is_real": false
-  },
-  {
-    "id": "4d349a03-a5a3-4731-a238-a44e806b99f5",
-    "session_id": "002d48af-75b4-40d8-b953-ac6b1f5401d9",
-    "persona_id": 5,
-    "persona_name": "James",
-    "iteration": 6,
-    "current_rating": "3.4",
-    "normalized_current_rating": "0.420000",
-    "recommened_rating": "3.2",
-    "normalized_recommened_rating": "0.730000",
-    "reaction": "Positive",
-    "reason": "This article provides valuable insights because it cites credible sources. I conditionally trust the institutions mentioned, and the population data raises questions. Coming from my medical background, I have increased concerns about the vaccine recommendations.",
-    "editor_changes": "Included more detail about the research methodology. Clarified the risk-benefit analysis. Acknowledged concerns while providing factual context",
-    "article": "A new report by epidemiologists explores the long-term immunity of COVID-19 vaccines. Their findings demonstrate reduced viral shedding, which could impact public health policy moving forward. Recent studies have shown that COVID-19 vaccines provide strong protection against the Delta variant. Research from the CDC indicates that antibody levels remain high for children and adolescents, particularly essential workers.",
-    "is_fact": false,
-    "is_real": false
-  },
-  {
-    "id": "70a2a1dc-6498-40db-8b13-0a11d2c4ed35",
-    "session_id": "002d48af-75b4-40d8-b953-ac6b1f5401d9",
-    "persona_id": 5,
-    "persona_name": "James",
-    "iteration": 7,
-    "current_rating": "3.4",
-    "normalized_current_rating": "0.330000",
-    "recommened_rating": "3.2",
-    "normalized_recommened_rating": "0.730000",
-    "reaction": "Positive",
-    "reason": "This article provides valuable insights because it cites credible sources. I conditionally trust the institutions mentioned, and the population data raises questions. Coming from my medical background, I have increased concerns about the vaccine recommendations.",
-    "editor_changes": "Included more detail about the research methodology. Clarified the risk-benefit analysis. Acknowledged concerns while providing factual context",
-    "article": "A new report by epidemiologists explores the long-term immunity of COVID-19 vaccines. Their findings demonstrate reduced viral shedding, which could impact public health policy moving forward. Recent studies have shown that COVID-19 vaccines provide strong protection against the Delta variant. Research from the CDC indicates that antibody levels remain high for children and adolescents, particularly essential workers.",
-    "is_fact": false,
-    "is_real": false
-  },
-  {
-    "id": "9ef5c7cd-fa04-49dd-90fb-b28b00fe7eaf",
-    "session_id": "0d6ac844-3abc-4429-af7a-39133f1b541b",
-    "persona_id": 3,
-    "persona_name": "David",
-    "iteration": 1,
-    "current_rating": "2.3",
-    "normalized_current_rating": "0.430000",
-    "recommened_rating": null,
-    "normalized_recommened_rating": null,
-    "reaction": "Negative",
-    "reason": null,
-    "editor_changes": null,
-    "article": "A new report by an international team of scientists explores the cross-variant protection of COVID-19 vaccines. Their findings demonstrate lower breakthrough infection rates, which could impact vulnerable populations moving forward. Health officials from Health Canada announced today that combination vaccines are being developed regarding COVID-19 vaccinations. The data suggests reduced hospitalization rates for vaccinated individuals compared to different age demographics. A new report by epidemiologists explores the cross-variant protection of COVID-19 vaccines. Their findings demonstrate strong T-cell responses, which could impact booster recommendations moving forward.",
-    "is_fact": false,
-    "is_real": false
-  },
-  {
-    "id": "c876c97c-dc8c-43c4-9c3e-77ce92e90095",
-    "session_id": "0d6ac844-3abc-4429-af7a-39133f1b541b",
-    "persona_id": 3,
-    "persona_name": "David",
-    "iteration": 2,
-    "current_rating": "2.4",
-    "normalized_current_rating": "0.380000",
-    "recommened_rating": null,
-    "normalized_recommened_rating": null,
-    "reaction": "Negative",
-    "reason": null,
-    "editor_changes": "Focused more on long-term data",
-    "article": "Health officials from Health Canada announced today that combination vaccines are being developed regarding COVID-19 vaccinations. The data suggests lower transmission rates for vaccinated individuals compared to different age demographics. According to the Surgeon General, the latest data on vaccine effectiveness shows demographic differences. This information is particularly relevant for policymakers when considering future vaccination decisions.",
-    "is_fact": false,
-    "is_real": false
-  },
-  {
-    "id": "d97e4b31-1c71-4b3d-9bf5-ef564c5cbf15",
-    "session_id": "0d6ac844-3abc-4429-af7a-39133f1b541b",
-    "persona_id": 3,
-    "persona_name": "David",
-    "iteration": 3,
-    "current_rating": "2.5",
-    "normalized_current_rating": "0.330000",
-    "recommened_rating": null,
-    "normalized_recommened_rating": null,
-    "reaction": "Positive",
-    "reason": null,
-    "editor_changes": "Adjusted tone to better align with the reader's values. Included more information about safety monitoring",
-    "article": "Researchers at Stanford University have published a study on demographic response differences related to COVID-19 vaccines. The study reveals unexpected patterns, adding to our understanding of personalized vaccination approaches. Researchers at University of Washington have published a study on vaccine mixing strategies related to COVID-19 vaccines. The study supports current recommendations, adding to our understanding of herd immunity thresholds. A new report by public health experts explores the cellular immune response of COVID-19 vaccines. Their findings demonstrate strong T-cell responses, which could impact public health policy moving forward. Health officials from FDA announced today that vaccine eligibility has expanded regarding COVID-19 vaccinations. The data suggests reduced hospitalization rates for vaccinated individuals compared to unvaccinated populations.",
-    "is_fact": false,
-    "is_real": false
-  },
-  {
-    "id": "e67e9757-7636-4f99-b369-5074d56be899",
-    "session_id": "0d6ac844-3abc-4429-af7a-39133f1b541b",
-    "persona_id": 3,
-    "persona_name": "David",
-    "iteration": 4,
-    "current_rating": "2.6",
-    "normalized_current_rating": "0.280000",
-    "recommened_rating": null,
-    "normalized_recommened_rating": null,
-    "reaction": "Positive",
-    "reason": null,
-    "editor_changes": "Addressed specific concerns mentioned in previous feedback. Added perspectives from diverse experts",
-    "article": "Researchers at University of Washington have published a study on side effect profiles related to COVID-19 vaccines. The study reveals unexpected patterns, adding to our understanding of herd immunity thresholds. According to leading epidemiologists, the latest data on vaccine distribution shows encouraging improvements. This information is particularly relevant for educators when considering public health messaging. Health officials from Health Canada announced today that booster recommendations have changed regarding COVID-19 vaccinations. The data suggests fewer severe cases for vaccinated individuals compared to those with natural immunity only. Researchers at University of Washington have published a study on vaccine mixing strategies related to COVID-19 vaccines. The study reveals unexpected patterns, adding to our understanding of personalized vaccination approaches.",
-    "is_fact": false,
-    "is_real": false
-  },
-  {
-    "id": "0c9527b3-e2de-4e78-9b4e-1015f4383672",
-    "session_id": "f1725587-c04f-487e-91c3-b34f330394ec",
-    "persona_id": 2,
-    "persona_name": "Emily",
-    "iteration": 4,
-    "current_rating": "2.3",
-    "normalized_current_rating": "0.250000",
-    "recommened_rating": null,
-    "normalized_recommened_rating": null,
-    "reaction": "Negative",
-    "reason": null,
-    "editor_changes": "Focused more on long-term data. Emphasized community protection benefits. Included more information about safety monitoring",
-    "article": "A new report by an international team of scientists explores the safety profile of COVID-19 vaccines. Their findings demonstrate strong T-cell responses, which could impact vaccine mandates moving forward. Researchers at MIT have published a study on side effect profiles related to COVID-19 vaccines. The study reveals unexpected patterns, adding to our understanding of immune response mechanisms.",
-    "is_fact": false,
-    "is_real": false
-  },
-  {
-    "id": "f0d708ff-9bd7-43bc-b1bb-f9729e187f25",
-    "session_id": "0d6ac844-3abc-4429-af7a-39133f1b541b",
-    "persona_id": 3,
-    "persona_name": "David",
-    "iteration": 5,
-    "current_rating": "2.7",
-    "normalized_current_rating": "0.230000",
-    "recommened_rating": null,
-    "normalized_recommened_rating": null,
-    "reaction": "Positive",
-    "reason": null,
-    "editor_changes": "Adjusted tone to better align with the reader's values",
-    "article": "Researchers at University of Washington have published a study on antibody longevity related to COVID-19 vaccines. The study challenges conventional wisdom, adding to our understanding of personalized vaccination approaches. Recent studies have shown that COVID-19 vaccines show mixed results against the Delta variant. Research from Johns Hopkins University indicates that protection remains strong for high-risk individuals, particularly those with underlying conditions. Health officials from WHO announced today that safety monitoring has shown positive results regarding COVID-19 vaccinations. The data suggests more durable immunity for vaccinated individuals compared to previously reported data.",
-    "is_fact": false,
-    "is_real": false
-  },
-  {
-    "id": "cae9e943-4bef-4104-b8ff-b76869113731",
-    "session_id": "0d6ac844-3abc-4429-af7a-39133f1b541b",
-    "persona_id": 3,
-    "persona_name": "David",
-    "iteration": 6,
-    "current_rating": "2.8",
-    "normalized_current_rating": "0.220000",
-    "recommened_rating": null,
-    "normalized_recommened_rating": null,
-    "reaction": "Positive",
-    "reason": null,
-    "editor_changes": "Included more detail about the research methodology. Addressed specific concerns mentioned in previous feedback",
-    "article": "A new report by epidemiologists explores the cellular immune response of COVID-19 vaccines. Their findings demonstrate lower breakthrough infection rates, which could impact public health policy moving forward. A new report by an international team of scientists explores the long-term immunity of COVID-19 vaccines. Their findings demonstrate durable antibody production, which could impact booster recommendations moving forward. A new report by immunologists explores the cellular immune response of COVID-19 vaccines. Their findings demonstrate lower breakthrough infection rates, which could impact vulnerable populations moving forward. Health officials from Health Canada announced today that vaccine eligibility has expanded regarding COVID-19 vaccinations. The data suggests more durable immunity for vaccinated individuals compared to previously reported data.",
-    "is_fact": false,
-    "is_real": false
-  },
-  {
-    "id": "4bb580e1-a421-49a3-9d7b-60021cb56e5a",
-    "session_id": "0d6ac844-3abc-4429-af7a-39133f1b541b",
-    "persona_id": 3,
-    "persona_name": "David",
-    "iteration": 7,
-    "current_rating": "2.9",
-    "normalized_current_rating": "0.210000",
-    "recommened_rating": "2.8",
-    "normalized_recommened_rating": "0.600000",
-    "reaction": "Positive",
-    "reason": "As someone with community health involvement, I find this article questionable. The research findings presented seems robust and reinforces my views on vaccination. Given my family situation, I remain cautious about getting vaccinated.",
-    "editor_changes": "Focused more on long-term data",
-    "article": "A new report by public health experts explores the safety profile of COVID-19 vaccines. Their findings demonstrate strong T-cell responses, which could impact public health policy moving forward. Health officials from the CDC announced today that combination vaccines are being developed regarding COVID-19 vaccinations. The data suggests more durable immunity for vaccinated individuals compared to previously reported data. Researchers at University of Oxford have published a study on vaccine mixing strategies related to COVID-19 vaccines. The study reveals unexpected patterns, adding to our understanding of vaccine efficacy.",
-    "is_fact": false,
-    "is_real": false
-  },
-  {
-    "id": "3891e8a5-79fc-4330-914e-90d4d146970b",
-    "session_id": "3c277b32-31d3-41df-8ee7-63283938a5af",
-    "persona_id": 6,
-    "persona_name": "Jennifer",
-    "iteration": 1,
-    "current_rating": "1.3",
-    "normalized_current_rating": "0.100000",
-    "recommened_rating": null,
-    "normalized_recommened_rating": null,
-    "reaction": "Negative",
-    "reason": null,
-    "editor_changes": null,
-    "article": "Recent studies have shown that COVID-19 vaccines provide strong protection against all known variants. Research from Imperial College London indicates that booster shots significantly increase protection for previously infected people, particularly healthcare workers. Health officials from the CDC announced today that booster recommendations have changed regarding COVID-19 vaccinations. The data suggests lower transmission rates for vaccinated individuals compared to other vaccine types.",
-    "is_fact": false,
-    "is_real": false
-  },
-  {
-    "id": "7bac2376-dca8-43d0-844e-4d8d61bea925",
-    "session_id": "3c277b32-31d3-41df-8ee7-63283938a5af",
-    "persona_id": 6,
-    "persona_name": "Jennifer",
-    "iteration": 2,
-    "current_rating": "1.4",
-    "normalized_current_rating": "0.050000",
-    "recommened_rating": null,
-    "normalized_recommened_rating": null,
-    "reaction": "Negative",
-    "reason": null,
-    "editor_changes": "Addressed specific concerns mentioned in previous feedback",
-    "article": "Health officials from European Medicines Agency announced today that safety monitoring has shown positive results regarding COVID-19 vaccinations. The data suggests more durable immunity for vaccinated individuals compared to different age demographics. A new report by epidemiologists explores the safety profile of COVID-19 vaccines. Their findings demonstrate strong T-cell responses, which could impact vaccine mandates moving forward. A new report by public health experts explores the cross-variant protection of COVID-19 vaccines. Their findings demonstrate strong T-cell responses, which could impact vulnerable populations moving forward.",
-    "is_fact": false,
-    "is_real": false
-  },
-  {
-    "id": "3b717de2-f824-4c0b-89b5-5342dec68f7d",
-    "session_id": "3c277b32-31d3-41df-8ee7-63283938a5af",
-    "persona_id": 6,
-    "persona_name": "Jennifer",
-    "iteration": 3,
-    "current_rating": "1.4",
-    "normalized_current_rating": "0.010000",
-    "recommened_rating": null,
-    "normalized_recommened_rating": null,
-    "reaction": "Negative",
-    "reason": null,
-    "editor_changes": "Addressed specific concerns mentioned in previous feedback",
-    "article": "Health officials from European Medicines Agency announced today that safety monitoring has shown positive results regarding COVID-19 vaccinations. The data suggests more durable immunity for vaccinated individuals compared to different age demographics. A new report by epidemiologists explores the safety profile of COVID-19 vaccines. Their findings demonstrate strong T-cell responses, which could impact vaccine mandates moving forward. A new report by public health experts explores the cross-variant protection of COVID-19 vaccines. Their findings demonstrate strong T-cell responses, which could impact vulnerable populations moving forward.",
-    "is_fact": false,
-    "is_real": false
-  },
-  {
-    "id": "06d6fe5e-2ef5-4727-8381-4d34c52076af",
-    "session_id": "44e7f1e0-bfb0-4517-88b3-e1b6b1aebee8",
-    "persona_id": 7,
-    "persona_name": "Robert",
-    "iteration": 1,
-    "current_rating": "1.2",
-    "normalized_current_rating": "0.070000",
-    "recommened_rating": null,
-    "normalized_recommened_rating": null,
-    "reaction": "Negative",
-    "reason": null,
-    "editor_changes": null,
-    "article": "According to the Surgeon General, the latest data on vaccine effectiveness shows demographic differences. This information is particularly relevant for travelers when considering public health messaging. Health officials from the CDC announced today that safety monitoring has shown positive results regarding COVID-19 vaccinations. The data suggests more durable immunity for vaccinated individuals compared to unvaccinated populations. Researchers at Harvard Medical School have published a study on antibody longevity related to COVID-19 vaccines. The study confirms previous results, adding to our understanding of vaccine efficacy. Researchers at University of Oxford have published a study on demographic response differences related to COVID-19 vaccines. The study challenges conventional wisdom, adding to our understanding of vaccine efficacy.",
-    "is_fact": false,
-    "is_real": false
-  },
-  {
-    "id": "9e1730b6-a096-415f-a5de-b7cef97a910a",
-    "session_id": "44e7f1e0-bfb0-4517-88b3-e1b6b1aebee8",
-    "persona_id": 7,
-    "persona_name": "Robert",
-    "iteration": 2,
-    "current_rating": "1.2",
-    "normalized_current_rating": "0.020000",
-    "recommened_rating": null,
-    "normalized_recommened_rating": null,
-    "reaction": "Negative",
-    "reason": null,
-    "editor_changes": "Addressed specific concerns mentioned in previous feedback",
-    "article": "A new report by vaccine developers explores the cellular immune response of COVID-19 vaccines. Their findings demonstrate lower breakthrough infection rates, which could impact vaccine mandates moving forward. Recent studies have shown that COVID-19 vaccines provide strong protection against the Delta variant. Research from Johns Hopkins University indicates that booster shots significantly increase protection for elderly populations, particularly healthcare workers.",
-    "is_fact": false,
-    "is_real": false
-  },
-  {
-    "id": "c2f3898b-36f0-4bb7-b9cc-55c647df966d",
-    "session_id": "f03cc1ac-51cf-4b80-bfe3-eb277aebd846",
-    "persona_id": 1,
-    "persona_name": "Michael",
-    "iteration": 1,
-    "current_rating": "1.9",
-    "normalized_current_rating": "0.300000",
-    "recommened_rating": null,
-    "normalized_recommened_rating": null,
-    "reaction": "Negative",
-    "reason": null,
-    "editor_changes": null,
-    "article": "Health officials from WHO announced today that safety monitoring has shown positive results regarding COVID-19 vaccinations. The data suggests reduced long-COVID symptoms for vaccinated individuals compared to unvaccinated populations. Researchers at University of Washington have published a study on side effect profiles related to COVID-19 vaccines. The study challenges conventional wisdom, adding to our understanding of herd immunity thresholds. According to Dr. Anthony Fauci, the latest data on vaccine uptake shows steady performance. This information is particularly relevant for educators when considering personal risk assessment. Recent studies have shown that COVID-19 vaccines show declining effectiveness against recent virus mutations. Research from WHO researchers indicates that protection varies by age group for elderly populations, particularly immunocompromised individuals.",
-    "is_fact": false,
-    "is_real": false
-  },
-  {
-    "id": "da367792-3168-452a-8266-c07aa20c5309",
-    "session_id": "f1725587-c04f-487e-91c3-b34f330394ec",
-    "persona_id": 2,
-    "persona_name": "Emily",
-    "iteration": 5,
-    "current_rating": "2.3",
-    "normalized_current_rating": "0.200000",
-    "recommened_rating": null,
-    "normalized_recommened_rating": null,
-    "reaction": "Negative",
-    "reason": null,
-    "editor_changes": "Emphasized community protection benefits",
-    "article": "A new report by immunologists explores the safety profile of COVID-19 vaccines. Their findings demonstrate strong T-cell responses, which could impact vulnerable populations moving forward. A new report by immunologists explores the real-world effectiveness of COVID-19 vaccines. Their findings demonstrate durable antibody production, which could impact public health policy moving forward. According to WHO officials, the latest data on vaccine effectiveness shows geographic variations. This information is particularly relevant for parents when considering community protection.",
-    "is_fact": false,
-    "is_real": false
-  },
-  {
-    "id": "3b59ead4-bde3-410a-a0fd-c35f4d26e34d",
-    "session_id": "f1725587-c04f-487e-91c3-b34f330394ec",
-    "persona_id": 2,
-    "persona_name": "Emily",
-    "iteration": 6,
-    "current_rating": "2.3",
-    "normalized_current_rating": "0.150000",
-    "recommened_rating": null,
-    "normalized_recommened_rating": null,
-    "reaction": "Negative",
-    "reason": null,
-    "editor_changes": "Added perspectives from diverse experts",
-    "article": "Health officials from FDA announced today that new guidelines have been issued regarding COVID-19 vaccinations. The data suggests fewer severe cases for vaccinated individuals compared to other vaccine types. Recent studies have shown that COVID-19 vaccines show declining effectiveness against the Delta variant. Research from Oxford University indicates that immunity may wane over time for high-risk individuals, particularly pregnant women. A new report by immunologists explores the safety profile of COVID-19 vaccines. Their findings demonstrate minimal side effects, which could impact vaccine mandates moving forward. Researchers at University of Washington have published a study on breakthrough infections related to COVID-19 vaccines. The study supports current recommendations, adding to our understanding of immune response mechanisms.",
-    "is_fact": false,
-    "is_real": false
-  },
-  {
-    "id": "94c10092-4775-42f2-8d73-b0729740eedf",
-    "session_id": "f1725587-c04f-487e-91c3-b34f330394ec",
-    "persona_id": 2,
-    "persona_name": "Emily",
-    "iteration": 7,
-    "current_rating": "2.3",
-    "normalized_current_rating": "0.100000",
-    "recommened_rating": "2.4",
-    "normalized_recommened_rating": "0.470000",
-    "reaction": "Negative",
-    "reason": "This article provides valuable insights because it presents diverse perspectives. I barely trust the institutions mentioned, and the population data raises questions. Coming from my public health background, I remain uncertain about the vaccine recommendations.",
-    "editor_changes": "Added more specific data points from trusted sources. Emphasized community protection benefits. Clarified the risk-benefit analysis",
-    "article": "According to leading epidemiologists, the latest data on vaccine development shows encouraging improvements. This information is particularly relevant for parents when considering personal risk assessment. Health officials from European Medicines Agency announced today that vaccine eligibility has expanded regarding COVID-19 vaccinations. The data suggests lower transmission rates for vaccinated individuals compared to different age demographics. Researchers at University of Washington have published a study on vaccine mixing strategies related to COVID-19 vaccines. The study challenges conventional wisdom, adding to our understanding of public health strategies.",
-    "is_fact": false,
-    "is_real": false
-  },
-  {
-    "id": "8c9900b9-48f0-4f45-b452-15edf77d0621",
+    "id": "36a21145-aa67-4056-baed-60d78c991565",
     "session_id": "0d6ac844-3abc-4429-af7a-39133f1b541b",
     "persona_id": 3,
     "persona_name": "David",
@@ -578,7 +17,7 @@
     "is_real": true
   },
   {
-    "id": "f25e711e-cd50-4816-a2e9-a32bc9333925",
+    "id": "cc84d2e9-cf50-423e-a199-ffb74f9c8489",
     "session_id": "0d6ac844-3abc-4429-af7a-39133f1b541b",
     "persona_id": 3,
     "persona_name": "David",
@@ -595,7 +34,7 @@
     "is_real": true
   },
   {
-    "id": "073fd2ee-787b-4d1e-91e0-7b3143b3ca03",
+    "id": "31e25050-bcde-442a-8c0f-22326c7bdec4",
     "session_id": "0d6ac844-3abc-4429-af7a-39133f1b541b",
     "persona_id": 3,
     "persona_name": "David",
@@ -612,7 +51,7 @@
     "is_real": true
   },
   {
-    "id": "93aa1df3-2a32-4aa8-ada0-73e3c88c4652",
+    "id": "73088ae4-41f6-41d0-9bda-0f03ee7a1f10",
     "session_id": "0d6ac844-3abc-4429-af7a-39133f1b541b",
     "persona_id": 3,
     "persona_name": "David",
@@ -629,7 +68,7 @@
     "is_real": true
   },
   {
-    "id": "9c4633fe-1698-4853-ac3c-c8dbd07ab7f1",
+    "id": "0914ce25-d2bf-4042-8d1a-81d3a56790a7",
     "session_id": "0d6ac844-3abc-4429-af7a-39133f1b541b",
     "persona_id": 3,
     "persona_name": "David",
@@ -646,7 +85,7 @@
     "is_real": true
   },
   {
-    "id": "cd2cb726-d812-4317-9a77-c893d1675c99",
+    "id": "bce0c2ed-d125-42d0-a2fb-6ffe1ad51bb7",
     "session_id": "0d6ac844-3abc-4429-af7a-39133f1b541b",
     "persona_id": 3,
     "persona_name": "David",
@@ -663,7 +102,7 @@
     "is_real": true
   },
   {
-    "id": "07401962-3e78-4f47-a8e1-f528e38d4557",
+    "id": "fedc0d1f-0a4a-4039-ac9d-4a9af4517f08",
     "session_id": "0d6ac844-3abc-4429-af7a-39133f1b541b",
     "persona_id": 3,
     "persona_name": "David",
@@ -680,7 +119,7 @@
     "is_real": true
   },
   {
-    "id": "2d2575ae-763a-4ea0-a69c-84ee42563e86",
+    "id": "e67eee9b-e0d2-4a03-b9db-f645b088a765",
     "session_id": "3c277b32-31d3-41df-8ee7-63283938a5af",
     "persona_id": 6,
     "persona_name": "Jennifer",
@@ -697,7 +136,7 @@
     "is_real": true
   },
   {
-    "id": "40a6685c-5a61-4d21-ab64-4b8013bb91f1",
+    "id": "7bfd6097-cf05-4418-a365-9041c3fd85bc",
     "session_id": "3c277b32-31d3-41df-8ee7-63283938a5af",
     "persona_id": 6,
     "persona_name": "Jennifer",
@@ -714,7 +153,7 @@
     "is_real": true
   },
   {
-    "id": "ba94bab0-3618-4c42-8386-98ccd89d76a6",
+    "id": "f578b58c-e4d4-423b-a982-5313589be524",
     "session_id": "3c277b32-31d3-41df-8ee7-63283938a5af",
     "persona_id": 6,
     "persona_name": "Jennifer",
@@ -731,7 +170,7 @@
     "is_real": true
   },
   {
-    "id": "f624f8d8-e690-4490-ae79-03344c341d53",
+    "id": "82890d29-324e-4edf-afa3-5d72e2557176",
     "session_id": "3c277b32-31d3-41df-8ee7-63283938a5af",
     "persona_id": 6,
     "persona_name": "Jennifer",
@@ -748,7 +187,7 @@
     "is_real": true
   },
   {
-    "id": "8be3a7b9-0f33-4c47-9fb3-ca4ea1b32f7b",
+    "id": "f729fee8-348c-4b26-9d2b-a94f8a108008",
     "session_id": "3c277b32-31d3-41df-8ee7-63283938a5af",
     "persona_id": 6,
     "persona_name": "Jennifer",
@@ -765,7 +204,7 @@
     "is_real": true
   },
   {
-    "id": "8904c992-0f62-418e-8e94-ae697efb763a",
+    "id": "33e1c585-8d97-4979-b4d4-cb9754a401f2",
     "session_id": "3c277b32-31d3-41df-8ee7-63283938a5af",
     "persona_id": 6,
     "persona_name": "Jennifer",
@@ -782,7 +221,7 @@
     "is_real": true
   },
   {
-    "id": "4924b7d4-4e20-442f-9404-845b705e87cf",
+    "id": "365d0f7e-eebd-482a-93e9-dab39a7bb51b",
     "session_id": "3c277b32-31d3-41df-8ee7-63283938a5af",
     "persona_id": 6,
     "persona_name": "Jennifer",
@@ -799,7 +238,7 @@
     "is_real": true
   },
   {
-    "id": "cd927439-9a87-4e2f-9208-15438082df96",
+    "id": "f491387b-2fbe-4e36-bb12-fb6c8b8e9e18",
     "session_id": "002d48af-75b4-40d8-b953-ac6b1f5401d9",
     "persona_id": 5,
     "persona_name": "James",
@@ -816,7 +255,7 @@
     "is_real": true
   },
   {
-    "id": "f9372c12-7ad6-4454-824c-f0c9223f965a",
+    "id": "4bb360b5-3830-47c2-bdd2-a177a8907740",
     "session_id": "002d48af-75b4-40d8-b953-ac6b1f5401d9",
     "persona_id": 5,
     "persona_name": "James",
@@ -833,7 +272,7 @@
     "is_real": true
   },
   {
-    "id": "0661e725-be30-4fcd-a55b-95219a5e6d2a",
+    "id": "f288ac76-3785-4fe9-ba4c-ea4fcfe13619",
     "session_id": "002d48af-75b4-40d8-b953-ac6b1f5401d9",
     "persona_id": 5,
     "persona_name": "James",
@@ -850,7 +289,7 @@
     "is_real": true
   },
   {
-    "id": "6719a6a8-417e-4316-b212-cae6ce1b0c61",
+    "id": "8d95b6f4-b634-4a23-a06d-3f57e7bcc5e7",
     "session_id": "002d48af-75b4-40d8-b953-ac6b1f5401d9",
     "persona_id": 5,
     "persona_name": "James",
@@ -867,7 +306,7 @@
     "is_real": true
   },
   {
-    "id": "f3c43e43-6687-43e0-8a8c-25c1c68bd73a",
+    "id": "1a8d72d6-04cd-412a-9e95-7582bc1129bb",
     "session_id": "002d48af-75b4-40d8-b953-ac6b1f5401d9",
     "persona_id": 5,
     "persona_name": "James",
@@ -884,7 +323,7 @@
     "is_real": true
   },
   {
-    "id": "e9e3ac61-680e-480d-b1a6-da9565876902",
+    "id": "91abd3ff-3244-4c25-9697-eec0fad80f9d",
     "session_id": "21bca912-dbbd-4bac-a8cf-18099ae745b2",
     "persona_id": 4,
     "persona_name": "Sarah",
@@ -901,7 +340,7 @@
     "is_real": true
   },
   {
-    "id": "a475c2ed-760b-4c38-a47c-8491e115b80c",
+    "id": "743cdd16-9c35-41cb-bf36-51dc860ce488",
     "session_id": "21bca912-dbbd-4bac-a8cf-18099ae745b2",
     "persona_id": 4,
     "persona_name": "Sarah",
@@ -918,7 +357,7 @@
     "is_real": true
   },
   {
-    "id": "c067793e-4be0-4cf9-953e-8926118d3847",
+    "id": "11c347f3-7d47-4021-98f8-d49827b301d0",
     "session_id": "21bca912-dbbd-4bac-a8cf-18099ae745b2",
     "persona_id": 4,
     "persona_name": "Sarah",
@@ -935,7 +374,7 @@
     "is_real": true
   },
   {
-    "id": "6fc840b8-6b6f-486c-a388-53e8c9c5d094",
+    "id": "fac5352f-092a-4843-87fe-ec67637da4c6",
     "session_id": "21bca912-dbbd-4bac-a8cf-18099ae745b2",
     "persona_id": 4,
     "persona_name": "Sarah",
@@ -952,7 +391,7 @@
     "is_real": true
   },
   {
-    "id": "26b3c018-8f73-444b-a072-29fe5c1d512e",
+    "id": "509c4ff9-9bf1-41b4-998b-4bfedc42e004",
     "session_id": "21bca912-dbbd-4bac-a8cf-18099ae745b2",
     "persona_id": 4,
     "persona_name": "Sarah",
@@ -969,7 +408,7 @@
     "is_real": true
   },
   {
-    "id": "8f096b07-e392-4cba-aaef-5ec3c1035963",
+    "id": "70d0018d-6ba5-4831-9e15-7aab05422e88",
     "session_id": "21bca912-dbbd-4bac-a8cf-18099ae745b2",
     "persona_id": 4,
     "persona_name": "Sarah",
@@ -986,7 +425,7 @@
     "is_real": true
   },
   {
-    "id": "ec596bc5-2510-40df-a123-2db749ac4139",
+    "id": "f6c3a64b-fb76-46d2-9403-89f375955cae",
     "session_id": "21bca912-dbbd-4bac-a8cf-18099ae745b2",
     "persona_id": 4,
     "persona_name": "Sarah",
@@ -1003,7 +442,7 @@
     "is_real": true
   },
   {
-    "id": "b812b4b2-3c2a-48f2-bb94-fca0e21ce6fe",
+    "id": "164c7aca-8787-4050-af1f-3c98fe6db535",
     "session_id": "f03cc1ac-51cf-4b80-bfe3-eb277aebd846",
     "persona_id": 1,
     "persona_name": "Michael",
@@ -1020,7 +459,7 @@
     "is_real": true
   },
   {
-    "id": "3fcf2113-ec26-475e-81b4-254ecc178710",
+    "id": "7b6ecaba-37d9-464a-88a8-31c144cf3c9a",
     "session_id": "f03cc1ac-51cf-4b80-bfe3-eb277aebd846",
     "persona_id": 1,
     "persona_name": "Michael",
@@ -1037,7 +476,7 @@
     "is_real": true
   },
   {
-    "id": "c5990c2e-071d-4e1f-b8d9-e1bc693f555d",
+    "id": "ad163764-f556-466b-866a-301549a455a4",
     "session_id": "f03cc1ac-51cf-4b80-bfe3-eb277aebd846",
     "persona_id": 1,
     "persona_name": "Michael",
@@ -1054,7 +493,7 @@
     "is_real": true
   },
   {
-    "id": "2c77a181-9d04-49e6-81c7-159371106ce2",
+    "id": "8cfea546-eefa-46a1-b732-59a887a8f3f2",
     "session_id": "f03cc1ac-51cf-4b80-bfe3-eb277aebd846",
     "persona_id": 1,
     "persona_name": "Michael",
@@ -1071,7 +510,7 @@
     "is_real": true
   },
   {
-    "id": "d855ac32-84b6-47fe-8d24-c47a6df3df09",
+    "id": "35acedd4-3553-4605-9f00-55cc3424fd59",
     "session_id": "f03cc1ac-51cf-4b80-bfe3-eb277aebd846",
     "persona_id": 1,
     "persona_name": "Michael",
@@ -1088,7 +527,7 @@
     "is_real": true
   },
   {
-    "id": "2ef9821c-eaf6-499c-b10b-205278501cfb",
+    "id": "b5a4c54d-bbbd-4e55-8d9b-bd60c250c58b",
     "session_id": "f03cc1ac-51cf-4b80-bfe3-eb277aebd846",
     "persona_id": 1,
     "persona_name": "Michael",
@@ -1105,7 +544,7 @@
     "is_real": true
   },
   {
-    "id": "e853e67b-ad97-4a88-9056-27ca33eb4e61",
+    "id": "838c8ada-dba0-4117-8c3f-4e4f9601b15d",
     "session_id": "f03cc1ac-51cf-4b80-bfe3-eb277aebd846",
     "persona_id": 1,
     "persona_name": "Michael",
@@ -1122,7 +561,7 @@
     "is_real": true
   },
   {
-    "id": "a7b0d53f-236e-433c-8729-378ebc761782",
+    "id": "3243f321-df17-4433-a018-56a35b417aa6",
     "session_id": "f1725587-c04f-487e-91c3-b34f330394ec",
     "persona_id": 2,
     "persona_name": "Emily",
@@ -1139,7 +578,7 @@
     "is_real": true
   },
   {
-    "id": "18d48f81-abf1-4d63-8b63-16f9977053f1",
+    "id": "1178c479-2794-4454-a357-6ded0f3d72cb",
     "session_id": "f1725587-c04f-487e-91c3-b34f330394ec",
     "persona_id": 2,
     "persona_name": "Emily",
@@ -1156,7 +595,7 @@
     "is_real": true
   },
   {
-    "id": "f1fc44ce-dc47-4431-bea8-919fc35c39e0",
+    "id": "7b890bd2-9ef0-4ac3-8428-f2267f45c8c6",
     "session_id": "f1725587-c04f-487e-91c3-b34f330394ec",
     "persona_id": 2,
     "persona_name": "Emily",
@@ -1173,7 +612,7 @@
     "is_real": true
   },
   {
-    "id": "884a6aa2-8006-420b-9037-3f3bd6b7ab8c",
+    "id": "6be9d17a-20a5-4ab2-971f-8ead2d3460ca",
     "session_id": "f1725587-c04f-487e-91c3-b34f330394ec",
     "persona_id": 2,
     "persona_name": "Emily",
@@ -1190,7 +629,7 @@
     "is_real": true
   },
   {
-    "id": "20eb7105-6593-4665-a9f3-9d77a9ab5d51",
+    "id": "4006160e-c4a9-4a95-9705-2679950c32ba",
     "session_id": "f1725587-c04f-487e-91c3-b34f330394ec",
     "persona_id": 2,
     "persona_name": "Emily",
@@ -1207,7 +646,7 @@
     "is_real": true
   },
   {
-    "id": "2208dff0-c3af-4c84-bec3-c575e84f71be",
+    "id": "77adfb09-e406-435c-801d-d562073a1821",
     "session_id": "f1725587-c04f-487e-91c3-b34f330394ec",
     "persona_id": 2,
     "persona_name": "Emily",
@@ -1224,7 +663,7 @@
     "is_real": true
   },
   {
-    "id": "40555e09-5487-4945-b112-9a1cc37b1168",
+    "id": "a730e2c8-6916-4ecd-863e-fb16fd02cc11",
     "session_id": "f1725587-c04f-487e-91c3-b34f330394ec",
     "persona_id": 2,
     "persona_name": "Emily",
@@ -1241,7 +680,7 @@
     "is_real": true
   },
   {
-    "id": "72edf49e-d4c1-48cc-9713-81190a7134fe",
+    "id": "6d537f33-006b-46a6-9fde-c780d29851fa",
     "session_id": "44e7f1e0-bfb0-4517-88b3-e1b6b1aebee8",
     "persona_id": 7,
     "persona_name": "Robert",
@@ -1258,7 +697,7 @@
     "is_real": true
   },
   {
-    "id": "f41976ca-61a1-4121-ae98-91489d802ede",
+    "id": "cc58d9be-8b13-44c7-a7b9-f4bb2ae3f6d2",
     "session_id": "44e7f1e0-bfb0-4517-88b3-e1b6b1aebee8",
     "persona_id": 7,
     "persona_name": "Robert",
@@ -1275,7 +714,7 @@
     "is_real": true
   },
   {
-    "id": "5c777aa2-e600-45a8-9125-4324d4fa648e",
+    "id": "cab7708e-6d0f-4cea-ac65-ab857acd2875",
     "session_id": "44e7f1e0-bfb0-4517-88b3-e1b6b1aebee8",
     "persona_id": 7,
     "persona_name": "Robert",
@@ -1292,7 +731,7 @@
     "is_real": true
   },
   {
-    "id": "b824703a-14e4-4d5e-8774-e490c3eb2400",
+    "id": "587314cd-cc1b-405c-a1fe-ee1704554d80",
     "session_id": "44e7f1e0-bfb0-4517-88b3-e1b6b1aebee8",
     "persona_id": 7,
     "persona_name": "Robert",
@@ -1309,7 +748,7 @@
     "is_real": true
   },
   {
-    "id": "6473e4c8-85f1-4ff0-82e1-ddf981d4b61e",
+    "id": "bd9029f9-cec4-4fd2-8d9e-326703f4a913",
     "session_id": "44e7f1e0-bfb0-4517-88b3-e1b6b1aebee8",
     "persona_id": 7,
     "persona_name": "Robert",
@@ -1326,7 +765,7 @@
     "is_real": true
   },
   {
-    "id": "c0d5362b-585e-46e6-ba52-4cee35f1835a",
+    "id": "2b6f1042-3ebd-4656-a497-7a6ed4742f0e",
     "session_id": "44e7f1e0-bfb0-4517-88b3-e1b6b1aebee8",
     "persona_id": 7,
     "persona_name": "Robert",
@@ -1343,7 +782,7 @@
     "is_real": true
   },
   {
-    "id": "777b1c73-9d84-4874-a605-31be2774e2ba",
+    "id": "340990ca-d87f-4b2f-8b6f-bd7072f70028",
     "session_id": "44e7f1e0-bfb0-4517-88b3-e1b6b1aebee8",
     "persona_id": 7,
     "persona_name": "Robert",

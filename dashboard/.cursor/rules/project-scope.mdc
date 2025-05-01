@@ -23,7 +23,7 @@ The simulation started with 5 AI profiles with each profile have different attri
 - Marital status
 - Prior beliefs or experiences with vaccines or healthcare
 
-Each of these profiles will then be exposed to news articles that can be either fake or real, and fact or opinion. These profile will be expose to a news article in each iteration. After each iteration, the AI profiles will return a number from 1-4 on how likely they will take the vaccine and another number from 1-4 on how likely they would recommend the vaccine to other people. here will be maximum of 10 iteration of exposing to a news article or until the the threshold reach 3.5. 
+Each of these profiles will be run 3 times with each run expose the profiles to fake news then real news then mixed news. These profile will be expose to a news article in each iteration. After each iteration, the AI profiles will return a number from 1-4 on how likely they will take the vaccine and another number from 1-4 on how likely they would recommend the vaccine to other people. here will be maximum of 10 iteration of exposing to a news article or until the the threshold reach 3.5. 
 
 ### Some charts and insight ideas
 Chart Types
