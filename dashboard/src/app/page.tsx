@@ -2,10 +2,8 @@
 
 import { FinalRatingsByPersona } from "@/components/charts/bar-chart";
 import { RatingTable } from "@/components/charts/iteration-table";
-import { NewsImpactChart } from "@/components/charts/news-impact-chart";
 import { NewsImpactAnalysis } from "@/components/charts/news-impact-analysis";
 import { ConversionTrajectory } from "@/components/insights/converstion-trajectory";
-import { ReactionShift } from "@/components/insights/reactation-shift";
 import { mixedNewsPersonaData, fakeNewsPersonaData, realNewsPersonaData, PersonaData, getAvailablePersonas } from "@/lib/data";
 import { QuickInsights } from "@/components/insights/quick-insights";
 import { SimpleRatingChart } from "@/components/charts/simple-rating-chart";
@@ -59,9 +57,6 @@ export default function RootPage() {
           <SimpleRatingChart data={personaData} className="w-full" />
         </div>
         <div className="flex flex-col md:flex-row gap-8">
-          <div className="bg-white p-6 rounded-lg shadow-md md:w-3/5 w-full">
-            <NewsImpactChart data={personaData} className="w-full" />
-          </div>
           <div className="bg-white p-6 rounded-lg shadow-md md:w-2/5 w-full">
             <ConversionTrajectory data={personaData} className="w-full" />
           </div>
@@ -70,9 +65,6 @@ export default function RootPage() {
           <NewsImpactAnalysis data={personaData} className="w-full" />
         </div>
         <div className="flex flex-col md:flex-row gap-8">
-          <div className="bg-white p-6 rounded-lg shadow-md md:w-1/2 w-full">
-            <ReactionShift data={personaData} className="w-full" />
-          </div>
           <div className="bg-white p-6 rounded-lg shadow-md md:w-1/2 w-full">
             <FinalRatingsByPersona data={personaData} className="w-full" />
           </div>
