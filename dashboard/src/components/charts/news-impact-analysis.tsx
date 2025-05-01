@@ -13,6 +13,7 @@ import {
   ReferenceLine
 } from 'recharts';
 import mockData, { PersonaData, getAvailablePersonas } from '@/lib/mock-data';
+import { NORMALIZED_THRESHOLD } from '@/lib/constants';
 
 interface NewsImpactAnalysisProps {
   className?: string;
@@ -220,7 +221,7 @@ export function NewsImpactAnalysis({ className }: NewsImpactAnalysisProps) {
               <Tooltip content={<ImpactTooltip />} />
               <Legend wrapperStyle={{ paddingTop: 10 }} />
               <ReferenceLine 
-                y={0.875} 
+                y={NORMALIZED_THRESHOLD} 
                 stroke="red" 
                 strokeDasharray="3 3" 
                 label={{ 

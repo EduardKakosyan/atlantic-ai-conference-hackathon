@@ -13,6 +13,7 @@ import {
   ReferenceLine
 } from 'recharts';
 import mockData, { PersonaData, getAvailablePersonas } from '@/lib/mock-data';
+import { NORMALIZED_THRESHOLD } from '@/lib/constants';
 
 interface NewsImpactChartProps {
   className?: string;
@@ -187,7 +188,7 @@ export function NewsImpactChart({ className }: NewsImpactChartProps) {
               }))}
             />
             <ReferenceLine 
-              y={0.875} 
+              y={NORMALIZED_THRESHOLD} 
               stroke="red" 
               strokeDasharray="3 3" 
               label={{ 

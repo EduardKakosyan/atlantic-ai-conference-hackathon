@@ -3,6 +3,7 @@
 import React from 'react';
 import mockData, { PersonaData } from '@/lib/mock-data';
 import { TrendingUp, TrendingDown, BarChart4 } from 'lucide-react';
+import { NORMALIZED_THRESHOLD } from '@/lib/constants';
 
 // Insight calculations
 const calculateMostPersuadablePersona = (): { name: string, improvement: number } => {
@@ -83,7 +84,7 @@ const calculateLeastPersuadablePersona = (): { name: string, improvement: number
 
 const calculateConversionRate = (): number => {
   const personaNames = [...new Set(mockData.map(item => item.persona_name))];
-  const threshold = 0.8; // 80% normalized rating threshold
+  const threshold = NORMALIZED_THRESHOLD; // 80% normalized rating threshold
   let convertedCount = 0;
   
   personaNames.forEach(name => {
