@@ -182,10 +182,11 @@ export function ConversionTrajectory({ className, data }: ConversionTrajectoryPr
               dataKey="name" 
               axisLine={false}
               tickLine={false}
-              height={80}
+              height={100}
               angle={-45}
               textAnchor="end"
               interval={0}
+              dy={35}
             />
             <YAxis 
               type="number" 
@@ -243,7 +244,7 @@ export function ConversionTrajectory({ className, data }: ConversionTrajectoryPr
         </ResponsiveContainer>
       </div>
 
-      <div className="mt-4 flex flex-col items-center justify-center space-y-2">
+      <div className="mt-8 flex flex-col items-center justify-center space-y-2">
         <div className="flex items-center">
           <div className="flex h-4">
             {GREEN_COLORS.map((color, i) => (
