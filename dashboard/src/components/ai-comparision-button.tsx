@@ -19,7 +19,7 @@ export function AIComparisionButton() {
         }}
       />
       <AnimatedGradientText className="text-md">
-        AI Comparision
+        David Persona Comparision
       </AnimatedGradientText>
       <ChevronRight
         className="ml-1 size-4 stroke-neutral-500 transition-transform
