@@ -21,7 +21,10 @@ export default function PersonaListPage() {
     <main className="container mx-auto py-8 px-4">
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-3xl font-bold">Personas</h1>
-        <Link href="/" className="px-3 py-1 rounded-md bg-blue-50 text-blue-600 hover:bg-blue-100 hover:text-blue-800 transition mb-5">
+        <Link
+          href="/"
+          className="px-3 py-1 rounded-md bg-blue-50 text-black hover:bg-blue-100 hover:text-black transition"
+        >
           ← Dashboard
         </Link>
       </div>
@@ -40,7 +43,7 @@ export default function PersonaListPage() {
           <Link
             key={persona.persona_id}
             href={`/persona/${persona.persona_id}`}
-            className="block bg-white rounded-lg shadow hover:shadow-lg transition p-5"
+            className="block bg-white rounded-lg shadow-md p-5 transform transition duration-200 hover:shadow-lg hover:scale-105"
           >
             <div className="flex items-center mb-4">
               <div className="relative w-16 h-16 flex-shrink-0 mr-4">
