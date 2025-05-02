@@ -11,6 +11,7 @@ import { SimpleRatingChart } from "@/components/charts/simple-rating-chart";
 import { useState } from "react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import Link from "next/link";
+import { AIComparisionButton } from "@/components/ai-comparision-button";
 
 export default function RootPage() {
   const [personaData, setPersonaData] = useState<PersonaData[]>(mixedNewsPersonaData);
@@ -45,12 +46,17 @@ export default function RootPage() {
     <main className="container mx-auto py-8 px-4">
       {/* Header with title only */}
       <div className="flex items-center justify-between mb-12">
-        <h1 className="text-4xl font-bold bg-gradient-to-b from-blue-400 via-blue-600 to-blue-800 text-transparent bg-clip-text">HealthByte Data Dashboard</h1>
+        <h1 className="text-4xl font-bold bg-gradient-to-b from-sky-400 via-sky-600 to-sky-800 text-transparent bg-clip-text">HealthByte Data Dashboard</h1>
       </div>
-      
+
       {/* Combined row with personas link and dataset selection */}
       <div className="flex items-center justify-between mb-6">
-        <Link href="/personas" className="px-3 py-1 rounded-md bg-blue-50 text-blue-600 text-md hover:bg-blue-100 hover:text-blue-800 transition">View Personas</Link>
+        <div className="flex items-center gap-3">
+          <Link href="/chat">
+            <AIComparisionButton />
+          </Link>
+          <Link href="/personas" className="px-3 py-1 rounded-md bg-blue-50 text-blue-600 text-md hover:bg-blue-100 hover:text-blue-800 transition">View Personas</Link>
+        </div>
         
         <div className="flex items-center gap-2">
           <span className="text-sm font-medium">Select Dataset:</span>
@@ -66,7 +72,7 @@ export default function RootPage() {
           </Select>
         </div>
       </div>
-      
+
       <QuickInsights className="mb-12" data={personaData} />
       <div className="grid grid-cols-1 gap-8">
         <div className="bg-white p-6 rounded-lg shadow-md">
