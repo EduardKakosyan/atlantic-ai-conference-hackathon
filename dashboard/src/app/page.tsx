@@ -80,7 +80,7 @@ export default function RootPage() {
         <div className="bg-white p-6 rounded-lg shadow-md">
           <NewsImpactAnalysis data={personaData} className="w-full" />
         </div>
-        <div className="bg-white p-6 rounded-lg shadow-mdw-full">
+        <div className="bg-white p-6 rounded-lg shadow-md w-full">
           <FinalRatingsByPersona data={personaData} className="w-full" />
         </div>
 
