@@ -64,25 +64,37 @@ export default function PersonaDetailPage({ params }: Params) {
         </p>
       </div>
 
-      {/* Side-by-side cards */}
+      {/* SIDE-BY-SIDE CARDS */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Demographics */}
+        {/* Demographics as Table */}
         <section className="bg-white p-6 rounded-lg shadow-md border border-gray-200 transform transition duration-200 hover:shadow-lg hover:scale-105">
-          <h2 className="text-xl font-semibold mb-4">Demographics</h2>
-          <dl className="grid grid-cols-2 gap-x-4 gap-y-2">
-            <dt className="text-gray-600">Age</dt>
-            <dd className="text-gray-900">{persona.demographics.age}</dd>
-            <dt className="text-gray-600">Gender</dt>
-            <dd className="text-gray-900">{persona.demographics.gender}</dd>
-            <dt className="text-gray-600">Location</dt>
-            <dd className="text-gray-900">{persona.demographics.location}</dd>
-            <dt className="text-gray-600">Occupation</dt>
-            <dd className="text-gray-900">{persona.demographics.occupation}</dd>
-            <dt className="text-gray-600">Education</dt>
-            <dd className="text-gray-900">{persona.demographics.education}</dd>
-          </dl>
-        </section>
+          <h2 className="text-2xl font-semibold text-gray-900 mb-9">
+            Demographics
+          </h2>
 
+          <table className="w-full table-auto border-collapse">
+            <tbody>
+              {[
+                ["Age", persona.demographics.age],
+                ["Gender", persona.demographics.gender],
+                ["Location", persona.demographics.location],
+                ["Occupation", persona.demographics.occupation],
+                ["Education", persona.demographics.education],
+              ].map(([label, value]) => (
+                <tr key={label} className="border-b last:border-0 border-gray-200">
+                  <th className="px-4 py-2 text-gray-600 font-medium text-left align-middle">
+                    {label}
+                  </th>
+                  <td className="px-4 py-2 text-gray-900 align-middle">
+                    {value}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+        </section>
+        
         {/* Beliefs & Concerns */}
         <div className="space-y-6">
           <section className="bg-white p-6 rounded-lg shadow-md border border-gray-200 transform transition duration-200 hover:shadow-lg hover:scale-105">
