@@ -4,14 +4,14 @@ import Image from 'next/image'
 import personasData from '../../../../data/personas.json'
 import femaleImage from "../../../../public/female avatar.png"
 import maleImage from "../../../../public/male avatar.png"
-interface Params {
-  params: { id: string }
-}
 
-export default async function PersonaDetailPage({ params }: Params) {
-  // Ensure params is fully resolved before accessing properties
-  const resolvedParams = await Promise.resolve(params)
-  const personaId = parseInt(resolvedParams.id, 10)
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ id: string }>
+}) {
+  const { id } = await params
+  const personaId = parseInt(id, 10)
   const persona = personasData.find(p => p.persona_id === personaId)
 
   if (!persona) {
