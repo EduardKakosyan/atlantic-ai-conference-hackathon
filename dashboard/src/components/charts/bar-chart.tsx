@@ -121,7 +121,7 @@ export function FinalRatingsByPersona({ data, className }: FinalRatingsByPersona
               tickLine={false}
             />
             <Tooltip content={<CustomTooltip />} />
-            <Legend />
+            <Legend verticalAlign="bottom" height={36} wrapperStyle={{ paddingTop: 20 }} />
             <Bar 
               dataKey="aboveThresholdRating" 
               name="Take the vaccine" 

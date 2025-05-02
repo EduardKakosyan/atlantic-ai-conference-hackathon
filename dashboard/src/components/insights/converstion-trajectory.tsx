@@ -169,7 +169,7 @@ export function ConversionTrajectory({ className, data }: ConversionTrajectoryPr
         <span className="inline-flex items-center"><span className="text-red-500 mr-1">↓</span> Negative change</span>
       </p>
 
-      <div className="h-[450px] w-full">
+      <div className="h-[400px] w-full">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             data={trajectoryData}
