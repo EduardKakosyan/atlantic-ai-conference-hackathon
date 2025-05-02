@@ -1,90 +1,105 @@
 "use client";
 
-import React, { useMemo } from "react";
-import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from "recharts";
-import { mixedNewsPersonaData, fakeNewsPersonaData, realNewsPersonaData, PersonaData } from "@/lib/data";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from "recharts";
+import preSurveyData from "../../../data/pre-survey.json";
 
-type RatingCategory = {
-  name: string;
+type PreSurveyData = {
+  persona_name: string;
+  normalized_vaccine_rating: number;
+}
+
+type SupportCategory = "supportive" | "neutral" | "unsupportive";
+
+type CategoryCount = {
+  name: SupportCategory;
   value: number;
-  color: string;
-};
+  personas: string[];
+}
 
-type VaccinePieChartProps = {
-  dataSource?: "mixed" | "fake" | "real" | "all";
+type PieChartProps = {
   className?: string;
-};
+  dataSource?: "mixed" | "fake" | "real" | "all";
+}
 
-export const VaccinePieChart = ({ dataSource = "all", className }: VaccinePieChartProps) => {
-  const chartData = useMemo(() => {
-    // Combine all data sources if "all" is selected, otherwise use the specified data source
-    let allData: PersonaData[] = [];
-    if (dataSource === "all" || dataSource === "mixed") {
-      allData = [...allData, ...mixedNewsPersonaData];
-    }
-    if (dataSource === "all" || dataSource === "fake") {
-      allData = [...allData, ...fakeNewsPersonaData];
-    }
-    if (dataSource === "all" || dataSource === "real") {
-      allData = [...allData, ...realNewsPersonaData];
-    }
+export const VaccinePieChart = ({ className, dataSource = "all" }: PieChartProps) => {
+  // Group the data into categories
+  const categorizeData = () => {
+    const categories: Record<SupportCategory, CategoryCount> = {
+      supportive: { name: "supportive", value: 0, personas: [] },
+      neutral: { name: "neutral", value: 0, personas: [] },
+      unsupportive: { name: "unsupportive", value: 0, personas: [] }
+    };
 
-    // Get unique persona IDs
-    const personaIds = Array.from(new Set(allData.map(item => item.persona_id)));
-
-    // Get initial data points (iteration 1) for each persona
-    const initialDataPoints = personaIds.flatMap(personaId => {
-      return allData
-        .filter(item => item.persona_id === personaId && item.iteration === 1)
-        .map(item => item.normalized_current_rating);
+    preSurveyData.forEach((persona: PreSurveyData) => {
+      const rating = persona.normalized_vaccine_rating;
+      if (rating < 0.5) {
+        categories.unsupportive.value += 1;
+        categories.unsupportive.personas.push(persona.persona_name);
+      } else if (rating === 0.5) {
+        categories.neutral.value += 1;
+        categories.neutral.personas.push(persona.persona_name);
+      } else { // rating > 0.5
+        categories.supportive.value += 1;
+        categories.supportive.personas.push(persona.persona_name);
+      }
     });
 
-    // Categorize ratings
-    const noVaccine = initialDataPoints.filter(rating => rating < 0.5).length;
-    const neutral = initialDataPoints.filter(rating => rating === 0.5).length;
-    const yesVaccine = initialDataPoints.filter(rating => rating > 0.5).length;
+    // Convert to array for Recharts
+    return Object.values(categories).filter(category => category.value > 0);
+  };
 
-    return [
-      { name: "No Vaccine (0-0.5)", value: noVaccine, color: "#ef4444" },
-      { name: "Neutral (0.5)", value: neutral, color: "#a3a3a3" },
-      { name: "Yes Vaccine (0.5-1)", value: yesVaccine, color: "#22c55e" },
-    ].filter(category => category.value > 0); // Only include categories with values
-  }, [dataSource]);
+  const data = categorizeData();
+  
+  // Custom colors for each category
+  const COLORS = {
+    supportive: "#4ade80",    // Green-400
+    neutral: "#9ca3af",       // Gray-400
+    unsupportive: "#f87171"   // Red-400
+  };
+
+  // Custom tooltip to show personas in each category
+  const CustomTooltip = ({ active, payload }: any) => {
+    if (active && payload && payload.length) {
+      const { name, value, personas } = payload[0].payload;
+      return (
+        <div className="bg-white p-4 rounded shadow-md border border-gray-200">
+          <p className="font-medium">{name.charAt(0).toUpperCase() + name.slice(1)}: {value} personas</p>
+          <ul className="text-sm mt-1">
+            {personas.map((persona: string) => (
+              <li key={persona}>{persona}</li>
+            ))}
+          </ul>
+        </div>
+      );
+    }
+    return null;
+  };
 
   return (
-    <Card className={className}>
-      <CardHeader>
-        <CardTitle>Initial Vaccine Sentiment Distribution</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="h-80">
-          <ResponsiveContainer width="100%" height="100%">
-            <PieChart>
-              <Pie
-                data={chartData}
-                cx="50%"
-                cy="50%"
-                labelLine={true}
-                label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
-                outerRadius={80}
-                fill="#8884d8"
-                dataKey="value"
-              >
-                {chartData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={entry.color} />
-                ))}
-              </Pie>
-              <Tooltip
-                formatter={(value) => [`${value} personas`, 'Count']}
-              />
-              <Legend />
-            </PieChart>
-          </ResponsiveContainer>
-        </div>
-      </CardContent>
-    </Card>
+    <div className={className}>
+      <h2 className="text-xl font-semibold mb-4">Initial Stance on Vaccines</h2>
+      <div className="h-[320px]">
+        <ResponsiveContainer width="100%" height="100%">
+          <PieChart>
+            <Pie
+              data={data}
+              cx="50%"
+              cy="50%"
+              labelLine={false}
+              label={({ percent }) => `${(percent * 100).toFixed(0)}%`}
+              outerRadius={110}
+              fill="#8884d8"
+              dataKey="value"
+            >
+              {data.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={COLORS[entry.name as SupportCategory]} />
+              ))}
+            </Pie>
+            <Tooltip content={<CustomTooltip />} />
+            <Legend verticalAlign="bottom" height={36} wrapperStyle={{ paddingTop: 20 }} />
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
+    </div>
   );
 };
-
-export default VaccinePieChart;
