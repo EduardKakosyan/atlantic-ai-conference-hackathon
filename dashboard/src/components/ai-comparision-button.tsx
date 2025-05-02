@@ -2,7 +2,11 @@ import { cn } from "@/lib/utils";
 import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
 import { ChevronRight } from "lucide-react";
 
-export function AIComparisionButton() {
+interface AIComparisionButtonProps {
+  title: string;
+}
+
+export function AIComparisionButton({ title }: AIComparisionButtonProps) {
   return (
     <div className="group relative mx-auto flex items-center justify-center rounded-full px-4 py-1.5 shadow-[inset_0_-8px_10px_#8fdfff1f] transition-shadow duration-500 ease-out hover:shadow-[inset_0_-5px_10px_#8fdfff3f] ">
       <span
@@ -19,7 +23,7 @@ export function AIComparisionButton() {
         }}
       />
       <AnimatedGradientText className="text-md">
-        David Persona Comparision
+        {title}
       </AnimatedGradientText>
       <ChevronRight
         className="ml-1 size-4 stroke-neutral-500 transition-transform
