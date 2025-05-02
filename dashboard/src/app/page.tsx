@@ -50,15 +50,15 @@ export default function RootPage() {
       </div>
 
       {/* Combined row with personas link and dataset selection */}
-      <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center gap-3">
+      <div className="flex flex-col md:flex-row items-center justify-between mb-6 gap-4 md:gap-0">
+        <div className="flex items-center gap-3 w-full md:w-auto">
           <Link href="/chat">
-            <AIComparisionButton />
+            <AIComparisionButton title="Chat with Persona" />
           </Link>
           <Link href="/personas" className="px-3 py-1 rounded-md bg-blue-50 text-blue-600 text-md hover:bg-blue-100 hover:text-blue-800 transition">View Personas</Link>
         </div>
-        
-        <div className="flex items-center gap-2">
+
+        <div className="flex items-center gap-2 w-full md:w-auto justify-start md:justify-end">
           <span className="text-sm font-medium">Select Dataset:</span>
           <Select value={selectedDataset} onValueChange={handleDatasetChange}>
             <SelectTrigger className="w-[180px]">
