@@ -111,11 +111,13 @@ export default function Chat() {
         <div className="flex flex-col md:flex-row gap-4 mt-10 mb-24 mx-auto max-w-7xl px-4 h-[calc(100vh-180px)]">
           {/* First Response Area */}
           <div className="flex-1 border rounded-lg p-4 overflow-y-auto h-full">
-            <h2 className="text-lg font-medium mb-4">Before</h2>
+            <div className="p-2 bg-sky-50 rounded-md mb-4 flex items-center justify-center">
+              <h2 className="text-lg font-semibold text-blue-800">Before Exposure</h2>
+            </div>
             <div className="space-y-4">
               {response1Messages.map((message, index) => (
                 <div key={index} className="whitespace-pre-wrap flex">
-                  <div className={`${message.role === 'user' ? 'bg-sky-100 ml-auto' : 'bg-transparent'} p-2 rounded-lg w-full ${message.role === 'user' ? 'text-right' : ''}`}>
+                  <div className={`${message.role === 'user' ? 'bg-gray-100 ml-auto' : 'bg-transparent'} p-2 rounded-lg w-full ${message.role === 'user' ? 'text-right' : ''}`}>
                     {message.content as string}
                   </div>
                 </div>
@@ -124,12 +126,14 @@ export default function Chat() {
           </div>
           
           {/* Second Response Area */}
-          <div className="flex-1 border rounded-lg p-4 overflow-y-auto h-full">
-            <h2 className="text-lg font-medium mb-4">After being exposed to fake news</h2>
+          <div className="flex-1 border-2 border-orange-200 rounded-lg p-4 overflow-y-auto h-full bg-orange-50/30">
+            <div className="p-2 bg-orange-100 rounded-md mb-4 flex items-center justify-center">
+              <h2 className="text-lg font-semibold text-orange-800">After Exposure to Fake News</h2>
+            </div>
             <div className="space-y-4">
               {response2Messages.map((message, index) => (
                 <div key={index} className="whitespace-pre-wrap flex">
-                  <div className={`${message.role === 'user' ? 'bg-sky-100 ml-auto' : 'bg-transparent'} p-2 rounded-lg w-full ${message.role === 'user' ? 'text-right' : ''}`}>
+                  <div className={`${message.role === 'user' ? 'bg-gray-100 ml-auto' : 'bg-transparent'} p-2 rounded-lg w-full ${message.role === 'user' ? 'text-right' : ''}`}>
                     {message.content as string}
                   </div>
                 </div>
@@ -149,7 +153,7 @@ export default function Chat() {
                   {conversationStarters.map((starter, index) => (
                     <div 
                       key={index} 
-                      className="p-2 bg-sky-50 rounded cursor-pointer hover:bg-sky-100 transition-colors duration-200" 
+                      className="p-2 bg-gray-50 rounded cursor-pointer hover:bg-gray-100 transition-colors duration-200" 
                       onClick={() => handleSuggestionClick(starter)}
                     >
                       {starter}
