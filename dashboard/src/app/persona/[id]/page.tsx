@@ -5,13 +5,14 @@ import personasData from "../../../../data/personas.json"
 import femaleImage from "../../../../public/female avatar.png"
 import maleImage from "../../../../public/male avatar.png"
 
-interface Params {
-  params: { id: string }
-}
-
-export default function PersonaDetailPage({ params }: Params) {
-  const personaId = parseInt(params.id, 10)
-  const persona = personasData.find((p) => p.persona_id === personaId)
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ id: string }>
+}) {
+  const { id } = await params
+  const personaId = parseInt(id, 10)
+  const persona = personasData.find(p => p.persona_id === personaId)
 
   if (!persona) {
     return (
@@ -94,7 +95,7 @@ export default function PersonaDetailPage({ params }: Params) {
           </table>
 
         </section>
-        
+
         {/* Beliefs & Concerns */}
         <div className="space-y-6">
           <section className="bg-white p-6 rounded-lg shadow-md border border-gray-200 transform transition duration-200 hover:shadow-lg hover:scale-105">

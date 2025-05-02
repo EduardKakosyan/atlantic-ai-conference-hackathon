@@ -1,20 +1,28 @@
 'use client';
 
 import React from 'react';
-import mockData, { PersonaData } from '@/lib/mock-data';
+import { PersonaData } from '@/lib/data';
 import { TrendingUp, TrendingDown, BarChart4 } from 'lucide-react';
 import { NORMALIZED_THRESHOLD } from '@/lib/constants';
 
+interface QuickInsightsProps {
+  className?: string;
+  data: PersonaData[];
+}
+
 // Insight calculations
-const calculateMostPersuadablePersona = (): { name: string, improvement: number } => {
+const calculateMostPersuadablePersona = (data: PersonaData[]): { name: string, improvement: number } => {
   const personaImprovements: Record<string, number> = {};
   
   // Get all unique persona names
-  const personaNames = [...new Set(mockData.map(item => item.persona_name))];
+  const personaNames = [...new Set(data.map(item => item.persona_name))];
   
   // Calculate improvements for each persona
   personaNames.forEach(name => {
-    const personaData = mockData.filter(item => item.persona_name === name);
+    const personaData = data.filter(item => item.persona_name === name);
+    
+    // Skip if there's no data for this persona
+    if (personaData.length === 0) return;
     
     // Sort by iteration to get first and last entries
     const sortedData = [...personaData].sort((a, b) => a.iteration - b.iteration);
@@ -38,21 +46,29 @@ const calculateMostPersuadablePersona = (): { name: string, improvement: number 
     }
   });
   
+  // Use a default value if no improvements were found
+  if (mostPersuadableName === '') {
+    return { name: 'No data', improvement: 0 };
+  }
+  
   return { 
     name: mostPersuadableName, 
     improvement: parseFloat((highestImprovement * 100).toFixed(1)) 
   };
 };
 
-const calculateLeastPersuadablePersona = (): { name: string, improvement: number } => {
+const calculateLeastPersuadablePersona = (data: PersonaData[]): { name: string, improvement: number } => {
   const personaImprovements: Record<string, number> = {};
   
   // Get all unique persona names
-  const personaNames = [...new Set(mockData.map(item => item.persona_name))];
+  const personaNames = [...new Set(data.map(item => item.persona_name))];
   
   // Calculate improvements for each persona
   personaNames.forEach(name => {
-    const personaData = mockData.filter(item => item.persona_name === name);
+    const personaData = data.filter(item => item.persona_name === name);
+    
+    // Skip if there's no data for this persona
+    if (personaData.length === 0) return;
     
     // Sort by iteration to get first and last entries
     const sortedData = [...personaData].sort((a, b) => a.iteration - b.iteration);
@@ -76,19 +92,31 @@ const calculateLeastPersuadablePersona = (): { name: string, improvement: number
     }
   });
   
+  // Use a default value if no improvements were found
+  if (leastPersuadableName === '') {
+    return { name: 'No data', improvement: 0 };
+  }
+  
   return { 
     name: leastPersuadableName, 
     improvement: parseFloat((lowestImprovement * 100).toFixed(1)) 
   };
 };
 
-const calculateConversionRate = (): number => {
-  const personaNames = [...new Set(mockData.map(item => item.persona_name))];
+const calculateConversionRate = (data: PersonaData[]): number => {
+  const personaNames = [...new Set(data.map(item => item.persona_name))];
+  
+  // Return 0 if there are no personas
+  if (personaNames.length === 0) return 0;
+  
   const threshold = NORMALIZED_THRESHOLD; // 80% normalized rating threshold
   let convertedCount = 0;
   
   personaNames.forEach(name => {
-    const personaData = mockData.filter(item => item.persona_name === name);
+    const personaData = data.filter(item => item.persona_name === name);
+    
+    // Skip if there's no data for this persona
+    if (personaData.length === 0) return;
     
     // Sort by iteration to get the last entry
     const sortedData = [...personaData].sort((a, b) => a.iteration - b.iteration);
@@ -102,29 +130,12 @@ const calculateConversionRate = (): number => {
   return parseFloat(((convertedCount / personaNames.length) * 100).toFixed(0));
 };
 
-export const QuickInsights: React.FC<{ className?: string }> = ({ className }) => {
-  const mostPersuadable = calculateMostPersuadablePersona();
-  const leastPersuadable = calculateLeastPersuadablePersona();
-  const conversionRate = calculateConversionRate();
+export const QuickInsights: React.FC<QuickInsightsProps> = ({ className, data }) => {
+  const mostPersuadable = calculateMostPersuadablePersona(data);
+  const leastPersuadable = calculateLeastPersuadablePersona(data);
   
   return (
-    <div className={`grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 ${className}`}>
-      <div className="bg-white rounded-lg p-4 border border-white/20 shadow-sm">
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-sm font-medium text-gray-400 mb-1">Success Rate</p>
-            <div className="flex items-center">
-              <h3 className="text-3xl font-bold text-blue-600">{conversionRate}%</h3>
-            </div>
-          </div>
-          <div className="h-10 w-10 rounded-full bg-blue-500/20 flex items-center justify-center">
-            <BarChart4 className="h-5 w-5 text-blue-500" />
-          </div>
-        </div>
-        <p className="text-sm text-gray-400 mt-2">
-          Personas reaching high acceptance threshold
-        </p>
-      </div>
+    <div className={`grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 ${className}`}>
       <div className="bg-white rounded-lg p-4 border border-white/20 shadow-sm">
         <div className="flex items-center justify-between">
           <div>

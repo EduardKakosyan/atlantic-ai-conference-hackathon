@@ -1,12 +1,11 @@
 'use client';
 
 import { useMemo } from 'react';
-import { PersonaData, getAvailablePersonas } from '@/lib/mock-data';
-import mockData from '@/lib/mock-data';
+import { PersonaData, getAvailablePersonas } from '@/lib/data';
 
-
-interface HeatMapProps {
+export interface HeatMapProps {
   className?: string;
+  data: PersonaData[];
 }
 
 interface RatingChangeDataItem {
@@ -31,7 +30,7 @@ const formatRating = (rating: number): string => {
   return `${(rating * 100).toFixed(1)}%`;
 };
 
-export function RatingTable({ className }: HeatMapProps) {
+export function RatingTable({ className, data }: HeatMapProps) {
   const ratingChangesData = useMemo(() => {
     // Get all available personas
     const personas = getAvailablePersonas();
@@ -39,17 +38,16 @@ export function RatingTable({ className }: HeatMapProps) {
     // Group by persona for change calculations
     const personaData: Record<string, PersonaData[]> = {};
     personas.forEach(persona => {
-      personaData[persona] = mockData
-        .filter((item: PersonaData) => item.persona_name === persona)
-        .sort((a: PersonaData, b: PersonaData) => a.iteration - b.iteration);
+      const personaItems = data.filter((item: PersonaData) => item.persona_name === persona);
+      if (personaItems.length > 0) {
+        personaData[persona] = personaItems.sort((a: PersonaData, b: PersonaData) => a.iteration - b.iteration);
+      }
     });
     
     // Calculate changes and prepare data
     const result: RatingChangeDataItem[] = [];
     
-    personas.forEach(persona => {
-      const items = personaData[persona];
-      
+    Object.entries(personaData).forEach(([persona, items]) => {
       items.forEach((item, index) => {
         const previousRating = index > 0 ? items[index - 1].normalized_current_rating : null;
         const change = previousRating !== null ? item.normalized_current_rating - previousRating : null;
@@ -74,7 +72,7 @@ export function RatingTable({ className }: HeatMapProps) {
     });
     
     return result;
-  }, []);
+  }, [data]);
 
   // For the data table, group by persona for better organization
   const tableData = useMemo(() => {
@@ -90,7 +88,7 @@ export function RatingTable({ className }: HeatMapProps) {
 
   return (
     <div className={className}>
-      <h2 className="text-xl font-bold mb-4">Persona Rating Changes Across Iterations</h2>
+      <h2 className="text-xl font-bold mb-4">Rating Changes Across Iterations</h2>
       
       <div className="overflow-auto">
         <table className="min-w-full divide-y divide-gray-200">

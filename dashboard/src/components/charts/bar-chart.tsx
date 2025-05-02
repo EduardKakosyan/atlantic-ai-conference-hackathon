@@ -9,7 +9,7 @@ import {
   Legend,
   ResponsiveContainer
 } from 'recharts';
-import { PersonaData } from '@/lib/mock-data';
+import { PersonaData } from '@/lib/data';
 import { THRESHOLD, NORMALIZED_THRESHOLD } from '@/lib/constants';
 
 interface FinalRatingsByPersonaProps {
@@ -86,7 +86,7 @@ export function FinalRatingsByPersona({ data, className }: FinalRatingsByPersona
 
   return (
     <div className={className}>
-      <h2 className="text-xl font-bold mb-4">Final Vaccination Ratings by Persona</h2>
+      <h2 className="text-xl font-bold mb-4">Final COVID-19 Vaccination Ratings</h2>
       <div className="h-[400px] w-full">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
@@ -121,7 +121,7 @@ export function FinalRatingsByPersona({ data, className }: FinalRatingsByPersona
               tickLine={false}
             />
             <Tooltip content={<CustomTooltip />} />
-            <Legend />
+            <Legend verticalAlign="bottom" height={36} wrapperStyle={{ paddingTop: 20 }} />
             <Bar 
               dataKey="aboveThresholdRating" 
               name="Take the vaccine" 
