@@ -222,7 +222,7 @@ def calculate_realistic_progression(initial_rating, target_rating, should_reach_
             change = min(MAX_RATING_CHANGE_PER_ITERATION, step_size + variation)
             current_rating = round(min(target_stop_rating, current_rating + change), 1)
             progression.append(current_rating)
-            
+        
             # Check if we've reached target
             normalized_rating = (current_rating - RATING_MIN) / (RATING_MAX - RATING_MIN)
             if normalized_rating >= TARGET_NORMALIZED_RATING:
@@ -258,7 +258,7 @@ def calculate_realistic_progression(initial_rating, target_rating, should_reach_
             # Apply change and add to progression
             current_rating = round(max(RATING_MIN, min(max_possible_rating, current_rating + change)), 1)
             progression.append(current_rating)
-            
+        
             # Double-check we never accidentally reach the target
             normalized_rating = (current_rating - RATING_MIN) / (RATING_MAX - RATING_MIN)
             if normalized_rating >= TARGET_NORMALIZED_RATING:

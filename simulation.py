@@ -275,10 +275,10 @@ class Simulation:
                     
                     # Test if the table exists by trying to get a single row
                     try:
-                        test_result = self.supabase.table("persona_responses_duplicate").select("*").limit(1).execute()
+                        test_result = self.supabase.table("persona_responses_duplicates").select("*").limit(1).execute()
                         print(f"Table test query successful: got {len(test_result.data)} rows")
                     except Exception as table_error:
-                        print(f"Error accessing table 'persona_responses_duplicate': {table_error}")
+                        print(f"Error accessing table 'persona_responses_duplicates': {table_error}")
                         print("Table might not exist or permissions might be incorrect")
                         
                 except Exception as e:
@@ -322,6 +322,7 @@ class Simulation:
             # Create data object matching the table schema exactly
             # Note the misspelled column names in the actual schema (recommened instead of recommended)
             data = {
+                "session_id": self.user_agent.session_id,  # Add session_id to fix null constraint error
                 "persona_id": self.user_agent.persona.get("persona_id", 0),
                 "persona_name": self.user_agent.persona["persona_name"],
                 "iteration": min(max(1, iteration), 10),  # Constrained to 1-10 in schema
@@ -400,7 +401,7 @@ class Simulation:
             # User agent reads and reacts to article
             user_prompt = self.user_agent.get_prompt(self.current_article)
             user_response = client.chat.completions.create(
-                model="o4-mini",
+                model="gpt-4o-mini",
                 messages=[{"role": "user", "content": user_prompt}]
             ).choices[0].message.content
             
@@ -433,7 +434,7 @@ class Simulation:
             # Editor agent edits the article
             editor_prompt = self.editor_agent.get_prompt(self.current_article)
             editor_response = client.chat.completions.create(
-                model="o4-mini",
+                model="gpt-4o-mini",
                 messages=[{"role": "user", "content": editor_prompt}]
             ).choices[0].message.content
             
