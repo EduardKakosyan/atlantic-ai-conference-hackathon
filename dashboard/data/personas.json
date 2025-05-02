@@ -3,7 +3,7 @@
         "persona_id": 105,
         "name": "Emily Nguyen",
         "took_covid_vaccine": true,
-        "description": "A registered nurse in Toronto who advocates for vaccination and public health.",
+        "description": "A registered nurse in Toronto who is quite skeptical about vaccinations.",
         "demographics": {
           "age": 34,
           "gender": "Female",
