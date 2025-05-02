@@ -43,9 +43,15 @@ export default function RootPage() {
 
   return (
     <main className="container mx-auto py-8 px-4">
-      {/* Select news type UI logic here */}
+      {/* Header with title only */}
+      <div className="flex items-center justify-between mb-12">
+        <h1 className="text-4xl font-bold bg-gradient-to-b from-blue-400 via-blue-600 to-blue-800 text-transparent bg-clip-text">HealthByte Data Dashboard</h1>
+      </div>
+      
+      {/* Combined row with personas link and dataset selection */}
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-3xl font-bold">HealthByte Data Dashboard</h1>
+        <Link href="/personas" className="px-3 py-1 rounded-md bg-blue-50 text-blue-600 text-md hover:bg-blue-100 hover:text-blue-800 transition">View Personas</Link>
+        
         <div className="flex items-center gap-2">
           <span className="text-sm font-medium">Select Dataset:</span>
           <Select value={selectedDataset} onValueChange={handleDatasetChange}>
@@ -60,10 +66,7 @@ export default function RootPage() {
           </Select>
         </div>
       </div>
-
-      <div className="mb-4">
-        <Link href="/personas" className="px-3 py-1 rounded-md bg-blue-50 text-blue-600 hover:bg-blue-100 hover:text-blue-800 transition">View Personas</Link>
-      </div>
+      
       <QuickInsights className="mb-12" data={personaData} />
       <div className="grid grid-cols-1 gap-8">
         <div className="bg-white p-6 rounded-lg shadow-md">

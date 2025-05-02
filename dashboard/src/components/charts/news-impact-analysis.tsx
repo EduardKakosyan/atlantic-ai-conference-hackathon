@@ -181,7 +181,7 @@ export function NewsImpactAnalysis({ className, data }: NewsImpactAnalysisProps)
                 type="monotone"
                 dataKey="avgRating"
                 name="Average Rating"
-                stroke="#000000"
+                stroke="#60a5fa"
                 strokeWidth={3}
                 dot={false}
               />
