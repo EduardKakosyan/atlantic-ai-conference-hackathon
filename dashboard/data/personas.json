@@ -1,85 +1,85 @@
 [
-  {
-    "persona_id": 105,
-    "name": "Emily Nguyen",
-    "took_covid_vaccine": true,
-    "description": "A registered nurse in Toronto who advocates for vaccination and public health.",
-    "demographics": {
-      "age": 34,
-      "gender": "Female",
-      "location": "Toronto, ON",
-      "occupation": "Registered Nurse",
-      "education": "Bachelor of Science in Nursing"
-    },
-    "grounding_notes": "Frontline healthcare worker, experienced the pandemic's impact firsthand.",
-    "personality": {
-      "archetype": "The Caregiver",
-      "notes": "Empathetic, dedicated to patient care and community well-being."
-    },
-    "beliefs_and_attitudes": {
-      "initial_stance": "Strongly supportive",
-      "stance_description": "Advocated for early vaccination, emphasizing its role in protecting vulnerable populations.",
-      "trust_levels": {
-        "scientific_bodies": "very high",
-        "government": "high",
-        "mainstream_media": "moderate",
-        "social_media": "low",
-        "expert_opinions": "very high"
-      },
-      "concerns": [
-        "Protecting immunocompromised patients",
-        "Combating misinformation",
-        "Ensuring equitable vaccine access"
-      ],
-      "key_motivator": "Safeguarding public health and patient safety"
-    },
-    "articles_read": [
-      "The Importance of Vaccinating Healthcare Workers",
-      "COVID-19 Vaccine Equity and Access Challenges",
-      "Fighting Misinformation in Public Health Campaigns"
-    ]
-  },
-  {
-    "persona_id": 106,
-    "name": "James Patel",
-    "took_covid_vaccine": true,
-    "description": "A software developer in Vancouver who values data-driven decisions.",
-    "demographics": {
-      "age": 29,
-      "gender": "Male",
-      "location": "Vancouver, BC",
-      "occupation": "Software Developer",
-      "education": "Bachelor's in Computer Science"
-    },
-    "grounding_notes": "Analytical thinker, relies on empirical evidence for decision-making.",
-    "personality": {
-      "archetype": "The Analyst",
-      "notes": "Curious, methodical, and values transparency."
-    },
-    "beliefs_and_attitudes": {
-      "initial_stance": "Supportive after research",
-      "stance_description": "Reviewed clinical trial data before deciding to vaccinate.",
-      "trust_levels": {
-        "scientific_bodies": "high",
-        "government": "moderate",
-        "mainstream_media": "low",
-        "social_media": "very low",
-        "expert_opinions": "high"
-      },
-      "concerns": [
-        "Long-term efficacy",
-        "Data transparency",
-        "Algorithmic bias in health data"
-      ],
-      "key_motivator": "Making informed, evidence-based health decisions"
-    },
-    "articles_read": [
-      "mRNA Vaccine Efficacy: A Data-Driven Review",
-      "Transparency in Clinical Trials and Vaccine Development",
-      "How Algorithms Affect Health Equity in the Pandemic Era"
-    ]
-  },
-  {
+    {
+        "persona_id": 105,
+        "name": "Emily Nguyen",
+        "took_covid_vaccine": true,
+        "description": "A registered nurse in Toronto who is quite skeptical about vaccinations.",
+        "demographics": {
+          "age": 34,
+          "gender": "Female",
+          "location": "Toronto, ON",
+          "occupation": "Registered Nurse",
+          "education": "Bachelor of Science in Nursing"
+        },
+        "grounding_notes": "Frontline healthcare worker, experienced the pandemic's impact firsthand.",
+        "personality": {
+          "archetype": "The Caregiver",
+          "notes": "Empathetic, dedicated to patient care and community well-being."
+        },
+        "beliefs_and_attitudes": {
+          "initial_stance": "Strongly supportive",
+          "stance_description": "Advocated for early vaccination, emphasizing its role in protecting vulnerable populations.",
+          "trust_levels": {
+            "scientific_bodies": "very high",
+            "government": "high",
+            "mainstream_media": "moderate",
+            "social_media": "low",
+            "expert_opinions": "very high"
+          },
+          "concerns": [
+            "Protecting immunocompromised patients",
+            "Combating misinformation",
+            "Ensuring equitable vaccine access"
+          ],
+          "key_motivator": "Safeguarding public health and patient safety"
+        }, 
+        "articles_read": [
+        "The Importance of Vaccinating Healthcare Workers",
+        "COVID-19 Vaccine Equity and Access Challenges",
+        "Fighting Misinformation in Public Health Campaigns"
+        ]
+      }, 
+      {
+        "persona_id": 106,
+        "name": "James Patel",
+        "took_covid_vaccine": true,
+        "description": "A software developer in Vancouver who values data-driven decisions.",
+        "demographics": {
+          "age": 29,
+          "gender": "Male",
+          "location": "Vancouver, BC",
+          "occupation": "Software Developer",
+          "education": "Bachelor's in Computer Science"
+        },
+        "grounding_notes": "Analytical thinker, relies on empirical evidence for decision-making.",
+        "personality": {
+          "archetype": "The Analyst",
+          "notes": "Curious, methodical, and values transparency."
+        },
+        "beliefs_and_attitudes": {
+          "initial_stance": "Supportive after research",
+          "stance_description": "Reviewed clinical trial data before deciding to vaccinate.",
+          "trust_levels": {
+            "scientific_bodies": "high",
+            "government": "moderate",
+            "mainstream_media": "low",
+            "social_media": "very low",
+            "expert_opinions": "high"
+          },
+          "concerns": [
+            "Long-term efficacy",
+            "Data transparency",
+            "Algorithmic bias in health data"
+          ],
+          "key_motivator": "Making informed, evidence-based health decisions"
+        }, 
+        "articles_read": [
+        "mRNA Vaccine Efficacy: A Data-Driven Review",
+        "Transparency in Clinical Trials and Vaccine Development",
+        "How Algorithms Affect Health Equity in the Pandemic Era"
+        ]
+      }
+,{
     "persona_id": 107,
     "name": "David Brown",
     "took_covid_vaccine": true,
