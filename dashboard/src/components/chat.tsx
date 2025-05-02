@@ -19,12 +19,21 @@ export default function Chat() {
   const [input, setInput] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!input.trim() || isLoading) return;
+  const conversationStarters = [
+    "What's your opinion about the COVID-19 vaccine?",
+    "Is the COVID-19 vaccine safe?",
+    "Should I get vaccinated?",
+    "What do you think about the vaccine rollout?"
+  ];
+
+  const handleSubmit = async (e: React.FormEvent | null, suggestedInput?: string) => {
+    if (e) e.preventDefault();
+    
+    const messageText = suggestedInput || input;
+    if (!messageText.trim() || isLoading) return;
     
     setIsLoading(true);
-    const userMessage = { content: input, role: 'user' as const };
+    const userMessage = { content: messageText, role: 'user' as const };
     
     const newMessages: CoreMessage[] = [
       ...messages,
@@ -88,6 +97,10 @@ export default function Chat() {
       setIsLoading(false);
     }
   }
+
+  const handleSuggestionClick = (suggestion: string) => {
+    handleSubmit(null, suggestion);
+  };
   
   return (    
     <div className="group w-full overflow-auto">
@@ -128,8 +141,26 @@ export default function Chat() {
       
       <div className="fixed inset-x-0 bottom-10 w-full">
         <div className="w-full max-w-xl mx-auto">
+          {messages.length === 0 && (
+            <div className="mb-4">
+              <Card className="p-2 cursor-pointer transition-colors duration-200">
+                <div className="text-sm text-gray-600 font-medium ">Try asking:</div>
+                <div className="space-y-2">
+                  {conversationStarters.map((starter, index) => (
+                    <div 
+                      key={index} 
+                      className="p-2 bg-sky-50 rounded cursor-pointer hover:bg-sky-100 transition-colors duration-200" 
+                      onClick={() => handleSuggestionClick(starter)}
+                    >
+                      {starter}
+                    </div>
+                  ))}
+                </div>
+              </Card>
+            </div>
+          )}
           <Card className="p-2">
-            <form onSubmit={handleSubmit} autoComplete="off">
+            <form onSubmit={(e) => handleSubmit(e)}>
               <div className="flex">
                 <Input
                   type="text"
@@ -139,7 +170,7 @@ export default function Chat() {
                   }}
                   autoComplete="off"
                   className="w-[95%] mr-2 border-0 ring-offset-0 focus-visible:ring-0 focus-visible:outline-none focus:outline-none focus:ring-0 ring-0 focus-visible:border-none border-transparent focus:border-transparent focus-visible:ring-none"
-                  placeholder='Ask me anything...'
+                  placeholder='Ask David'
                 />
                 <Button disabled={!input.trim() || isLoading}>
                   <IconArrowUp />
