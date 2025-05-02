@@ -61,12 +61,10 @@ export default function RootPage() {
         </div>
       </div>
 
-      <QuickInsights className="mb-12" data={personaData} />
-      <h1 className="text-3xl font-bold mb-6">HealthByte Data Dashboard</h1>
       <div className="mb-4">
         <Link href="/personas" className="px-3 py-1 rounded-md bg-blue-50 text-blue-600 hover:bg-blue-100 hover:text-blue-800 transition">View Personas</Link>
       </div>
-      <QuickInsights className="mb-12" />
+      <QuickInsights className="mb-12" data={personaData} />
       <div className="grid grid-cols-1 gap-8">
         <div className="bg-white p-6 rounded-lg shadow-md">
           <SimpleRatingChart data={personaData} className="w-full" />

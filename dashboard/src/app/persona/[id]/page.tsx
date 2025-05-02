@@ -8,8 +8,10 @@ interface Params {
   params: { id: string }
 }
 
-export default function PersonaDetailPage({ params }: Params) {
-  const personaId = parseInt(params.id, 10)
+export default async function PersonaDetailPage({ params }: Params) {
+  // Ensure params is fully resolved before accessing properties
+  const resolvedParams = await Promise.resolve(params)
+  const personaId = parseInt(resolvedParams.id, 10)
   const persona = personasData.find(p => p.persona_id === personaId)
 
   if (!persona) {
