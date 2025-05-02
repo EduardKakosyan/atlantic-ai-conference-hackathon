@@ -9,6 +9,8 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { IconArrowUp } from "@/components/ui/icons";
 import AboutCard from "@/components/cards/aboutcard";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 
 export const maxDuration = 60;
 
@@ -104,6 +106,15 @@ export default function Chat() {
   
   return (    
     <div className="group w-full overflow-auto">
+      <div className="absolute top-4 left-4 z-10">
+        <Button variant="outline" size="sm" asChild>
+          <Link href="/">
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Dashboard
+          </Link>
+        </Button>
+      </div>
+
       {messages.length <= 0 ? ( 
         <AboutCard />  
       ) 
