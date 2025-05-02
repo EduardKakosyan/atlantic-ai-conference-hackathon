@@ -78,7 +78,7 @@ export const VaccinePieChart = ({ className, dataSource = "all" }: PieChartProps
   return (
     <div className={className}>
       <h2 className="text-xl font-semibold mb-4">Initial Stance on Vaccines</h2>
-      <div className="h-[320px]">
+      <div className="h-[400px]">
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
             <Pie
