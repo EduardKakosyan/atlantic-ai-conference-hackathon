@@ -116,7 +116,7 @@ export function SimpleRatingChart({ data, className }: SimpleRatingChartProps) {
 
   return (
     <div className={className}>
-      <h2 className="text-xl font-bold mb-4">Persona Rating Progression</h2>
+      <h2 className="text-xl font-bold mb-4">COVID-19 Vaccination Rating Progression</h2>
       <div className="h-[500px] w-full">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart
@@ -126,23 +126,23 @@ export function SimpleRatingChart({ data, className }: SimpleRatingChartProps) {
             <CartesianGrid strokeDasharray="3 3" opacity={0.2} />
             <XAxis 
               dataKey="iteration" 
-              label={{ 
-                value: 'Iteration', 
-                position: 'insideBottomRight', 
-                offset: -10 
-              }}
+              // label={{ 
+              //   value: 'Iteration', 
+              //   position: 'insideBottomRight', 
+              //   offset: -10 
+              // }}
               tick={{ fontSize: 12 }}
               axisLine={false}
             />
             <YAxis 
               domain={[0, 1]} 
               tickFormatter={(value) => `${value.toFixed(2)}`}
-              label={{ 
-                value: 'Normalized Rating', 
-                angle: -90, 
-                position: 'insideLeft',
-                style: { textAnchor: 'middle' }
-              }}
+              // label={{ 
+              //   value: 'Normalized Rating', 
+              //   angle: -90, 
+              //   position: 'insideLeft',
+              //   style: { textAnchor: 'middle' }
+              // }}
               tick={{ fontSize: 12 }}
               axisLine={false}
             />

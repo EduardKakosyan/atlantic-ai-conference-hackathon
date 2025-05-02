@@ -88,7 +88,7 @@ export function RatingTable({ className, data }: HeatMapProps) {
 
   return (
     <div className={className}>
-      <h2 className="text-xl font-bold mb-4">Persona Rating Changes Across Iterations</h2>
+      <h2 className="text-xl font-bold mb-4">Rating Changes Across Iterations</h2>
       
       <div className="overflow-auto">
         <table className="min-w-full divide-y divide-gray-200">
