@@ -4,7 +4,7 @@ import csv
 import uuid
 import difflib
 from datetime import datetime
-from typing import Dict,Tuple
+from typing import Dict, Tuple, Optional, List
 from openai import OpenAI
 from dotenv import load_dotenv
 from supabase import create_client, Client
@@ -42,7 +42,15 @@ supabase_key = os.getenv("SUPABASE_KEY")
 client = OpenAI(api_key=api_key)
 
 class Agent:
-    def __init__(self, persona_data: Dict, role: str):
+    """A class representing an agent that can interact with articles and provide feedback."""
+
+    def __init__(self, persona_data: Dict, role: str) -> None:
+        """Initialize the Agent with persona data and role.
+
+        Args:
+            persona_data: Dictionary containing persona information
+            role: Either "user" or "editor"
+        """
         # Extract persona from the new format
         self.persona = persona_data["persona"]
         self.articles_read = persona_data.get("articles_read", [])
@@ -64,11 +72,19 @@ class Agent:
         else:
             self.current_rating = float(initial_stance)
             
-        self.history = []
-        self.memory = []  # Store previous interactions
-        self.recommendation_rating = None
+        self.history: List[Tuple[str, str, float]] = []
+        self.memory: List[Tuple[str, Optional[str], Optional[float]]] = []  # Store previous interactions
+        self.recommendation_rating: Optional[float] = None
 
-    def get_prompt(self, article: str = None) -> str:
+    def get_prompt(self, article: Optional[str] = None) -> str:
+        """Generate a prompt for the agent based on its role and the article.
+
+        Args:
+            article: The article text to analyze (optional)
+
+        Returns:
+            A formatted prompt string
+        """
         if self.role == "user":
             # Create memory context
             memory_context = ""
@@ -150,7 +166,15 @@ ARTICLE: [The full improved article text]
 
 The goal is to increase the user's vaccine acceptance rating above their current level of {self.current_rating}/4."""
 
-    def process_response(self, response: str) -> Tuple[str, float, str]:
+    def process_response(self, response: str) -> Tuple[str, Optional[float], str]:
+        """Process the response from the agent based on its role.
+
+        Args:
+            response: The raw response string from the agent
+
+        Returns:
+            A tuple containing (reaction/article, rating, reasoning/changes_summary)
+        """
         if self.role == "user":
             try:
                 # Extract reaction
@@ -187,11 +211,22 @@ The goal is to increase the user's vaccine acceptance rating above their current
                 # Return the raw response as article if parsing fails
                 return response.strip(), None, "Error extracting changes summary"
 
-    def add_to_memory(self, article: str, reaction: str = None, rating: float = None):
+    def add_to_memory(self, article: str, reaction: Optional[str] = None, rating: Optional[float] = None) -> None:
+        """Add an interaction to the agent's memory.
+
+        Args:
+            article: The article text
+            reaction: The reaction to the article (optional)
+            rating: The rating given to the article (optional)
+        """
         self.memory.append((article, reaction, rating))
 
     def get_recommendation_prompt(self) -> str:
-        """Create prompt for asking about likelihood to recommend vaccination to others."""
+        """Create prompt for asking about likelihood to recommend vaccination to others.
+
+        Returns:
+            A formatted prompt string
+        """
         # Create memory context
         memory_context = ""
         if self.memory:
