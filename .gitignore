@@ -1,26 +1,62 @@
-# macOS
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# pyenv
+.python-version
+
+# uv / venv / virtualenv
+.venv/
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+# dotenv
+.env*
+
+# IDEs / Editors
+.idea/
+.vscode/
+.cursor/
+
+# Ruff cache
+.ruff_cache/
+
+# Operating System Files
 .DS_Store
-.AppleDouble
-.LSOverride
+Thumbs.db
 
-# Icon must end with two \r
-Icon
+# Data files (assuming they are large or generated)
+data/*.csv
+*.pdf
 
-# Thumbnails
-._*
-
-# Files that might appear on external disk
-.Spotlight-V100
-.Trashes
-
-# macOS 11 and later
-.VolumeIcon.icns
-.com.apple.timemachine.donotpresent
-
-# Directories
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
+# Specific generated files from your project
+synthetic_persona_responses_*.csv
 
