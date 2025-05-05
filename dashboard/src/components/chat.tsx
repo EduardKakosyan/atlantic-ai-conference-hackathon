@@ -11,10 +11,19 @@ import { IconArrowUp } from "@/components/ui/icons";
 import AboutCard from "@/components/cards/aboutcard";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import personasData from "@/lib/data/personas.json"
 
 export const maxDuration = 60;
 
-export default function Chat() {
+export default function Chat({
+ id
+}: {
+   id: string 
+}) {
+
+  const personaId = parseInt(id, 10)
+  const persona = personasData.find(p => p.persona_id === personaId)
+
   const [messages, setMessages] = useState<CoreMessage[]>([]);
   const [response1Messages, setResponse1Messages] = useState<CoreMessage[]>([]);
   const [response2Messages, setResponse2Messages] = useState<CoreMessage[]>([]);
@@ -116,7 +125,7 @@ export default function Chat() {
       </div>
 
       {messages.length <= 0 ? ( 
-        <AboutCard />  
+        <AboutCard id={id} />  
       ) 
       : (
         <div className="flex flex-col md:flex-row gap-4 mt-10 mb-24 mx-auto max-w-7xl px-4 h-[calc(100vh-180px)]">
