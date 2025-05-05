@@ -5,6 +5,7 @@ import personasData from "../../../../data/personas.json"
 import femaleImage from "../../../../public/female avatar.png"
 import maleImage from "../../../../public/male avatar.png"
 import { AIComparisionButton } from "@/components/ai-comparision-button"
+import Chat from "@/components/chat"
 
 export default async function Page({
   params,
@@ -15,7 +16,6 @@ export default async function Page({
   const personaId = parseInt(id, 10)
   const persona = personasData.find(p => p.persona_id === personaId)
 
-  const isDavid = persona?.name.includes("David")
 
   if (!persona) {
     return (
@@ -66,13 +66,12 @@ export default async function Page({
         <p className="mt-2 text-gray-500 text-center max-w-prose">
           {persona.description}
         </p>
-        {isDavid && (
+      
           <div className="mt-4">
-            <Link href="/chat">
-              <AIComparisionButton title="Chat with David" />
+            <Link href={`/chat/${persona.persona_id}`}>
+              <AIComparisionButton title={`Chat with ${persona.name}`}/>
             </Link>
           </div>
-        )}
       </div>
 
       {/* SIDE-BY-SIDE CARDS */}
