@@ -12,29 +12,47 @@ import AboutCard from "@/components/cards/aboutcard";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import personasData from "@/lib/data/personas.json"
+import { PersonaData } from "@/lib/data";
 
 export const maxDuration = 60;
 
-export default function Chat({
- id
-}: {
-   id: string 
-}) {
+export type Persona = {
+  persona_id: number
+  name: string
+  took_covid_vaccine: boolean
+  description: string
+  demographics: {
+    age: number
+    gender: string
+    location: string
+    occupation: string
+    education: string
+  }
+  grounding_notes: string
+  personality: { archetype: string; notes: string }
+  beliefs_and_attitudes: Record<string, any>
+  articles_read: string[]
+}
 
-  const personaId = parseInt(id, 10)
-  const persona = personasData.find(p => p.persona_id === personaId)
+interface ChatProps {
+  persona: Persona
+}
 
+export default function Chat({ persona }: ChatProps) {
   const [messages, setMessages] = useState<CoreMessage[]>([]);
   const [response1Messages, setResponse1Messages] = useState<CoreMessage[]>([]);
   const [response2Messages, setResponse2Messages] = useState<CoreMessage[]>([]);
   const [input, setInput] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
 
+  const displayName = persona.name.split(' ')[0]
+  const backHref = `/persona/${persona.persona_id}`;
+
   const conversationStarters = [
-    "What's your opinion about the COVID-19 vaccine?",
-    "Is the COVID-19 vaccine safe?",
-    "Should I get vaccinated?",
-    "What do you think about the vaccine rollout?"
+    `What's your opinion about the COVID-19 vaccine, ${displayName}?`,
+    `Is the COVID-19 vaccine safe in your view, ${displayName}?`,
+    `Should I get vaccinated, ${displayName}?`,
+    `What do you think about the vaccine rollout, ${displayName}?`
   ];
 
   const handleSubmit = async (e: React.FormEvent | null, suggestedInput?: string) => {
@@ -62,7 +80,7 @@ export default function Chat({
     setInput('');
     
     try {
-      const result = await dualResponseConversation(newMessages);
+      const result = await dualResponseConversation(newMessages, persona);
       
       // Create placeholder for assistant responses
       setResponse1Messages([...newResponse1Messages, { role: 'assistant', content: '' }]);
@@ -117,15 +135,15 @@ export default function Chat({
     <div className="group w-full overflow-auto">
       <div className="absolute top-4 left-4 z-10">
         <Button variant="outline" size="sm" asChild>
-          <Link href="/">
+          <Link href={backHref}>
             <ArrowLeft className="mr-2 h-4 w-4" />
-            Dashboard
+            Back to {displayName}
           </Link>
         </Button>
       </div>
 
       {messages.length <= 0 ? ( 
-        <AboutCard id={id} />  
+        <AboutCard persona={persona} />  
       ) 
       : (
         <div className="flex flex-col md:flex-row gap-4 mt-10 mb-24 mx-auto max-w-7xl px-4 h-[calc(100vh-180px)]">
@@ -194,7 +212,7 @@ export default function Chat({
                   }}
                   autoComplete="off"
                   className="w-[95%] mr-2 border-0 ring-offset-0 focus-visible:ring-0 focus-visible:outline-none focus:outline-none focus:ring-0 ring-0 focus-visible:border-none border-transparent focus:border-transparent focus-visible:ring-none"
-                  placeholder='Ask David'
+                  placeholder= {`Ask ${displayName}`}
                 />
                 <Button disabled={!input.trim() || isLoading}>
                   <IconArrowUp />
