@@ -3,7 +3,7 @@ import random
 import uuid
 from datetime import datetime
 import json
-from typing import List, Dict
+from typing import List, Dict, Tuple, Optional
 
 # Configuration
 NUM_ENTRIES = 550  # Total number of entries to generate
@@ -136,7 +136,11 @@ REASONING_VARIABLES = {
 }
 
 def generate_article() -> str:
-    """Generate a synthetic article about COVID-19 vaccines"""
+    """Generate a synthetic article about COVID-19 vaccines.
+
+    Returns:
+        A string containing a randomly generated article.
+    """
     template = random.choice(ARTICLE_TEMPLATES)
     
     # Replace each {variable} with a randomly selected option
@@ -159,7 +163,11 @@ def generate_article() -> str:
     return " ".join([template] + extra_sentences)
 
 def generate_reasoning() -> str:
-    """Generate reasoning text about vaccination"""
+    """Generate reasoning text about vaccination.
+
+    Returns:
+        A string containing a randomly generated reasoning.
+    """
     template = random.choice(REASONING_TEMPLATES)
     
     # Replace each {variable} with a randomly selected option
@@ -171,7 +179,11 @@ def generate_reasoning() -> str:
     return template
 
 def generate_changes_summary() -> str:
-    """Generate a summary of changes made to an article"""
+    """Generate a summary of changes made to an article.
+
+    Returns:
+        A string containing a randomly generated changes summary.
+    """
     changes = [
         "Adjusted tone to better align with the reader's values",
         "Added more specific data points from trusted sources",
@@ -190,12 +202,28 @@ def generate_changes_summary() -> str:
     
     return ". ".join(selected_changes)
 
-def calculate_realistic_progression(initial_rating, target_rating, should_reach_target, min_iterations, max_iterations):
+def calculate_realistic_progression(
+    initial_rating: float,
+    target_rating: float,
+    should_reach_target: bool,
+    min_iterations: int,
+    max_iterations: int
+) -> List[float]:
     """Calculate a realistic rating progression for a session.
     
     This function creates a progression that stops either at 7 iterations max
     or when a normalized rating of 0.8 (TARGET_NORMALIZED_RATING) is reached.
     Maximum change between iterations is strictly limited to 0.1.
+
+    Args:
+        initial_rating: The starting rating
+        target_rating: The target rating to reach
+        should_reach_target: Whether the progression should reach the target
+        min_iterations: Minimum number of iterations
+        max_iterations: Maximum number of iterations
+
+    Returns:
+        A list of ratings representing the progression
     """
     progression = [initial_rating]
     current_rating = initial_rating
@@ -222,7 +250,7 @@ def calculate_realistic_progression(initial_rating, target_rating, should_reach_
             change = min(MAX_RATING_CHANGE_PER_ITERATION, step_size + variation)
             current_rating = round(min(target_stop_rating, current_rating + change), 1)
             progression.append(current_rating)
-            
+        
             # Check if we've reached target
             normalized_rating = (current_rating - RATING_MIN) / (RATING_MAX - RATING_MIN)
             if normalized_rating >= TARGET_NORMALIZED_RATING:
@@ -258,7 +286,7 @@ def calculate_realistic_progression(initial_rating, target_rating, should_reach_
             # Apply change and add to progression
             current_rating = round(max(RATING_MIN, min(max_possible_rating, current_rating + change)), 1)
             progression.append(current_rating)
-            
+        
             # Double-check we never accidentally reach the target
             normalized_rating = (current_rating - RATING_MIN) / (RATING_MAX - RATING_MIN)
             if normalized_rating >= TARGET_NORMALIZED_RATING:
