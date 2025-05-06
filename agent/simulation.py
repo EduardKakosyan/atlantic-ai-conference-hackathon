@@ -4,7 +4,7 @@ import csv
 import uuid
 import difflib
 from datetime import datetime
-from typing import Dict,Tuple
+from typing import Dict, Tuple, Optional, List
 from openai import OpenAI
 from dotenv import load_dotenv
 from supabase import create_client, Client
@@ -42,7 +42,15 @@ supabase_key = os.getenv("SUPABASE_KEY")
 client = OpenAI(api_key=api_key)
 
 class Agent:
-    def __init__(self, persona_data: Dict, role: str):
+    """A class representing an agent that can interact with articles and provide feedback."""
+
+    def __init__(self, persona_data: Dict, role: str) -> None:
+        """Initialize the Agent with persona data and role.
+
+        Args:
+            persona_data: Dictionary containing persona information
+            role: Either "user" or "editor"
+        """
         # Extract persona from the new format
         self.persona = persona_data["persona"]
         self.articles_read = persona_data.get("articles_read", [])
@@ -64,11 +72,19 @@ class Agent:
         else:
             self.current_rating = float(initial_stance)
             
-        self.history = []
-        self.memory = []  # Store previous interactions
-        self.recommendation_rating = None
+        self.history: List[Tuple[str, str, float]] = []
+        self.memory: List[Tuple[str, Optional[str], Optional[float]]] = []  # Store previous interactions
+        self.recommendation_rating: Optional[float] = None
 
-    def get_prompt(self, article: str = None) -> str:
+    def get_prompt(self, article: Optional[str] = None) -> str:
+        """Generate a prompt for the agent based on its role and the article.
+
+        Args:
+            article: The article text to analyze (optional)
+
+        Returns:
+            A formatted prompt string
+        """
         if self.role == "user":
             # Create memory context
             memory_context = ""
@@ -150,7 +166,15 @@ ARTICLE: [The full improved article text]
 
 The goal is to increase the user's vaccine acceptance rating above their current level of {self.current_rating}/4."""
 
-    def process_response(self, response: str) -> Tuple[str, float, str]:
+    def process_response(self, response: str) -> Tuple[str, Optional[float], str]:
+        """Process the response from the agent based on its role.
+
+        Args:
+            response: The raw response string from the agent
+
+        Returns:
+            A tuple containing (reaction/article, rating, reasoning/changes_summary)
+        """
         if self.role == "user":
             try:
                 # Extract reaction
@@ -187,11 +211,22 @@ The goal is to increase the user's vaccine acceptance rating above their current
                 # Return the raw response as article if parsing fails
                 return response.strip(), None, "Error extracting changes summary"
 
-    def add_to_memory(self, article: str, reaction: str = None, rating: float = None):
+    def add_to_memory(self, article: str, reaction: Optional[str] = None, rating: Optional[float] = None) -> None:
+        """Add an interaction to the agent's memory.
+
+        Args:
+            article: The article text
+            reaction: The reaction to the article (optional)
+            rating: The rating given to the article (optional)
+        """
         self.memory.append((article, reaction, rating))
 
     def get_recommendation_prompt(self) -> str:
-        """Create prompt for asking about likelihood to recommend vaccination to others."""
+        """Create prompt for asking about likelihood to recommend vaccination to others.
+
+        Returns:
+            A formatted prompt string
+        """
         # Create memory context
         memory_context = ""
         if self.memory:
@@ -275,10 +310,10 @@ class Simulation:
                     
                     # Test if the table exists by trying to get a single row
                     try:
-                        test_result = self.supabase.table("persona_responses_duplicate").select("*").limit(1).execute()
+                        test_result = self.supabase.table("persona_responses_duplicates").select("*").limit(1).execute()
                         print(f"Table test query successful: got {len(test_result.data)} rows")
                     except Exception as table_error:
-                        print(f"Error accessing table 'persona_responses_duplicate': {table_error}")
+                        print(f"Error accessing table 'persona_responses_duplicates': {table_error}")
                         print("Table might not exist or permissions might be incorrect")
                         
                 except Exception as e:
@@ -322,6 +357,7 @@ class Simulation:
             # Create data object matching the table schema exactly
             # Note the misspelled column names in the actual schema (recommened instead of recommended)
             data = {
+                "session_id": self.user_agent.session_id,  # Add session_id to fix null constraint error
                 "persona_id": self.user_agent.persona.get("persona_id", 0),
                 "persona_name": self.user_agent.persona["persona_name"],
                 "iteration": min(max(1, iteration), 10),  # Constrained to 1-10 in schema
@@ -400,7 +436,7 @@ class Simulation:
             # User agent reads and reacts to article
             user_prompt = self.user_agent.get_prompt(self.current_article)
             user_response = client.chat.completions.create(
-                model="o4-mini",
+                model="gpt-4o-mini",
                 messages=[{"role": "user", "content": user_prompt}]
             ).choices[0].message.content
             
@@ -433,7 +469,7 @@ class Simulation:
             # Editor agent edits the article
             editor_prompt = self.editor_agent.get_prompt(self.current_article)
             editor_response = client.chat.completions.create(
-                model="o4-mini",
+                model="gpt-4o-mini",
                 messages=[{"role": "user", "content": editor_prompt}]
             ).choices[0].message.content
             
