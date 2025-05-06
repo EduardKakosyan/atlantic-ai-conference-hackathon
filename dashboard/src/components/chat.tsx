@@ -11,8 +11,7 @@ import { IconArrowUp } from "@/components/ui/icons";
 import AboutCard from "@/components/cards/aboutcard";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import personasData from "@/lib/data/personas.json"
-import { PersonaData } from "@/lib/data";
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 
 export const maxDuration = 60;
 
@@ -44,6 +43,7 @@ export default function Chat({ persona }: ChatProps) {
   const [response2Messages, setResponse2Messages] = useState<CoreMessage[]>([]);
   const [input, setInput] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<{ message: string; reset?: number } | null>(null);
 
   const displayName = persona.name.split(' ')[0]
   const backHref = `/persona/${persona.persona_id}`;
@@ -62,6 +62,7 @@ export default function Chat({ persona }: ChatProps) {
     if (!messageText.trim() || isLoading) return;
     
     setIsLoading(true);
+    setError(null);
     const userMessage = { content: messageText, role: 'user' as const };
     
     const newMessages: CoreMessage[] = [
@@ -82,6 +83,15 @@ export default function Chat({ persona }: ChatProps) {
     try {
       const result = await dualResponseConversation(newMessages, persona);
       
+      if (result.error) {
+        // Handle rate limit error
+        setError({
+          message: result.message || 'An error occurred while processing your message. Please try again.',
+          reset: result.reset
+        });
+        return;
+      }
+      
       // Create placeholder for assistant responses
       setResponse1Messages([...newResponse1Messages, { role: 'assistant', content: '' }]);
       setResponse2Messages([...newResponse2Messages, { role: 'assistant', content: '' }]);
@@ -89,32 +99,36 @@ export default function Chat({ persona }: ChatProps) {
       // Handle first response stream
       const processStream1 = async () => {
         let accumulatedContent1 = '';
-        for await (const chunk of readStreamableValue(result.response1)) {
-          accumulatedContent1 = chunk as string;
-          setResponse1Messages(prev => {
-            const newMessages = [...prev];
-            newMessages[newMessages.length - 1] = { 
-              role: 'assistant', 
-              content: accumulatedContent1 
-            };
-            return newMessages;
-          });
+        if (result.response1) {
+          for await (const chunk of readStreamableValue(result.response1)) {
+            accumulatedContent1 = chunk as string;
+            setResponse1Messages(prev => {
+              const newMessages = [...prev];
+              newMessages[newMessages.length - 1] = { 
+                role: 'assistant', 
+                content: accumulatedContent1 
+              };
+              return newMessages;
+            });
+          }
         }
       };
       
       // Handle second response stream
       const processStream2 = async () => {
         let accumulatedContent2 = '';
-        for await (const chunk of readStreamableValue(result.response2)) {
-          accumulatedContent2 = chunk as string;
-          setResponse2Messages(prev => {
-            const newMessages = [...prev];
-            newMessages[newMessages.length - 1] = { 
-              role: 'assistant', 
-              content: accumulatedContent2 
-            };
-            return newMessages;
-          });
+        if (result.response2) {
+          for await (const chunk of readStreamableValue(result.response2)) {
+            accumulatedContent2 = chunk as string;
+            setResponse2Messages(prev => {
+              const newMessages = [...prev];
+              newMessages[newMessages.length - 1] = { 
+                role: 'assistant', 
+                content: accumulatedContent2 
+              };
+              return newMessages;
+            });
+          }
         }
       };
       
@@ -122,6 +136,7 @@ export default function Chat({ persona }: ChatProps) {
       await Promise.all([processStream1(), processStream2()]);
     } catch (error) {
       console.error('Error processing chat:', error);
+      setError({ message: 'An error occurred while processing your message. Please try again.' });
     } finally {
       setIsLoading(false);
     }
@@ -181,6 +196,18 @@ export default function Chat({ persona }: ChatProps) {
         </div>
       )}
       
+      {error && (
+        <Alert variant="destructive" className="mb-4 max-w-xl mx-auto">
+          <AlertTitle>Error</AlertTitle>
+          <AlertDescription>
+            {error.message}
+            {error.reset && (
+              <span> Try again in {Math.ceil((error.reset - Date.now()) / 1000)} seconds.</span>
+            )}
+          </AlertDescription>
+        </Alert>
+      )}
+
       <div className="fixed inset-x-0 bottom-10 w-full">
         <div className="w-full max-w-xl mx-auto">
           {messages.length === 0 && (
