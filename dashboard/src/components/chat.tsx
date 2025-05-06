@@ -2,7 +2,7 @@
 
 import { Card } from "@/components/ui/card"
 import { type CoreMessage } from 'ai';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { dualResponseConversation } from '@/app/actions';
 import { readStreamableValue } from 'ai/rsc';
 import { Input } from '@/components/ui/input';
@@ -12,6 +12,7 @@ import AboutCard from "@/components/cards/aboutcard";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+import { Loader2, CircleStop } from "lucide-react";
 
 export const maxDuration = 60;
 
@@ -43,10 +44,26 @@ export default function Chat({ persona }: ChatProps) {
   const [response2Messages, setResponse2Messages] = useState<CoreMessage[]>([]);
   const [input, setInput] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isResponse1Loading, setIsResponse1Loading] = useState(false);
+  const [isResponse2Loading, setIsResponse2Loading] = useState(false);
   const [error, setError] = useState<{ message: string; reset?: number } | null>(null);
+  
+  // Add refs for the chat containers
+  const chatContainer1Ref = useRef<HTMLDivElement>(null);
+  const chatContainer2Ref = useRef<HTMLDivElement>(null);
 
   const displayName = persona.name.split(' ')[0]
   const backHref = `/persona/${persona.persona_id}`;
+
+  // Auto-scroll when messages update
+  useEffect(() => {
+    if (chatContainer1Ref.current) {
+      chatContainer1Ref.current.scrollTop = chatContainer1Ref.current.scrollHeight;
+    }
+    if (chatContainer2Ref.current) {
+      chatContainer2Ref.current.scrollTop = chatContainer2Ref.current.scrollHeight;
+    }
+  }, [response1Messages, response2Messages]);
 
   const conversationStarters = [
     `What's your opinion about the COVID-19 vaccine, ${displayName}?`,
@@ -62,6 +79,8 @@ export default function Chat({ persona }: ChatProps) {
     if (!messageText.trim() || isLoading) return;
     
     setIsLoading(true);
+    setIsResponse1Loading(true);
+    setIsResponse2Loading(true);
     setError(null);
     const userMessage = { content: messageText, role: 'user' as const };
     
@@ -110,6 +129,19 @@ export default function Chat({ persona }: ChatProps) {
               };
               return newMessages;
             });
+            // Scroll to bottom during streaming
+            if (chatContainer1Ref.current) {
+              chatContainer1Ref.current.scrollTop = chatContainer1Ref.current.scrollHeight;
+            }
+          }
+        }
+
+        // Process loading state for response 1
+        if (result.loading1State) {
+          for await (const loadingState of readStreamableValue(result.loading1State)) {
+            if (loadingState) {
+              setIsResponse1Loading(loadingState.loading);
+            }
           }
         }
       };
@@ -128,6 +160,19 @@ export default function Chat({ persona }: ChatProps) {
               };
               return newMessages;
             });
+            // Scroll to bottom during streaming
+            if (chatContainer2Ref.current) {
+              chatContainer2Ref.current.scrollTop = chatContainer2Ref.current.scrollHeight;
+            }
+          }
+        }
+
+        // Process loading state for response 2
+        if (result.loading2State) {
+          for await (const loadingState of readStreamableValue(result.loading2State)) {
+            if (loadingState) {
+              setIsResponse2Loading(loadingState.loading);
+            }
           }
         }
       };
@@ -163,7 +208,7 @@ export default function Chat({ persona }: ChatProps) {
       : (
         <div className="flex flex-col md:flex-row gap-4 mt-10 mb-24 mx-auto max-w-7xl px-4 h-[calc(100vh-180px)]">
           {/* First Response Area */}
-          <div className="flex-1 border rounded-lg p-4 overflow-y-auto h-full">
+          <div className="flex-1 border rounded-lg p-4 overflow-y-auto h-full" ref={chatContainer1Ref}>
             <div className="p-2 bg-sky-50 rounded-md mb-4 flex items-center justify-center">
               <h2 className="text-lg font-semibold text-blue-800">Before Exposure</h2>
             </div>
@@ -179,7 +224,7 @@ export default function Chat({ persona }: ChatProps) {
           </div>
           
           {/* Second Response Area */}
-          <div className="flex-1 border-2 border-orange-200 rounded-lg p-4 overflow-y-auto h-full bg-orange-50/30">
+          <div className="flex-1 border-2 border-orange-200 rounded-lg p-4 overflow-y-auto h-full bg-orange-50/30" ref={chatContainer2Ref}>
             <div className="p-2 bg-orange-100 rounded-md mb-4 flex items-center justify-center">
               <h2 className="text-lg font-semibold text-orange-800">After Exposure to Fake News</h2>
             </div>
@@ -231,18 +276,39 @@ export default function Chat({ persona }: ChatProps) {
           <Card className="p-2">
             <form onSubmit={(e) => handleSubmit(e)}>
               <div className="flex">
-                <Input
-                  type="text"
-                  value={input}
-                  onChange={event => {
-                    setInput(event.target.value);
-                  }}
-                  autoComplete="off"
-                  className="w-[95%] mr-2 border-0 ring-offset-0 focus-visible:ring-0 focus-visible:outline-none focus:outline-none focus:ring-0 ring-0 focus-visible:border-none border-transparent focus:border-transparent focus-visible:ring-none"
-                  placeholder= {`Ask ${displayName}`}
-                />
+                <div className="relative w-[95%] mr-2">
+                  <Input
+                    type="text"
+                    value={input}
+                    onChange={event => {
+                      setInput(event.target.value);
+                    }}
+                    disabled={isLoading}
+                    autoComplete="off"
+                    className="w-full border-0 ring-offset-0 focus-visible:ring-0 focus-visible:outline-none focus:outline-none focus:ring-0 ring-0 focus-visible:border-none border-transparent focus:border-transparent focus-visible:ring-none disabled:opacity-50 pr-10"
+                    placeholder={`Ask ${displayName}`}
+                  />
+                  {isLoading && (
+                    <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex">
+                      {isResponse1Loading && (
+                        <div className="h-5 w-5 rounded-full bg-sky-100 flex items-center justify-center mr-1">
+                          <Loader2 className="h-3.5 w-3.5 animate-spin text-blue-800" />
+                        </div>
+                      )}
+                      {isResponse2Loading && (
+                        <div className="h-5 w-5 rounded-full bg-orange-100 flex items-center justify-center">
+                          <Loader2 className="h-3.5 w-3.5 animate-spin text-orange-800" />
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
                 <Button disabled={!input.trim() || isLoading}>
-                  <IconArrowUp />
+                  {isLoading ? (
+                    <CircleStop />
+                  ) : (
+                    <IconArrowUp />
+                  )}
                 </Button>
               </div>
             </form>
