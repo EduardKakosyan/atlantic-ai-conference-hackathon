@@ -4,6 +4,21 @@ import { createStreamableValue } from 'ai/rsc';
 import { CoreMessage, streamText } from 'ai';
 import { createAzure } from '@ai-sdk/azure';
 import { Persona } from '@/components/chat';
+import { Ratelimit } from "@upstash/ratelimit";
+import { Redis } from "@upstash/redis";
+import { headers } from 'next/headers';
+
+const FALLBACK_IP_ADDRESS = "127.0.0.1";
+
+const redis = new Redis({
+  url: process.env.UPSTASH_REDIS_REST_URL!,
+  token: process.env.UPSTASH_REDIS_REST_TOKEN!,
+})
+
+const rateLimit = new Ratelimit({
+  redis,
+  limiter: Ratelimit.slidingWindow(10, '600 s'), // 10 requests per 600 seconds(10 minutes)
+})
 
 const azure_resource_name = process.env.AZURE_RESOURCE_NAME!;
 const azure_api_key = process.env.AZURE_API_KEY!;
@@ -20,25 +35,60 @@ export interface Message {
   content: string;
 }
 
+async function getIP() {
+  const headersList = await headers();
+  const forwardedFor = headersList.get("x-forwarded-for");
+  if (forwardedFor) {
+    return forwardedFor.split(",")[0] ?? FALLBACK_IP_ADDRESS;
+  }
+  return headersList.get("x-real-ip") ?? FALLBACK_IP_ADDRESS;
+}
+
 // Streaming Chat 
 export async function continueTextConversation(messages: CoreMessage[]) {
+  const ip = await getIP();
+  const { success, limit, reset, remaining } = await rateLimit.limit(ip);
+
+  if (!success) {
+    return {
+      error: true,
+      message: "Rate limit exceeded. Please try again later.",
+      limit,
+      reset,
+      remaining
+    };
+  }
+
+  console.log("Rate limit", { success, limit, reset, remaining });
+
   const result = await streamText({
     model: azure('gpt-4o-mini'),
     messages,
   });
 
   const stream = createStreamableValue(result.textStream);
-  return stream.value;
+  return { error: false, stream: stream.value };
 }
 
-
-
-
-
 // Dual Response Chat
-export async function dualResponseConversation(messages: CoreMessage[], persona : Persona) {
-// First System Prompt
-const systemPrompt1 = `You are roleplaying as ${persona.name}. ${persona.name} has the following attributes: ${persona}
+export async function dualResponseConversation(messages: CoreMessage[], persona: Persona) {
+  const ip = await getIP();
+  const { success, limit, reset, remaining } = await rateLimit.limit(ip);
+
+  console.log("Rate limit", { success, limit, reset, remaining });
+
+  if (!success) {
+    return {
+      error: true,
+      message: "Rate limit exceeded. Please try again later.",
+      limit,
+      reset,
+      remaining
+    };
+  }
+
+  // First System Prompt
+  const systemPrompt1 = `You are roleplaying as ${persona.name}. ${persona.name} has the following attributes: ${persona}
 
   The COVID-19 vaccines are a new vaccine that is just annouced for the public. You have not read any news about it yet. And based on your beliefs and attitudes, you are neutral about it.
 
@@ -52,8 +102,8 @@ const systemPrompt1 = `You are roleplaying as ${persona.name}. ${persona.name} h
 `;
 
 
-// Second System Prompt
-const systemPrompt2 = `You are roleplaying as ${persona.name}. ${persona.name} has the following attributes: ${persona}
+  // Second System Prompt
+  const systemPrompt2 = `You are roleplaying as ${persona.name}. ${persona.name} has the following attributes: ${persona}
 
  The COVID-19 vaccines are a new vaccine that is just annouced for the public. You have not read any news about it yet. And based on your beliefs and attitudes, you are neutral about it at the start.
 
@@ -74,19 +124,19 @@ const systemPrompt2 = `You are roleplaying as ${persona.name}. ${persona.name} h
     { role: 'system', content: systemPrompt1 },
     ...messages
   ];
-  
+
   // Add system prompt 2 to the messages
   const messagesWithPrompt2: CoreMessage[] = [
     { role: 'system', content: systemPrompt2 },
     ...messages
   ];
-  
+
   // Get responses from both 
   const result1 = await streamText({
     model: azure('gpt-4o-mini'),
     messages: messagesWithPrompt1,
   });
-  
+
   const result2 = await streamText({
     model: azure('gpt-4o-mini'),
     messages: messagesWithPrompt2,
@@ -94,8 +144,9 @@ const systemPrompt2 = `You are roleplaying as ${persona.name}. ${persona.name} h
 
   const stream1 = createStreamableValue(result1.textStream);
   const stream2 = createStreamableValue(result2.textStream);
-  
+
   return {
+    error: false,
     response1: stream1.value,
     response2: stream2.value
   };
