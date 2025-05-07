@@ -2,11 +2,15 @@
 
 import { createStreamableValue } from 'ai/rsc';
 import { CoreMessage, streamText } from 'ai';
-import { createAzure } from '@ai-sdk/azure';
 import { Persona } from '@/components/chat';
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
 import { headers } from 'next/headers';
+import { createGoogleGenerativeAI } from '@ai-sdk/google';
+
+const google = createGoogleGenerativeAI({
+  apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY!,
+});
 
 const FALLBACK_IP_ADDRESS = "127.0.0.1";
 
@@ -19,16 +23,6 @@ const rateLimit = new Ratelimit({
   redis,
   limiter: Ratelimit.slidingWindow(10, '600 s'), // 10 requests per 600 seconds(10 minutes)
 })
-
-const azure_resource_name = process.env.AZURE_RESOURCE_NAME!;
-const azure_api_key = process.env.AZURE_API_KEY!;
-const azure_api_version = process.env.AZURE_API_VERSION!;
-
-const azure = createAzure({
-  resourceName: azure_resource_name,
-  apiKey: azure_api_key,
-  apiVersion: azure_api_version,
-});
 
 export interface Message {
   role: 'user' | 'assistant';
@@ -60,7 +54,7 @@ export async function continueTextConversation(messages: CoreMessage[]) {
   }
 
   const result = await streamText({
-    model: azure('gpt-4o-mini'),
+    model: google('gemini-2.5-flash-preview-04-17'),
     messages,
   });
 
@@ -133,12 +127,12 @@ export async function dualResponseConversation(messages: CoreMessage[], persona:
 
   // Get responses from both 
   const result1 = await streamText({
-    model: azure('gpt-4o-mini'),
+    model: google('gemini-2.5-flash-preview-04-17'),
     messages: messagesWithPrompt1,
   });
 
   const result2 = await streamText({
-    model: azure('gpt-4o-mini'),
+    model: google('gemini-2.5-flash-preview-04-17'),
     messages: messagesWithPrompt2,
   });
 
