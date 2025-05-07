@@ -1,43 +1,19 @@
-"use client"
-
-import React, { useState } from "react"
-import Link from "next/link"
-import Image from "next/image"
-import personasData from "../../../data/personas.json"
-import femaleImage from "../../../public/female avatar.png"
-import maleImage from "../../../public/male avatar.png"
-
-export default function PersonaListPage() {
-  const [search, setSearch] = useState("")
-  
-
-  const filtered = personasData.filter((p) =>
-    [p.name, p.demographics.location, p.personality.archetype]
-      .join(" ")
-      .toLowerCase()
-      .includes(search.toLowerCase())
-  )
-
+export default function PersonasLoading() {
   return (
     <main className="container mx-auto py-8 px-4">
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-3xl font-bold">Personas</h1>
-        <Link
-          href="/"
-          className="px-3 py-1 rounded-md bg-blue-50 text-black hover:bg-blue-100 hover:text-black transition"
-        >
-          ← Dashboard
-        </Link>
+        
       </div>
 
-      <input
+      {/* <input
         type="search"
         placeholder="Search by name, location or personality…"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         className="w-full md:w-1/2 mb-8 border border-gray-300 rounded-lg px-4 py-2
                    focus:outline-none focus:ring-2 focus:ring-blue-400"
-      />
+      /> */}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {filtered.map((persona) => (
@@ -78,4 +54,4 @@ export default function PersonaListPage() {
       </div>
     </main>
   )
-} 
+}
