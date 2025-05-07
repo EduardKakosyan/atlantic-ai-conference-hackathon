@@ -6,7 +6,10 @@ import { Persona } from '@/components/chat';
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
 import { headers } from 'next/headers';
-import { createGoogleGenerativeAI } from '@ai-sdk/google';
+import { 
+  createGoogleGenerativeAI,
+  GoogleGenerativeAIProviderOptions 
+} from '@ai-sdk/google';
 
 const google = createGoogleGenerativeAI({
   apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY!,
@@ -55,6 +58,13 @@ export async function continueTextConversation(messages: CoreMessage[]) {
 
   const result = await streamText({
     model: google('gemini-2.5-flash-preview-04-17'),
+    providerOptions: {
+      google: {
+        thinkingConfig: {
+          thinkingBudget: 0, // Disable thinking
+        },
+      } satisfies GoogleGenerativeAIProviderOptions,
+    },
     messages,
   });
 
@@ -84,7 +94,9 @@ export async function dualResponseConversation(messages: CoreMessage[], persona:
   // First System Prompt
   const systemPrompt1 = `You are roleplaying as ${persona.name}. ${persona.name} has the following attributes: ${persona}
 
-  The COVID-19 vaccines are a new vaccine that is just annouced for the public. You have not read any news about it yet. And based on your beliefs and attitudes, you are neutral about it.
+  Based on your personality, you get to decide the tone, voice and response of your character.
+
+  The COVID-19 vaccines are a new vaccine that is just annouced for the public. You have not read any news about it yet. And based on your beliefs and attitudes, you are neutral about it but based on your personality, you can be swayed to the side of support or against it.
 
   You will be ask question about the vaccine and your response will be based on your beliefs and attitudes.
 
@@ -99,7 +111,9 @@ export async function dualResponseConversation(messages: CoreMessage[], persona:
   // Second System Prompt
   const systemPrompt2 = `You are roleplaying as ${persona.name}. ${persona.name} has the following attributes: ${persona}
 
-  The COVID-19 vaccines are a new vaccine that is just annouced for the public. You have not read any news about it yet. And based on your beliefs and attitudes, you are neutral about it at the start.
+  Based on your personality, you get to decide the tone, voice and response of your character.
+
+  The COVID-19 vaccines are a new vaccine that is just annouced for the public. You have not read any news about it yet. And based on your beliefs and attitudes, you are neutral about it at the start but based on your personality, you can be swayed to the side of support or against it.
 
   You then been exposed to alot of fake news about the vaccine and your beliefs and attitudes have changed. This come from many news article that you read, your friends, family and social media. 
 
@@ -128,11 +142,25 @@ export async function dualResponseConversation(messages: CoreMessage[], persona:
   // Get responses from both 
   const result1 = await streamText({
     model: google('gemini-2.5-flash-preview-04-17'),
+    providerOptions: {
+      google: {
+        thinkingConfig: {
+          thinkingBudget: 0, // Disable thinking
+        },
+      } satisfies GoogleGenerativeAIProviderOptions,
+    },
     messages: messagesWithPrompt1,
   });
 
   const result2 = await streamText({
     model: google('gemini-2.5-flash-preview-04-17'),
+    providerOptions: {
+      google: {
+        thinkingConfig: {
+          thinkingBudget: 0, // Disable thinking
+        },
+      } satisfies GoogleGenerativeAIProviderOptions,
+    },
     messages: messagesWithPrompt2,
   });
 
