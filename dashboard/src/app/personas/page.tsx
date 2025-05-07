@@ -10,7 +10,6 @@ import maleImage from "../../../public/male avatar.png"
 export default function PersonaListPage() {
   const [search, setSearch] = useState("")
   
-
   const filtered = personasData.filter((p) =>
     [p.name, p.demographics.location, p.personality.archetype]
       .join(" ")
