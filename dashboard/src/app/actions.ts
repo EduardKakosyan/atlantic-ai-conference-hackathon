@@ -59,8 +59,6 @@ export async function continueTextConversation(messages: CoreMessage[]) {
     };
   }
 
-  console.log("Rate limit", { success, limit, reset, remaining });
-
   const result = await streamText({
     model: azure('gpt-4o-mini'),
     messages,
@@ -163,6 +161,8 @@ export async function dualResponseConversation(messages: CoreMessage[], persona:
     response1: stream1.value,
     response2: stream2.value,
     loading1State: loading1State.value,
-    loading2State: loading2State.value
+    loading2State: loading2State.value,
+    remaining,
+    reset
   };
 }
