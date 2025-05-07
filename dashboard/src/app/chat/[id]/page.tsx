@@ -6,8 +6,13 @@ interface Props {
   params: { id: string }
 }
 
-export default async function ChatPage({ params }: Props) {
-  const personaId = parseInt(params.id, 10)
+export default async function ChatPage({
+  params,
+}: {
+  params: Promise<{ id: string }>
+}) {
+  const { id } = await params
+  const personaId = parseInt(id, 10)
   const persona = personasData.find(p => p.persona_id === personaId)
 
   // ‣ If we didn’t find a matching persona, render 404
