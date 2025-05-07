@@ -5,7 +5,6 @@ import personasData from "../../../../data/personas.json"
 import femaleImage from "../../../../public/female avatar.png"
 import maleImage from "../../../../public/male avatar.png"
 import { AIComparisionButton } from "@/components/ai-comparision-button"
-import Chat from "@/components/chat"
 
 export default async function Page({
   params,
