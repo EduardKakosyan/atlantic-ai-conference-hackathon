@@ -47,6 +47,7 @@ export default function Chat({ persona }: ChatProps) {
   const [isResponse1Loading, setIsResponse1Loading] = useState(false);
   const [isResponse2Loading, setIsResponse2Loading] = useState(false);
   const [error, setError] = useState<{ message: string; reset?: number } | null>(null);
+  const [rateLimit, setRateLimit] = useState<{ remaining: number; reset: number } | null>(null);
   
   // Add refs for the chat containers
   const chatContainer1Ref = useRef<HTMLDivElement>(null);
@@ -108,7 +109,24 @@ export default function Chat({ persona }: ChatProps) {
           message: result.message || 'An error occurred while processing your message. Please try again.',
           reset: result.reset
         });
+        
+        // Store rate limit info even when error occurs
+        if (result.remaining !== undefined && result.reset) {
+          setRateLimit({
+            remaining: result.remaining,
+            reset: result.reset
+          });
+        }
+        
         return;
+      }
+      
+      // Store rate limit info on successful request
+      if (result.remaining !== undefined && result.reset) {
+        setRateLimit({
+          remaining: result.remaining,
+          reset: result.reset
+        });
       }
       
       // Create placeholder for assistant responses
@@ -190,7 +208,39 @@ export default function Chat({ persona }: ChatProps) {
   const handleSuggestionClick = (suggestion: string) => {
     handleSubmit(null, suggestion);
   };
+
+  // Format time until reset
+  const formatTimeUntilReset = () => {
+    if (!rateLimit?.reset) return '';
+    
+    const now = Date.now();
+    const resetTime = rateLimit.reset;
+    const diffInSeconds = Math.max(0, Math.ceil((resetTime - now) / 1000));
+    
+    if (diffInSeconds < 60) {
+      return `${diffInSeconds}s`;
+    } else if (diffInSeconds < 3600) {
+      return `${Math.floor(diffInSeconds / 60)}m ${diffInSeconds % 60}s`;
+    } else {
+      return `${Math.floor(diffInSeconds / 3600)}h ${Math.floor((diffInSeconds % 3600) / 60)}m`;
+    }
+  };
   
+  // Check if the user has hit the rate limit
+  const hasHitRateLimit = rateLimit ? rateLimit.remaining <= 0 : false;
+
+  // Periodically update the timer display
+  useEffect(() => {
+    if (!rateLimit?.reset) return;
+    
+    const interval = setInterval(() => {
+      // Force re-render to update the timer
+      setRateLimit(prev => prev ? {...prev} : null);
+    }, 1000);
+    
+    return () => clearInterval(interval);
+  }, [rateLimit?.reset]);
+
   return (    
     <div className="group w-full overflow-auto">
       <div className="absolute top-4 left-4 z-10">
@@ -240,22 +290,10 @@ export default function Chat({ persona }: ChatProps) {
           </div>
         </div>
       )}
-      
-      {error && (
-        <Alert variant="destructive" className="mb-4 max-w-xl mx-auto">
-          <AlertTitle>Error</AlertTitle>
-          <AlertDescription>
-            {error.message}
-            {error.reset && (
-              <span> Try again in {Math.ceil((error.reset - Date.now()) / 1000)} seconds.</span>
-            )}
-          </AlertDescription>
-        </Alert>
-      )}
 
       <div className="fixed inset-x-0 bottom-10 w-full">
         <div className="w-full max-w-xl mx-auto">
-          {messages.length === 0 && (
+          {messages.length === 0 && !hasHitRateLimit && (
             <div className="mb-4">
               <Card className="p-2 cursor-pointer transition-colors duration-200">
                 <div className="text-sm text-gray-600 font-medium ">Try asking:</div>
@@ -273,7 +311,29 @@ export default function Chat({ persona }: ChatProps) {
               </Card>
             </div>
           )}
-          <Card className="p-2">
+          
+          {rateLimit && (
+            <div className="mb-2 text-center">
+              <div className={`py-1 px-2 ${hasHitRateLimit ? 'bg-red-100 text-red-700' : 'bg-gray-100 text-gray-700'} rounded-md inline-flex items-center text-xs`}>
+                <span className="font-medium">{rateLimit.remaining} request{rateLimit.remaining !== 1 ? 's' : ''} left</span>
+                <span className="mx-1">•</span>
+                <span>Reset in {formatTimeUntilReset()}</span>
+              </div>
+            </div>
+          )}
+          
+          {hasHitRateLimit && (
+            <div className="mb-2">
+              <Alert variant="destructive" className="py-2">
+                <AlertTitle className="text-sm">Rate limit exceeded</AlertTitle>
+                <AlertDescription className="text-xs">
+                  You've reached the maximum number of requests. Please wait {formatTimeUntilReset()} before trying again.
+                </AlertDescription>
+              </Alert>
+            </div>
+          )}
+          
+          <div className="p-2 w-full h-16 bg-white rounded-lg border border-gray-200">
             <form onSubmit={(e) => handleSubmit(e)}>
               <div className="flex">
                 <div className="relative w-[95%] mr-2">
@@ -283,10 +343,10 @@ export default function Chat({ persona }: ChatProps) {
                     onChange={event => {
                       setInput(event.target.value);
                     }}
-                    disabled={isLoading}
+                    disabled={isLoading || hasHitRateLimit}
                     autoComplete="off"
-                    className="w-full border-0 ring-offset-0 focus-visible:ring-0 focus-visible:outline-none focus:outline-none focus:ring-0 ring-0 focus-visible:border-none border-transparent focus:border-transparent focus-visible:ring-none disabled:opacity-50 pr-10"
-                    placeholder={`Ask ${displayName}`}
+                    className="w-full shadow-none focus-visible:ring-0 focus-visible:outline-none focus:outline-none focus:ring-0 ring-0 focus-visible:border-none border-transparent focus:border-transparent focus-visible:ring-none disabled:opacity-50 pr-10"
+                    placeholder={hasHitRateLimit ? `Try again in ${formatTimeUntilReset()}` : `Ask ${displayName}`}
                   />
                   {isLoading && (
                     <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex">
@@ -303,7 +363,7 @@ export default function Chat({ persona }: ChatProps) {
                     </div>
                   )}
                 </div>
-                <Button disabled={!input.trim() || isLoading}>
+                <Button disabled={!input.trim() || isLoading || hasHitRateLimit}>
                   {isLoading ? (
                     <CircleStop />
                   ) : (
@@ -312,7 +372,7 @@ export default function Chat({ persona }: ChatProps) {
                 </Button>
               </div>
             </form>
-          </Card>
+          </div>
         </div>
       </div>
     </div>
